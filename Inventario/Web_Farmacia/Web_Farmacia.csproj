@@ -392,13 +392,7 @@
     <Content Include="Views\Gerencia\Registrar_Gerencia.cshtml" />
     <Content Include="Views\Area\Consultar_Area.cshtml" />
     <Content Include="Views\Area\Modificar_Area.cshtml" />
-    <Content Include="Views\Area\Registrar_Area.cshtml" />
     <Content Include="Views\Asignacion\Consultar_Asignacion.cshtml" />
-    <Content Include="Views\Asignacion\Modificar_Asignacion.cshtml" />
-    <Content Include="Views\Asignacion\Registrar_Asignacion.cshtml" />
-    <Content Include="Views\Categoria\Consultar_Categoria.cshtml" />
-    <Content Include="Views\Categoria\Modificar_Categoria.cshtml" />
-    <Content Include="Views\Categoria\Registrar_Categoria.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -409,6 +403,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Content\Imagenes\" />
+    <Folder Include="Views\Categoria\" />
     <Folder Include="Views\Inventario\" />
   </ItemGroup>
   <PropertyGroup>
