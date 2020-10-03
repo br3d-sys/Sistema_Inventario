@@ -308,15 +308,22 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Clases\Area.cs" />
+    <Compile Include="Clases\Asignacion.cs" />
     <Compile Include="Clases\Categoria.cs" />
     <Compile Include="Clases\Gerencia.cs" />
+    <Compile Include="Clases\Inventario.cs" />
     <Compile Include="Clases\Personal.cs" />
     <Compile Include="Clases\Bien.cs" />
     <Compile Include="Clases\Usuario.cs" />
     <Compile Include="Conexion.cs" />
+    <Compile Include="Controllers\AreaController.cs" />
+    <Compile Include="Controllers\AsignacionController.cs" />
     <Compile Include="Controllers\BienController.cs" />
+    <Compile Include="Controllers\CategoriaController.cs" />
     <Compile Include="Controllers\GerenciaController.cs" />
     <Compile Include="Controllers\Info.cs" />
+    <Compile Include="Controllers\InventarioController.cs" />
     <Compile Include="Controllers\PersonalController.cs" />
     <Compile Include="Controllers\ProductoController.cs" />
     <Compile Include="Controllers\UsuarioController.cs" />
@@ -326,6 +333,7 @@
     <Compile Include="Models\Metodo_Gerencia.cs" />
     <Compile Include="Models\Metodo_Producto.cs" />
     <Compile Include="Models\Metodo_Usuario.cs" />
+    <Compile Include="Models\Modelo_Personal.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -392,6 +400,10 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Content\Imagenes\" />
+    <Folder Include="Views\Area\" />
+    <Folder Include="Views\Asignacion\" />
+    <Folder Include="Views\Categoria\" />
+    <Folder Include="Views\Inventario\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
