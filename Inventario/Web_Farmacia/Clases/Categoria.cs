@@ -9,7 +9,7 @@ namespace Web_Farmacia.Clases
     {
         private int id_categoria;
         private string nombre;
-        private string Descripcion;
+        private string descripcion;
         private int disponibilidad;
 
         public int Id_categoria 
@@ -27,7 +27,7 @@ namespace Web_Farmacia.Clases
         {
             get
             {
-                return nombre
+                return nombre;
             }
             set
             {
