@@ -1,0 +1,103 @@
+﻿<!doctype html>
+<html lang="es">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" 
+    integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <title>Farmacia El Angel</title>
+</head>
+<body>
+
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" 
+                aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <img src="~/Content/Imagenes/ICONOANGEL.png" width="50" height="50" class="d-inline-block align-top" alt="">
+        <a class="navbar-brand" href="#">El Angel</a>
+        <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+            <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                <li class="nav-item active">
+                    <a class="nav-link" href="@Url.Action("Principal_Catalogo", "Catalogo")">Nosotros<span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="@Url.Action("Filtrar_Catalogo", "Catalogo")">Productos</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="@Url.Action("usuario_Catalogo", "Catalogo")">Intranet</a>
+                </li>
+                
+            </ul>
+            <form class="form-inline my-2 my-lg-0">
+                <input class="form-control mr-sm-2" type="search" placeholder="Buscar" aria-label="Buscar">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="button">Buscar</button>
+            </form>
+        </div>
+    </nav>
+    <div id="carouselExampleInterval" class="carousel slide" data-ride="carousel">
+        <div class="carousel-inner">
+            <div class="carousel-item active" data-interval="10000">
+                <img src="~/Content/Imagenes/imagen1_1.jpg" class="d-block w-100" alt="Medicamentos 01">
+            </div>
+            <div class="carousel-item" data-interval="2000">
+                <img src="~/Content/Imagenes/imagen2_2.jpg" class="d-block w-100" alt="Medicamentos 02">
+            </div>
+            <div class="carousel-item">
+                <img src="~/Content/Imagenes/imagen3_3.jpg" class="d-block w-100" alt="Medicamentos 03">
+            </div>
+        </div>
+        <a class="carousel-control-prev" href="#carouselExampleInterval" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#carouselExampleInterval" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>
+    </div>
+    <div class="bg-dark p-4" >
+    </div>
+    <div class="container-fluid p-4">
+        <h1 class="mb-4">Nosotros</h1>
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Misión</h5>
+                        <p class="card-text">Mejorar  nuestros  servicios  de  atención  al  cliente,  usando  medios tecnológicos para acercarnos a nuestros consumidores.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Visión</h5>
+                        <p class="card-text">Cambiar la historia de la salud en todas las comunidades donde operemos, a través de la mejor calidad, el mejor precio y la mejor gente.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="bg-dark p-4">
+    </div>
+    <div class="container-fluid p-4">
+        <h1 class="mb-4">Nuestros Productos</h1>
+        <div class="card-deck mr-0">
+
+            @Html.Raw(ViewBag.texto)
+
+        </div>
+    </div>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+</body>
+</html>

@@ -1,0 +1,127 @@
+CREATE SCHEMA IF NOT EXISTS `sistema_inventario` DEFAULT CHARACTER SET utf8mb4 ;
+USE `sistema_inventario` ;
+
+-- -----------------------------------------------------
+-- Table `tbl_usuario`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `tbl_usuario` (
+  `id_usuario` INT NOT NULL AUTO_INCREMENT,
+  `nombre` VARCHAR(80) NOT NULL,
+  `usuario` VARCHAR(45) NOT NULL,
+  `contrasena` VARCHAR(45) NOT NULL,
+  `documento` VARCHAR(5) NOT NULL,
+  `n_documento` VARCHAR(11) NOT NULL,
+  `correo` VARCHAR(45) NOT NULL,
+  `celular` VARCHAR(9) NULL,
+  `direccion` VARCHAR(50) NOT NULL,
+  `cargo` VARCHAR(45) NOT NULL,
+  `disponibilidad` TINYINT(1) NOT NULL DEFAULT 1,
+  PRIMARY KEY (`id_usuario`))
+ENGINE = InnoDB;
+
+ Table `tbl_categoria`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `tbl_categoria` (
+  `id_categoria` INT NOT NULL AUTO_INCREMENT,
+  `nombre` VARCHAR(45) NOT NULL,
+  `descripcion` VARCHAR(200) NOT NULL,
+  `disponibilidad` TINYINT(1) NOT NULL DEFAULT 1,
+  PRIMARY KEY (`id_categoria`))
+ENGINE = InnoDB;
+
+-- -----------------------------------------------------
+-- Table `tbl_bienes`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `tbl_bienes` (
+  `id_bienes` INT NOT NULL AUTO_INCREMENT,
+  `id_categoria` INT NOT NULL,
+  `nombre` VARCHAR(50) NOT NULL,
+  `descripcion` VARCHAR(200) NOT NULL,
+  `codigo` VARCHAR(9) NOT NULL,
+  `precio` DOUBLE(11,2) NOT NULL,
+  `imagen` VARCHAR(200) NULL,
+  `estado` VARCHAR(45) NOT NULL,
+  `fecha_ing` DATE NULL,
+  `marca` VARCHAR(45) NOT NULL,
+  `color` VARCHAR(45) NOT NULL,
+  `modelo` VARCHAR(45) NOT NULL,
+  `alto` VARCHAR(45) NULL,
+  `ancho` VARCHAR(45) NULL,
+  `profundidad` VARCHAR(45) NULL,
+  `disponibilidad` TINYINT(1) NOT NULL DEFAULT 1,
+  PRIMARY KEY (`id_bienes`),
+  INDEX `fk_categoria_idx` (`id_categoria` ASC),
+  CONSTRAINT `fk_bienes_categoria`
+    FOREIGN KEY (`id_categoria`)
+    REFERENCES `tbl_categoria` (`id_categoria`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+-- -----------------------------------------------------
+-- Table `tbl_personal`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `tbl_personal` (
+  `id_personal` INT NOT NULL AUTO_INCREMENT,
+  `id_area` INT NOT NULL,
+  `nombre` VARCHAR(80) NOT NULL,
+  `cargo` VARCHAR(60) NOT NULL,
+  `t_documento` VARCHAR(5) NOT NULL,
+  `n_documento` VARCHAR(11) NOT NULL,
+  `edad` INT NULL,
+  `sexo` VARCHAR(10) NOT NULL,
+  `est_civil` VARCHAR(10) NULL,
+  `celular` VARCHAR(15) NULL,
+  `direccion` VARCHAR(45) NULL,
+  `correo` VARCHAR(45) NULL,
+  `disponibilidad` TINYINT(1) NOT NULL DEFAULT 1,
+  PRIMARY KEY (`id_personal`),
+  INDEX `fk_area_idx` (`id_area` ASC),
+  CONSTRAINT `fk_personal_area`
+    FOREIGN KEY (`id_area`)
+    REFERENCES `tbl_area` (`id_area`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `tbl_asignacion`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `tbl_asignacion` (
+  `id_asignacion` INT NOT NULL AUTO_INCREMENT,
+  `id_usuario` INT NOT NULL,
+  `id_inventario` INT NOT NULL,
+  `id_personal` INT NOT NULL,
+  `id_area` INT NOT NULL,
+  `fecha` DATE NOT NULL,
+  `disponibilidad` TINYINT(1) NOT NULL DEFAULT 1,
+  PRIMARY KEY (`id_asignacion`),
+  INDEX `fk_t_com_usuario_idx` (`id_usuario` ASC),
+  INDEX `fk_asignacion_inventario_idx` (`id_inventario` ASC),
+  INDEX `fk_asignacion_personal_idx` (`id_personal` ASC),
+  INDEX `fk_asignacion_area_idx` (`id_area` ASC),
+  CONSTRAINT `fk_asignacion_usuario`
+    FOREIGN KEY (`id_usuario`)
+    REFERENCES `tbl_usuario` (`id_usuario`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_asignacion_inventario`
+    FOREIGN KEY (`id_inventario`)
+    REFERENCES `tbl_inventario` (`id_inventario`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_asignacion_personal`
+    FOREIGN KEY (`id_personal`)
+    REFERENCES `tbl_personal` (`id_personal`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_asignacion_area`
+    FOREIGN KEY (`id_area`)
+    REFERENCES `tbl_area` (`id_area`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+
