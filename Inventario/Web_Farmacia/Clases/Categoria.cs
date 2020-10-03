@@ -9,59 +9,53 @@ namespace Web_Farmacia.Clases
     {
         private int id_categoria;
         private string nombre;
-        private string descripcion;
+        private string Descripcion;
         private int disponibilidad;
 
-        public int Id_categoria
+        public int Id_categoria 
         {
             get
             {
                 return id_categoria;
             }
-
             set
             {
-                id_categoria = value;
-            }
+                id_categoria = value; 
+            } 
         }
-
-        public string Nombre
+        public string Nombre 
         {
             get
             {
-                return nombre;
+                return nombre
             }
-
             set
             {
                 nombre = value;
             }
         }
-
-        public string Descripcion
+        public string Descripcion1
         {
             get
             {
                 return descripcion;
             }
-
             set
             {
                 descripcion = value;
+
             }
         }
-
-        public int Disponibilidad
+        public int Disponibilidad 
         {
-            get
-            {
-                return disponibilidad;
+            get 
+            { 
+                return disponibilidad; 
             }
-
-            set
-            {
-                disponibilidad = value;
-            }
+            set 
+            { 
+                disponibilidad = value; 
+            } 
         }
     }
 }
