@@ -308,6 +308,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Clases\Categoria.cs" />
     <Compile Include="Clases\Gerencia.cs" />
     <Compile Include="Clases\Personal.cs" />
     <Compile Include="Clases\Bien.cs" />
