@@ -393,7 +393,7 @@
     <Content Include="Views\Area\Consultar_Area.cshtml" />
     <Content Include="Views\Area\Modificar_Area.cshtml" />
     <Content Include="Views\Asignacion\Consultar_Asignacion.cshtml" />
-<<<<<<< HEAD
+    <Content Include="Views\Area\Registrar_Area.cshtml" />
     <Content Include="Views\Asignacion\Modificar_Asignacion.cshtml" />
     <Content Include="Views\Asignacion\Registrar_Asignacion.cshtml" />
     <Content Include="Views\Categoria\Consultar_Categoria.cshtml" />
@@ -402,8 +402,6 @@
     <Content Include="Views\Inventario\Consultar_Inventario.cshtml" />
     <Content Include="Views\Inventario\Modificar_Inventario.cshtml" />
     <Content Include="Views\Inventario\Registrar_Inventario.cshtml" />
-=======
->>>>>>> master
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -414,11 +412,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Content\Imagenes\" />
-<<<<<<< HEAD
-=======
-    <Folder Include="Views\Categoria\" />
-    <Folder Include="Views\Inventario\" />
->>>>>>> master
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
