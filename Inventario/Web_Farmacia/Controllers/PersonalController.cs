@@ -18,5 +18,13 @@ namespace Web_Farmacia.Controllers
         {
             return View();
         }
+        public ActionResult Consultar_Personal()
+        {
+            return View();
+        }
+        public ActionResult Modificar_Personal()
+        {
+            return View();
+        }
     }
 }

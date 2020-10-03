@@ -13,5 +13,17 @@ namespace Web_Farmacia.Controllers
         {
             return View();
         }
+        public ActionResult Consultar_Asignacion()
+        {
+            return View();
+        }
+        public ActionResult Modificar_Asignacion()
+        {
+            return View();
+        }
+        public ActionResult Registrar_Asignacion()
+        {
+            return View();
+        }
     }
 }
