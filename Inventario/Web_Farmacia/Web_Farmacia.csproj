@@ -399,6 +399,9 @@
     <Content Include="Views\Categoria\Consultar_Categoria.cshtml" />
     <Content Include="Views\Categoria\Modificar_Categoria.cshtml" />
     <Content Include="Views\Categoria\Registrar_Categoria.cshtml" />
+    <Content Include="Views\Inventario\Consultar_Inventario.cshtml" />
+    <Content Include="Views\Inventario\Modificar_Inventario.cshtml" />
+    <Content Include="Views\Inventario\Registrar_Inventario.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -409,7 +412,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Content\Imagenes\" />
-    <Folder Include="Views\Inventario\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
