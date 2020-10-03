@@ -13,5 +13,17 @@ namespace Web_Farmacia.Controllers
         {
             return View();
         }
+        public ActionResult Consultar_Inventario()
+        {
+            return View();
+        }
+        public ActionResult Modificar_Inventario()
+        {
+            return View();
+        }
+        public ActionResult Registrar_Inventario()
+        {
+            return View();
+        }
     }
 }

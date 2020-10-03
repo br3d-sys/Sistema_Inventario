@@ -13,5 +13,17 @@ namespace Web_Farmacia.Controllers
         {
             return View();
         }
+        public ActionResult Consultar_Categoria()
+        {
+            return View();
+        }
+        public ActionResult Index()
+        {
+            return View();
+        }
+        public ActionResult Index()
+        {
+            return View();
+        }
     }
 }
