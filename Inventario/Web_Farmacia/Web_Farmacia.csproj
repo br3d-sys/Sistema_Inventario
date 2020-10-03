@@ -333,6 +333,11 @@
     <Compile Include="Models\Metodo_Gerencia.cs" />
     <Compile Include="Models\Metodo_Producto.cs" />
     <Compile Include="Models\Metodo_Usuario.cs" />
+    <Compile Include="Models\Modelo_Area.cs" />
+    <Compile Include="Models\Modelo_Asignacion.cs" />
+    <Compile Include="Models\Modelo_Bien.cs" />
+    <Compile Include="Models\Modelo_Categoria.cs" />
+    <Compile Include="Models\Modelo_Inventario.cs" />
     <Compile Include="Models\Modelo_Personal.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
