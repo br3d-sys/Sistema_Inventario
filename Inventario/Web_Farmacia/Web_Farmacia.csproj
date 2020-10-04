@@ -333,11 +333,6 @@
     <Compile Include="Models\Metodo_Gerencia.cs" />
     <Compile Include="Models\Metodo_Producto.cs" />
     <Compile Include="Models\Metodo_Usuario.cs" />
-    <Compile Include="Models\Modelo_Area.cs" />
-    <Compile Include="Models\Modelo_Asignacion.cs" />
-    <Compile Include="Models\Modelo_Bien.cs" />
-    <Compile Include="Models\Modelo_Categoria.cs" />
-    <Compile Include="Models\Modelo_Inventario.cs" />
     <Compile Include="Models\Modelo_Personal.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -397,13 +392,16 @@
     <Content Include="Views\Gerencia\Registrar_Gerencia.cshtml" />
     <Content Include="Views\Area\Consultar_Area.cshtml" />
     <Content Include="Views\Area\Modificar_Area.cshtml" />
-    <Content Include="Views\Area\Registrar_Area.cshtml" />
     <Content Include="Views\Asignacion\Consultar_Asignacion.cshtml" />
+    <Content Include="Views\Area\Registrar_Area.cshtml" />
     <Content Include="Views\Asignacion\Modificar_Asignacion.cshtml" />
     <Content Include="Views\Asignacion\Registrar_Asignacion.cshtml" />
     <Content Include="Views\Categoria\Consultar_Categoria.cshtml" />
     <Content Include="Views\Categoria\Modificar_Categoria.cshtml" />
     <Content Include="Views\Categoria\Registrar_Categoria.cshtml" />
+    <Content Include="Views\Inventario\Consultar_Inventario.cshtml" />
+    <Content Include="Views\Inventario\Modificar_Inventario.cshtml" />
+    <Content Include="Views\Inventario\Registrar_Inventario.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -414,7 +412,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Content\Imagenes\" />
-    <Folder Include="Views\Inventario\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

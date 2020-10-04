@@ -10,27 +10,58 @@ namespace Web_Farmacia.Clases
         private int id_gerencia;
         private string nombre;
         private string descripcion;
-        private string disponibilidad;
+        private int disponibilidad;
 
-        public int Id_gerencia 
-        { 
-            get => id_gerencia; 
-            set => id_gerencia = value; 
+        public int Id_gerencia
+        {
+            get
+            {
+                return id_gerencia;
+            }
+
+            set
+            {
+                id_gerencia = value;
+            }
         }
-        public string Nombre 
-        { 
-            get => nombre; 
-            set => nombre = value; 
+
+        public string Nombre
+        {
+            get
+            {
+                return nombre;
+            }
+
+            set
+            {
+                nombre = value;
+            }
         }
-        public string Descripcion 
-        { 
-            get => descripcion; 
-            set => descripcion = value; 
+
+        public string Descripcion
+        {
+            get
+            {
+                return descripcion;
+            }
+
+            set
+            {
+                descripcion = value;
+            }
         }
-        public string Disponibilidad 
-        { 
-            get => disponibilidad; 
-            set => disponibilidad = value; 
+
+        public int Disponibilidad
+        {
+            get
+            {
+                return disponibilidad;
+            }
+
+            set
+            {
+                disponibilidad = value;
+            }
         }
     }
 }
