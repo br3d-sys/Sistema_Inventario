@@ -33,12 +33,12 @@ namespace Web_Farmacia.Models
                         cmd.Parameters.AddWithValue("_id_area", per.Id_area);
                         cmd.Parameters.AddWithValue("_nombre",per.Nombre);
                         cmd.Parameters.AddWithValue("cargo", per.Cargo);
-                        cmd.Parameters.AddWithValue("_documento", usu.Documento);
-                        cmd.Parameters.AddWithValue("_n_documento", usu.N_documento);
-                        cmd.Parameters.AddWithValue("_correo", usu.Correo);
-                        cmd.Parameters.AddWithValue("_celular", usu.Celular);
-                        cmd.Parameters.AddWithValue("_direccion", usu.Direccion);
-                        cmd.Parameters.AddWithValue("_id_cargo", usu.Id_cargo);
+                        //cmd.Parameters.AddWithValue("_documento", usu.Documento);
+                        //cmd.Parameters.AddWithValue("_n_documento", usu.N_documento);
+                        //cmd.Parameters.AddWithValue("_correo", usu.Correo);
+                        //cmd.Parameters.AddWithValue("_celular", usu.Celular);
+                        //cmd.Parameters.AddWithValue("_direccion", usu.Direccion);
+                        //cmd.Parameters.AddWithValue("_id_cargo", usu.Id_cargo);
 
                         if (cmd.ExecuteNonQuery() > 0)
                         {

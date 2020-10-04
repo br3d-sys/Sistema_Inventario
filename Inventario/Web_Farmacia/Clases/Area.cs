@@ -12,37 +12,84 @@ namespace Web_Farmacia.Clases
         private string nombre;
         private string ubicacion;
         private string descripcion;
-        private string disponibilidad;
+        private int disponibilidad;
 
-        public int Id_area 
-        { 
-            get => id_area; 
-            set => id_area = value; 
+        public int Id_area
+        {
+            get
+            {
+                return id_area;
+            }
+
+            set
+            {
+                id_area = value;
+            }
         }
-        public int Id_categoria 
-        { 
-            get => id_categoria; 
-            set => id_categoria = value; 
+
+        public int Id_categoria
+        {
+            get
+            {
+                return id_categoria;
+            }
+
+            set
+            {
+                id_categoria = value;
+            }
         }
-        public string Nombre 
-        { 
-            get => nombre; 
-            set => nombre = value; 
+
+        public string Nombre
+        {
+            get
+            {
+                return nombre;
+            }
+
+            set
+            {
+                nombre = value;
+            }
         }
-        public string Ubicacion 
-        { 
-            get => ubicacion; 
-            set => ubicacion = value; 
+
+        public string Ubicacion
+        {
+            get
+            {
+                return ubicacion;
+            }
+
+            set
+            {
+                ubicacion = value;
+            }
         }
-        public string Descripcion 
-        { 
-            get => descripcion; 
-            set => descripcion = value; 
+
+        public string Descripcion
+        {
+            get
+            {
+                return descripcion;
+            }
+
+            set
+            {
+                descripcion = value;
+            }
         }
-        public string Disponibilidad 
-        { 
-            get => disponibilidad; 
-            set => disponibilidad = value; 
+
+        public int Disponibilidad
+        {
+            get
+            {
+                return disponibilidad;
+            }
+
+            set
+            {
+                disponibilidad = value;
+            }
         }
     }
 }

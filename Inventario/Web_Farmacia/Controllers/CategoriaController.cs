@@ -17,11 +17,11 @@ namespace Web_Farmacia.Controllers
         {
             return View();
         }
-        public ActionResult Index()
+        public ActionResult Modificar_Categoria()
         {
             return View();
         }
-        public ActionResult Index()
+        public ActionResult Registrar_Categoria()
         {
             return View();
         }

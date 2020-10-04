@@ -23,7 +23,7 @@ namespace Web_Farmacia.Clases
         private string alto;
         private string ancho;
         private string profundidad;
-        private string disponibilidad;
+        private int disponibilidad;
 
         public int Id_bien
         {
@@ -220,7 +220,7 @@ namespace Web_Farmacia.Clases
             }
         }
 
-        public string Disponibilidad
+        public int Disponibilidad
         {
             get
             {
