@@ -13,42 +13,97 @@ namespace Web_Farmacia.Clases
         private int id_personal;
         private int id_area;
         private string fecha_asig;
-        private string disponibilidad;
+        private int disponibilidad;
 
-        public int Id_asignacion 
-        { 
-            get => id_asignacion; 
-            set => id_asignacion = value; 
+        public int Id_asignacion
+        {
+            get
+            {
+                return id_asignacion;
+            }
+
+            set
+            {
+                id_asignacion = value;
+            }
         }
-        public int Id_usuario 
-        { 
-            get => id_usuario; 
-            set => id_usuario = value; 
+
+        public int Id_usuario
+        {
+            get
+            {
+                return id_usuario;
+            }
+
+            set
+            {
+                id_usuario = value;
+            }
         }
-        public int Id_inventario 
-        { 
-            get => id_inventario; 
-            set => id_inventario = value; 
+
+        public int Id_inventario
+        {
+            get
+            {
+                return id_inventario;
+            }
+
+            set
+            {
+                id_inventario = value;
+            }
         }
-        public int Id_personal 
-        { 
-            get => id_personal; 
-            set => id_personal = value; 
+
+        public int Id_personal
+        {
+            get
+            {
+                return id_personal;
+            }
+
+            set
+            {
+                id_personal = value;
+            }
         }
-        public int Id_area 
-        { 
-            get => id_area; 
-            set => id_area = value; 
+
+        public int Id_area
+        {
+            get
+            {
+                return id_area;
+            }
+
+            set
+            {
+                id_area = value;
+            }
         }
-        public string Fecha_asig 
-        { 
-            get => fecha_asig; 
-            set => fecha_asig = value; 
+
+        public string Fecha_asig
+        {
+            get
+            {
+                return fecha_asig;
+            }
+
+            set
+            {
+                fecha_asig = value;
+            }
         }
-        public string Disponibilidad 
-        { 
-            get => disponibilidad; 
-            set => disponibilidad = value;
+
+        public int Disponibilidad
+        {
+            get
+            {
+                return disponibilidad;
+            }
+
+            set
+            {
+                disponibilidad = value;
+            }
         }
     }
 }
