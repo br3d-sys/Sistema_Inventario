@@ -314,7 +314,7 @@
     <Compile Include="Clases\Gerencia.cs" />
     <Compile Include="Clases\Inventario.cs" />
     <Compile Include="Clases\Personal.cs" />
-    <Compile Include="Clases\Bien.cs" />
+    <Compile Include="Clases\Bienes.cs" />
     <Compile Include="Clases\Usuario.cs" />
     <Compile Include="Conexion.cs" />
     <Compile Include="Controllers\AreaController.cs" />
@@ -336,7 +336,7 @@
     <Compile Include="Models\Metodo_Usuario.cs" />
     <Compile Include="Models\Modelo_Area.cs" />
     <Compile Include="Models\Modelo_Asignacion.cs" />
-    <Compile Include="Models\Modelo_Bien.cs" />
+    <Compile Include="Models\Modelo_Bienes.cs" />
     <Compile Include="Models\Modelo_Invetario.cs" />
     <Compile Include="Models\Modelo_Personal.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

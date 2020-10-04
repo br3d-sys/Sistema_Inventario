@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using MySql.Data.MySqlClient;
+using Web_Farmacia.Clases;
 
 namespace Web_Farmacia.Models
 {
@@ -27,11 +29,9 @@ namespace Web_Farmacia.Models
                         cmd.Connection = con;
 
                         cmd.Parameters.AddWithValue("_id_bien", inven.Id_bien);
-                        cmd.Parameters.AddWithValue("_inventario", inven.Inventario);
-                        cmd.Parameters.AddWithValue("_fecha", inven.Fecha);
+                        cmd.Parameters.AddWithValue("_inventario", inven.N_inventario);
+                        cmd.Parameters.AddWithValue("_fecha", inven.Fecha_inven);
                         cmd.Parameters.AddWithValue("_estado", inven.Estado);
-                        cmd.Parameters.AddWithValue("_disponibilidad", are.Disponibilidad);
-
 
                         if (cmd.ExecuteNonQuery() > 0)
                         {
@@ -50,7 +50,7 @@ namespace Web_Farmacia.Models
             }
         }
 
-        public List<Invetario> listar()
+        public List<Inventario> listar()
         {
             try
             {
@@ -72,10 +72,9 @@ namespace Web_Farmacia.Models
                             lista.Add(new Inventario
                             {
                                 Id_bien = rd.GetInt32("id_bien"),
-                                Inventario = rd.GetString("inventario"),
-                                Fecha = rd.GetString("fecha"),
-                                Estado = rd.GetString("estado"),
-                                Disponibilidad = rd.GetString("disponibilidad"),
+                                N_inventario = rd.GetString("n_inventario"),
+                                Fecha_inven = rd.GetString("fecha_inven"),
+                                Estado = rd.GetString("estado")                         
                             });
                         }
 
@@ -105,11 +104,10 @@ namespace Web_Farmacia.Models
                         cmd.CommandType = System.Data.CommandType.StoredProcedure;
                         cmd.Connection = con;
 
-                        cmd.Parameters.AddWithValue("_id_bien", are.Id_Bien);
-                        cmd.Parameters.AddWithValue("_inventario", are.Inventario);
-                        cmd.Parameters.AddWithValue("_fecha", are.Fecha);
-                        cmd.Parameters.AddWithValue("estado", are.Estado);
-                        cmd.Parameters.AddWithValue("_disponibilidad", are.Disponibilidad);
+                        cmd.Parameters.AddWithValue("_id_bien", inven.Id_bien);
+                        cmd.Parameters.AddWithValue("_inventario", inven.N_inventario);
+                        cmd.Parameters.AddWithValue("_fecha", inven.Fecha_inven);
+                        cmd.Parameters.AddWithValue("estado", inven.Estado);
 
                         if (cmd.ExecuteNonQuery() > 0)
                         {

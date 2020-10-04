@@ -34,7 +34,7 @@ namespace Web_Farmacia.Clases
                 nombre = value;
             }
         }
-        public string Descripcion1
+        public string Descripcion
         {
             get
             {

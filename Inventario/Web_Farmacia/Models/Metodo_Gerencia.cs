@@ -13,7 +13,11 @@ namespace Web_Farmacia.Models
         MySqlCommand cmd;
         MySqlConnection con;
 
-        public Boolean guardar(Gerencia ger)
+        public Metodo_Gerencia()
+        {
+
+        }
+        public Boolean guardar(Gerencia gere)
         {
             try
             {
@@ -21,13 +25,12 @@ namespace Web_Farmacia.Models
                 {
                     using (cmd = new MySqlCommand())
                     {
-                        cmd.CommandText = "SP_A_Tabla_Gerencia";
+                        cmd.CommandText = "SP_C_Tabla_Gerencia";
                         cmd.CommandType = System.Data.CommandType.StoredProcedure;
                         cmd.Connection = con;
 
-                        cmd.Parameters.AddWithValue("_nombre", ger.Nombre);
-                        cmd.Parameters.AddWithValue("_descripcion", ger.Descripcion);
-                        
+                        cmd.Parameters.AddWithValue("_nombre", gere.Nombre);
+                        cmd.Parameters.AddWithValue("_descripcion", gere.Descripcion);
 
                         if (cmd.ExecuteNonQuery() > 0)
                         {
@@ -44,7 +47,112 @@ namespace Web_Farmacia.Models
             {
                 return false;
             }
+        }
 
+        public List<Gerencia> listar()
+        {
+            try
+            {
+                MySqlDataReader rd;
+                List<Gerencia> lista = new List<Gerencia>();
+
+                using (con = Conexion.conectar())
+                {
+                    using (cmd = new MySqlCommand())
+                    {
+                        cmd.CommandText = "SP_A_Tabla_Gerencia";
+                        cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                        cmd.Connection = con;
+
+                        rd = cmd.ExecuteReader();
+
+                        while (rd.Read())
+                        {
+                            lista.Add(new Gerencia
+                            {
+                                Nombre = rd.GetString("nombre"),
+                                Descripcion = rd.GetString("descripcion")
+                            });
+                        }
+
+                        rd.Close();
+
+                    }
+                }
+
+                return lista;
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+        }
+
+        public Boolean actualizar(Gerencia are)
+        {
+            try
+            {
+                using (con = Conexion.conectar())
+                {
+                    using (cmd = new MySqlCommand())
+                    {
+
+                        cmd.CommandText = "SP_M_Tabla_Gerencia";
+                        cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                        cmd.Connection = con;
+
+                        cmd.Parameters.AddWithValue("_nombre", are.Nombre);
+                        cmd.Parameters.AddWithValue("_descripcion", are.Descripcion);
+
+                        if (cmd.ExecuteNonQuery() > 0)
+                        {
+                            return true;
+                        }
+                        else
+                        {
+                            return false;
+                        }
+
+                    }
+
+                }
+            }
+            catch (Exception)
+            {
+
+                return false;
+            }
+
+        }
+        public Boolean eliminar(int id)
+        {
+            try
+            {
+                using (con = Conexion.conectar())
+                {
+                    using (cmd = new MySqlCommand())
+                    {
+                        cmd.CommandText = "SP_E_Tabla_Gerencia";
+                        cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                        cmd.Connection = con;
+
+                        cmd.Parameters.AddWithValue("_id_gerencia", id);
+
+                        if (cmd.ExecuteNonQuery() > 0)
+                        {
+                            return true;
+                        }
+                        else
+                        {
+                            return false;
+                        }
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                return false;
+            }
         }
 
     }

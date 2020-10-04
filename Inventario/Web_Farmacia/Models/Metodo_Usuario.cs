@@ -9,170 +9,169 @@ namespace Web_Farmacia.Models
 {
     public class Metodo_Usuario
     {
-        //MySqlCommand cmd;
-        //MySqlConnection con;
+        MySqlCommand cmd;
+        MySqlConnection con;
 
-        //public Metodo_Usuario()
-        //{
+        public Metodo_Usuario()
+        {
 
-        //}
-        //public Boolean guardar(Usuario usu)
-        //{
-        //    try
-        //    {
-        //        using (con = Conexion.conectar())
-        //        {
-        //            using (cmd = new MySqlCommand())
-        //            {
-        //                cmd.CommandText = "SP_A_Tabla_Usuario";
-        //                cmd.CommandType = System.Data.CommandType.StoredProcedure;
-        //                cmd.Connection = con;
+        }
+        public Boolean guardar(Usuario usu)
+        {
+            try
+            {
+                using (con = Conexion.conectar())
+                {
+                    using (cmd = new MySqlCommand())
+                    {
+                        cmd.CommandText = "SP_A_Tabla_Usuario";
+                        cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                        cmd.Connection = con;
 
-        //                cmd.Parameters.AddWithValue("_nombre", usu.Nombre);
-        //                cmd.Parameters.AddWithValue("_usuario", usu.Nom_usuario);
-        //                cmd.Parameters.AddWithValue("_contrasena", usu.Password);
-        //                cmd.Parameters.AddWithValue("_documento", usu.Documento);
-        //                cmd.Parameters.AddWithValue("_n_documento", usu.N_documento);
-        //                cmd.Parameters.AddWithValue("_correo", usu.Correo);
-        //                cmd.Parameters.AddWithValue("_celular", usu.Celular);
-        //                cmd.Parameters.AddWithValue("_direccion", usu.Direccion);
-        //                cmd.Parameters.AddWithValue("_id_cargo", usu.Id_cargo);
+                        cmd.Parameters.AddWithValue("_nombre", usu.Nombre);
+                        cmd.Parameters.AddWithValue("_usuario", usu.Nom_usuario);
+                        cmd.Parameters.AddWithValue("_contrasena", usu.Password);
+                        cmd.Parameters.AddWithValue("_documento", usu.Documento);
+                        cmd.Parameters.AddWithValue("_n_documento", usu.N_documento);
+                        cmd.Parameters.AddWithValue("_correo", usu.Correo);
+                        cmd.Parameters.AddWithValue("_celular", usu.Celular);
+                        cmd.Parameters.AddWithValue("_direccion", usu.Direccion);
+                        cmd.Parameters.AddWithValue("_cargo", usu.Cargo);
 
-        //                if (cmd.ExecuteNonQuery() > 0)
-        //                {
-        //                    return true;
-        //                }
-        //                else
-        //                {
-        //                    return false;
-        //                }
-        //            }
-        //        }
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        return false;
-        //    }
+                        if (cmd.ExecuteNonQuery() > 0)
+                        {
+                            return true;
+                        }
+                        else
+                        {
+                            return false;
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
 
-        //}
+        }
 
-        //public List<Usuario> listar()
-        //{
-        //    try
-        //    {
+        public List<Usuario> listar()
+        {
+            try
+            {
 
-        //        MySqlDataReader rd;
-        //        List<Usuario> lista = new List<Usuario>();
+                MySqlDataReader rd;
+                List<Usuario> lista = new List<Usuario>();
 
-        //        using (con = Conexion.conectar())
-        //        {
-        //            using (cmd = new MySqlCommand())
-        //            {
-        //                cmd.CommandText = "SP_C_Tabla_Usuario";
-        //                cmd.CommandType = System.Data.CommandType.StoredProcedure;
-        //                cmd.Connection = con;
+                using (con = Conexion.conectar())
+                {
+                    using (cmd = new MySqlCommand())
+                    {
+                        cmd.CommandText = "SP_C_Tabla_Usuario";
+                        cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                        cmd.Connection = con;
 
-        //                rd = cmd.ExecuteReader();
+                        rd = cmd.ExecuteReader();
 
-        //                while (rd.Read())
-        //                {
-        //                    lista.Add(new Usuario
-        //                    {
-        //                        Id_usuario = rd.GetInt32("id_usuario"),
-        //                        Nombre = rd.GetString("nombre"),
-        //                        Nom_usuario = rd.GetString("usuario"),
-        //                        Documento = rd.GetString("documento"),
-        //                        N_documento = rd.GetString("n_documento"),
-        //                        Correo = rd.GetString("correo"),
-        //                        Celular = rd.GetString("celular"),
-        //                        Direccion = rd.GetString("direccion"),
-        //                        Id_cargo = rd.GetInt32("id_cargo"),
-        //                        Nom_cargo = rd.GetString("cargo")
-        //                    });
-        //                }
-        //                rd.Close();
-        //            }
-        //        }
-        //        return lista;
-        //    }
-        //    catch (Exception)
-        //    {
-        //        return null;
-        //    }
-        //}
+                        while (rd.Read())
+                        {
+                            lista.Add(new Usuario
+                            {
+                                Id_usuario = rd.GetInt32("id_usuario"),
+                                Nombre = rd.GetString("nombre"),
+                                Nom_usuario = rd.GetString("usuario"),
+                                Documento = rd.GetString("documento"),
+                                N_documento = rd.GetString("n_documento"),
+                                Correo = rd.GetString("correo"),
+                                Celular = rd.GetString("celular"),
+                                Direccion = rd.GetString("direccion"),
+                                Cargo = rd.GetString("cargo")
+                            });
+                        }
+                        rd.Close();
+                    }
+                }
+                return lista;
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+        }
 
-        //public Boolean eliminar(int id)
-        //{
-        //    try
-        //    {
-        //        using (con = Conexion.conectar())
-        //        {
-        //            using (cmd = new MySqlCommand())
-        //            {
-        //                cmd.CommandText = "SP_E_Tabla_Usuario";
-        //                cmd.CommandType = System.Data.CommandType.StoredProcedure;
-        //                cmd.Connection = con;
+        public Boolean eliminar(int id)
+        {
+            try
+            {
+                using (con = Conexion.conectar())
+                {
+                    using (cmd = new MySqlCommand())
+                    {
+                        cmd.CommandText = "SP_E_Tabla_Usuario";
+                        cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                        cmd.Connection = con;
 
-        //                cmd.Parameters.AddWithValue("_id_usuario", id);
+                        cmd.Parameters.AddWithValue("_id_usuario", id);
 
-        //                if (cmd.ExecuteNonQuery() > 0)
-        //                {
-        //                    return true;
-        //                }
-        //                else
-        //                {
-        //                    return false;
-        //                }
-        //            }
-        //        }
-        //    }
-        //    catch (Exception)
-        //    {
-        //        return false;
-        //    }
-        //}
+                        if (cmd.ExecuteNonQuery() > 0)
+                        {
+                            return true;
+                        }
+                        else
+                        {
+                            return false;
+                        }
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
 
-        //public Boolean actualizar(Usuario usu)
-        //{
-        //    try
-        //    {
-        //        using (con = Conexion.conectar())
-        //        {
-        //            using (cmd = new MySqlCommand())
-        //            {
-        //                cmd.CommandText = "SP_M_Tabla_Usuario";
-        //                cmd.CommandType = System.Data.CommandType.StoredProcedure;
-        //                cmd.Connection = con;
+        public Boolean actualizar(Usuario usu)
+        {
+            try
+            {
+                using (con = Conexion.conectar())
+                {
+                    using (cmd = new MySqlCommand())
+                    {
+                        cmd.CommandText = "SP_M_Tabla_Usuario";
+                        cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                        cmd.Connection = con;
 
-        //                cmd.Parameters.AddWithValue("_nombre", usu.Nombre);
-        //                cmd.Parameters.AddWithValue("_usuario", usu.Nom_usuario);
-        //                cmd.Parameters.AddWithValue("_contrasena", usu.Password);
-        //                cmd.Parameters.AddWithValue("_documento", usu.Documento);
-        //                cmd.Parameters.AddWithValue("_n_documento", usu.N_documento);
-        //                cmd.Parameters.AddWithValue("_correo", usu.Correo);
-        //                cmd.Parameters.AddWithValue("_celular", usu.Celular);
-        //                cmd.Parameters.AddWithValue("_direccion", usu.Direccion);
-        //                cmd.Parameters.AddWithValue("_id_cargo", usu.Id_cargo);
-        //                cmd.Parameters.AddWithValue("_id_usuario", usu.Id_usuario);
+                        cmd.Parameters.AddWithValue("_nombre", usu.Nombre);
+                        cmd.Parameters.AddWithValue("_usuario", usu.Nom_usuario);
+                        cmd.Parameters.AddWithValue("_contrasena", usu.Password);
+                        cmd.Parameters.AddWithValue("_documento", usu.Documento);
+                        cmd.Parameters.AddWithValue("_n_documento", usu.N_documento);
+                        cmd.Parameters.AddWithValue("_correo", usu.Correo);
+                        cmd.Parameters.AddWithValue("_celular", usu.Celular);
+                        cmd.Parameters.AddWithValue("_direccion", usu.Direccion);
+                        cmd.Parameters.AddWithValue("_cargo", usu.Cargo);
+                        cmd.Parameters.AddWithValue("_id_usuario", usu.Id_usuario);
 
 
-        //                if (cmd.ExecuteNonQuery() > 0)
-        //                {
-        //                    return true;
-        //                }
-        //                else
-        //                {
-        //                    return false;
-        //                }
-        //            }
-        //        }
-        //    }
-        //    catch (Exception)
-        //    {
-        //        return false;
-        //    }
+                        if (cmd.ExecuteNonQuery() > 0)
+                        {
+                            return true;
+                        }
+                        else
+                        {
+                            return false;
+                        }
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                return false;
+            }
 
-        //}
+        }
 
         //public Usuario obtener(int? id)
         //{

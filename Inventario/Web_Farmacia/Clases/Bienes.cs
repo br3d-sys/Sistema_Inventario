@@ -5,10 +5,10 @@ using System.Web;
 
 namespace Web_Farmacia.Clases
 {
-    public class Bien
+    public class Bienes
     {
 
-        private int id_bien;
+        private int id_bienes;
         private int id_categoria;
         private string nombre;
         private string descripcion;
@@ -25,16 +25,16 @@ namespace Web_Farmacia.Clases
         private string profundidad;
         private int disponibilidad;
 
-        public int Id_bien
+        public int Id_bienes
         {
             get
             {
-                return id_bien;
+                return id_bienes;
             }
 
             set
             {
-                id_bien = value;
+                id_bienes = value;
             }
         }
 

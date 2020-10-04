@@ -33,8 +33,6 @@ namespace Web_Farmacia.Models
                         cmd.Parameters.AddWithValue("_nombre", are.Nombre);
                         cmd.Parameters.AddWithValue("_ubicacion", are.Ubicacion);
                         cmd.Parameters.AddWithValue("_descripcion", are.Descripcion);
-                        cmd.Parameters.AddWithValue("_disponibilidad", are.Disponibilidad);
-
 
                         if (cmd.ExecuteNonQuery() > 0)
                         {
@@ -78,8 +76,7 @@ namespace Web_Farmacia.Models
                                 Id_categoria = rd.GetInt32("id_categoria"),
                                 Nombre = rd.GetString("nombre"),
                                 Ubicacion = rd.GetString("Ubicacion"),
-                                Descripcion = rd.GetString("descripcion"),
-                                Disponibilidad = rd.GetString("disponibilidad"),
+                                Descripcion = rd.GetString("descripcion")
                             });
                         }
 
@@ -113,7 +110,6 @@ namespace Web_Farmacia.Models
                         cmd.Parameters.AddWithValue("_nombre", are.Nombre);
                         cmd.Parameters.AddWithValue("_ubicacion", are.Ubicacion);
                         cmd.Parameters.AddWithValue("_descripcion", are.Descripcion);
-                        cmd.Parameters.AddWithValue("_disponibilidad", are.Disponibilidad);
 
                         if (cmd.ExecuteNonQuery() > 0)
                         {
