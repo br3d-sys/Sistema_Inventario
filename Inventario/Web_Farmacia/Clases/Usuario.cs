@@ -10,7 +10,7 @@ namespace Web_Farmacia.Clases
         private int id_usuario;
         private string nombre;
         private string nom_usuario;
-        private string contrasena;
+        private string password;
         private string documento;
         private string n_documento;
         private string correo;
@@ -58,16 +58,16 @@ namespace Web_Farmacia.Clases
             }
         }
 
-        public string Contrasena
+        public string Password
         {
             get
             {
-                return contrasena;
+                return password;
             }
 
             set
             {
-                contrasena = value;
+                password = value;
             }
         }
 
