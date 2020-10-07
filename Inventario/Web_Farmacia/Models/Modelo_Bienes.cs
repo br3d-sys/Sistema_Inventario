@@ -18,8 +18,8 @@ namespace Web_Farmacia.Models
         }
         public Boolean guardar(Bienes bn)
         {
-            try
-            {
+            //try
+            //{
                 using (con = Conexion.conectar())
                 {
                     using (cmd = new MySqlCommand())
@@ -53,17 +53,17 @@ namespace Web_Farmacia.Models
                         }
                     }
                 }
-            }
-            catch (Exception ex)
-            {
-                return false;
-            }
+            //}
+            //catch (Exception ex)
+            //{
+            //    return false;
+            //}
         }
 
         public List<Bienes> listar()
         {
-            try
-            {
+            //try
+            //{
                 MySqlDataReader rd;
                 List<Bienes> lista = new List<Bienes>();
 
@@ -71,7 +71,7 @@ namespace Web_Farmacia.Models
                 {
                     using (cmd = new MySqlCommand())
                     {
-                        cmd.CommandText = "SP_A_Tabla_Bienes";
+                        cmd.CommandText = "SP_R_Tabla_Bienes";
                         cmd.CommandType = System.Data.CommandType.StoredProcedure;
                         cmd.Connection = con;
 
@@ -81,14 +81,16 @@ namespace Web_Farmacia.Models
                         {
                             lista.Add(new Bienes
                             {
+                                Id_bienes = rd.GetInt32("id_bienes"),
                                 Id_categoria = rd.GetInt32("id_categoria"),
+                                Categoria = rd.GetString("categoria"),
                                 Nombre = rd.GetString("nombre"),
                                 Descripcion = rd.GetString("descripcion"),
                                 Codigo = rd.GetString("codigo"),
                                 Precio = rd.GetDouble ("precio"),
                                 Imagen = rd.GetString("imagen"),
                                 Estado = rd.GetString("estado"),
-                                Fecha_ing = rd.GetString("fecha_ing"),
+                                Fecha_ing = rd.GetDateTime("fecha_ing"),
                                 Marca = rd.GetString("marca"),
                                 Color = rd.GetString("color"),
                                 Modelo = rd.GetString("modelo"),
@@ -104,23 +106,23 @@ namespace Web_Farmacia.Models
                 }
 
                 return lista;
-            }
-            catch (Exception)
-            {
-                return null;
-            }
+            //}
+            //catch (Exception)
+            //{
+            //    return null;
+            //}
         }
 
         public Boolean actualizar(Bienes bnn)
         {
-            try
-            {
+            //try
+            //{
                 using (con = Conexion.conectar())
                 {
                     using (cmd = new MySqlCommand())
                     {
 
-                        cmd.CommandText = "SP_M_Tabla_Bienes";
+                        cmd.CommandText = "SP_U_Tabla_Bienes";
                         cmd.CommandType = System.Data.CommandType.StoredProcedure;
                         cmd.Connection = con;
 
@@ -138,8 +140,9 @@ namespace Web_Farmacia.Models
                         cmd.Parameters.AddWithValue("_alto", bnn.Alto);
                         cmd.Parameters.AddWithValue("_ancho", bnn.Ancho);
                         cmd.Parameters.AddWithValue("_profundidad", bnn.Profundidad);
+                        cmd.Parameters.AddWithValue("_id_bienes", bnn.Id_bienes);
 
-                        if (cmd.ExecuteNonQuery() > 0)
+                    if (cmd.ExecuteNonQuery() > 0)
                         {
                             return true;
                         }
@@ -151,23 +154,23 @@ namespace Web_Farmacia.Models
                     }
 
                 }
-            }
-            catch (Exception)
-            {
+            //}
+            //catch (Exception)
+            //{
 
-                return false;
-            }
+            //    return false;
+            //}
 
         }
         public Boolean eliminar(int id)
         {
-            try
-            {
+            //try
+            //{
                 using (con = Conexion.conectar())
                 {
                     using (cmd = new MySqlCommand())
                     {
-                        cmd.CommandText = "SP_E_Tabla_Bienes";
+                        cmd.CommandText = "SP_D_Tabla_Bienes";
                         cmd.CommandType = System.Data.CommandType.StoredProcedure;
                         cmd.Connection = con;
 
@@ -183,11 +186,66 @@ namespace Web_Farmacia.Models
                         }
                     }
                 }
-            }
-            catch (Exception)
-            {
-                return false;
-            }
+            //}
+            //catch (Exception)
+            //{
+            //    return false;
+            //}
         }
-    }
+
+        public Bienes obtener(int? id)
+        {
+            //try
+            //{
+            MySqlDataReader rd;
+            Bienes bie = new Bienes();
+
+            using (con = Conexion.conectar())
+            {
+                using (cmd = new MySqlCommand())
+                {
+                    cmd.CommandText = "SP_O_Tabla_Bienes";
+                    //cmd.CommandText = string.Format("Select * from tbl_categoria where id_categoria='{0}'", id);
+                    cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                    cmd.Connection = con;
+
+                    cmd.Parameters.AddWithValue("_id_bienes", id);
+
+                    rd = cmd.ExecuteReader();
+
+                    while (rd.Read())
+                    {
+                        bie.Id_bienes = rd.GetInt32("id_bienes");
+                        bie.Id_categoria = rd.GetInt32("id_categoria");
+                        bie.Categoria = rd.GetString("categoria");
+                        bie.Nombre = rd.GetString("nombre");
+                        bie.Descripcion = rd.GetString("descripcion");
+                        bie.Codigo = rd.GetString("codigo");
+                        bie.Precio = rd.GetDouble("precio");
+                        bie.Estado = rd.GetString("estado");
+                        bie.Fecha_ing = rd.GetDateTime("fecha_ing");
+                        bie.Marca = rd.GetString("marca");
+                        bie.Color = rd.GetString("color");
+                        bie.Modelo = rd.GetString("modelo");
+                        bie.Alto = rd.GetString("alto");
+                        bie.Ancho = rd.GetString("ancho");
+                        bie.Profundidad = rd.GetString("profundidad");
+                    }
+
+                    rd.Close();
+
+                }
+            }
+
+            return bie;
+            //}
+            //catch (Exception)
+            //{
+            //    return null;
+            //}
+
+        }
+
+    
+}
 }

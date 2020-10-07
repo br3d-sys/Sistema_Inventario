@@ -41,7 +41,7 @@
             <form method="post" enctype="multipart/form-data" id="registrar">
 
                 <div class="d-flex mb-4">
-                    <a href="" class="btn btn-secondary ml-auto"><i class="fa fa-caret-left"></i> Lista de Usuarios</a>
+                    <a href="/Usuario/Consultar_Usuario" class="btn btn-secondary ml-auto"><i class="fa fa-caret-left"></i> Lista de Usuarios</a>
                 </div>
 
                 <div class="form-row">
@@ -95,10 +95,12 @@
                     </div>
                     <div class="form-group col-sm-4">
                         <label for="id_cargo">Cargo</label>
-                        <select class="form-control" name="id_cargo" id="id_cargo">
-                           
+                        <select class="form-control" name="cargo" id="cargo">
+                           <option value="administrador">Administrador</option>
+                           <option value="asistente">Asistente</option>
+                           <option value="inventariador">Inventariador</option>
                         </select>
-                        <span class="badge badge-warning sp" id="sp_id_cargo"></span>
+                        <span class="badge badge-warning sp" id="sp_cargo"></span>
                     </div>
 
                 </div>
@@ -113,11 +115,6 @@
 
 
         </div>
-        <!-- /.card-body -->
-        <div class="card-footer">
-            Paginación
-        </div>
-        <!-- /.card-footer-->
     </div>
     <!-- /.card -->
 </section>
@@ -142,34 +139,26 @@
 
 <script>
 
-    //document.addEventListener("DOMContentLoaded",function(){
+    document.addEventListener("DOMContentLoaded",function(){
 
            document.getElementById("registrar").addEventListener("submit", function (e) {
 
-            var url = "";
+               var url ="@Url.Action("Registrar_Usuario","Usuario")";
+               
 
-            //var form = document.getElementById("registrar");
                var nombre = document.getElementById("nombre").value;
                var documento = document.getElementById("documento").value;
                var n_documento = document.getElementById("n_documento").value;
                var direccion = document.getElementById("direccion").value;
                var celular = document.getElementById("celular").value;
                var correo = document.getElementById("correo").value;
-               var id_cargo = document.getElementById("id_cargo").value;
+               var cargo = document.getElementById("cargo").value;
                var usuario = document.getElementById("usuario").value;
                var password = document.getElementById("password").value;
 
-               var formdata = new FormData();
-
-               formdata.append("nombre", nombre);
-               formdata.append("documento", documento);
-               formdata.append("n_documento", n_documento);
-               formdata.append("direccion", direccion);
-               formdata.append("celular", celular);
-               formdata.append("correo", correo);
-               formdata.append("id_cargo", id_cargo);
-               formdata.append("usuario", usuario);
-               formdata.append("password", password);
+               var param = "nombre=" + nombre + "&documento=" + documento + "&n_documento=" + n_documento +
+                   "&direccion=" + direccion + "&celular=" + celular + "&correo=" + correo +
+                   "&cargo=" + cargo + "&usuario=" + usuario + "&password=" + password;
 
                 var ajax = new XMLHttpRequest();
 
@@ -179,9 +168,8 @@
                         var response = JSON.parse(ajax.responseText);
                         if (response.success) {
                             console.log(response.message);
-
                             document.getElementById("content").innerHTML = response.message;
-                            $("#mod").modal({ backdrop: true });
+                            $("#mod").modal({ backdrop: 'static' });
                             limpiar_spam();
                         } else {
                             console.log(response);
@@ -195,8 +183,8 @@
                 }
 
                 ajax.open("POST", url, true);
-                //ajax.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-                ajax.send(formdata);
+                ajax.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+                ajax.send(param);
 
                 e.preventDefault();
         })
@@ -210,7 +198,7 @@
             document.getElementById("direccion").value = "";
             document.getElementById("celular").value = "";
             document.getElementById("correo").value = "";
-            document.getElementById("id_cargo").value = "";
+            document.getElementById("cargo").value = "";
             document.getElementById("usuario").value = "";
             document.getElementById("password").value = "";
 
@@ -223,7 +211,7 @@
             }
         }
 
-    //})
+    })
 
 </script>
 

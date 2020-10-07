@@ -10,13 +10,14 @@ namespace Web_Farmacia.Clases
 
         private int id_bienes;
         private int id_categoria;
+        private string categoria;
         private string nombre;
         private string descripcion;
         private string codigo;
         private Double precio;
         private string imagen;
         private string estado;
-        private string fecha_ing;
+        private DateTime fecha_ing;
         private string marca;
         private string color;
         private string modelo;
@@ -48,6 +49,19 @@ namespace Web_Farmacia.Clases
             set
             {
                 id_categoria = value;
+            }
+        }
+
+        public string Categoria
+        {
+            get
+            {
+                return categoria;
+            }
+
+            set
+            {
+                categoria = value;
             }
         }
 
@@ -129,7 +143,7 @@ namespace Web_Farmacia.Clases
             }
         }
 
-        public string Fecha_ing
+        public DateTime Fecha_ing
         {
             get
             {

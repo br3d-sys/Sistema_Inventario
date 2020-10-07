@@ -16,7 +16,7 @@ namespace Web_Farmacia
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Catalogo", action = "Principal_Catalogo", id = UrlParameter.Optional }
+                defaults: new { controller = "Usuario", action = "Consultar_Usuario", id = UrlParameter.Optional }
             );
         }
     }
