@@ -131,7 +131,6 @@ D:\Git\c#\Web_Farm - copia - copia\Farm\Web_Farmacia\bin\System.Web.Webpages.Dep
 D:\Git\c#\Web_Farm - copia - copia\Farm\Web_Farmacia\bin\System.Web.Webpages.Razor.xml
 D:\Git\c#\Web_Farm - copia - copia\Farm\Web_Farmacia\bin\System.Web.Helpers.xml
 D:\Git\c#\Web_Farm - copia - copia\Farm\Web_Farmacia\bin\System.Web.Mvc.xml
-D:\Git\c#\Sis_Inventario\Inventario\Web_Farmacia\obj\Debug\Web_Farmacia.csprojResolveAssemblyReference.cache
 D:\Git\c#\Sis_Inventario\Inventario\Web_Farmacia\obj\Debug\Web_Farmacia.dll
 D:\Git\c#\Sis_Inventario\Inventario\Web_Farmacia\obj\Debug\Web_Farmacia.pdb
 D:\Git\c#\Sis_Inventario\Inventario\Web_Farmacia\bin\roslyn\csc.exe
@@ -178,3 +177,7 @@ D:\Git\c#\Sis_Inventario\Inventario\Web_Farmacia\bin\System.Web.Webpages.Deploym
 D:\Git\c#\Sis_Inventario\Inventario\Web_Farmacia\bin\System.Web.Webpages.Razor.xml
 D:\Git\c#\Sis_Inventario\Inventario\Web_Farmacia\bin\System.Web.Helpers.xml
 D:\Git\c#\Sis_Inventario\Inventario\Web_Farmacia\bin\System.Web.Mvc.xml
+D:\Git\c#\Sis_Inventario\Inventario\Web_Farmacia\obj\Debug\Web_Farmacia.csprojAssemblyReference.cache
+D:\Git\c#\Sis_Inventario\Inventario\Web_Farmacia\obj\Debug\Web_Farmacia.csproj.CoreCompileInputs.cache
+D:\Git\c#\Sis_Inventario\Inventario\Web_Farmacia\bin\System.Memory.dll
+D:\Git\c#\Sis_Inventario\Inventario\Web_Farmacia\obj\Debug\Web_Farmacia.csproj.CopyComplete

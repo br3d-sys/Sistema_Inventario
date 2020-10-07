@@ -303,6 +303,10 @@
     <Content Include="Content\plugins\jquery\jquery.slim.min.js" />
     <Content Include="Content\plugins\slimScroll\jquery.slimscroll.js" />
     <Content Include="Content\plugins\slimScroll\jquery.slimscroll.min.js" />
+    <Content Include="Content\plugins\tempusdominus-bootstrap-4\css\tempusdominus-bootstrap-4.css" />
+    <Content Include="Content\plugins\tempusdominus-bootstrap-4\css\tempusdominus-bootstrap-4.min.css" />
+    <Content Include="Content\plugins\tempusdominus-bootstrap-4\js\tempusdominus-bootstrap-4.js" />
+    <Content Include="Content\plugins\tempusdominus-bootstrap-4\js\tempusdominus-bootstrap-4.min.js" />
     <Content Include="Global.asax" />
     <Content Include="Web.config" />
   </ItemGroup>

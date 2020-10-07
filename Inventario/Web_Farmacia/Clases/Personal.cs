@@ -10,6 +10,9 @@ namespace Web_Farmacia.Clases
 
         private int id_personal;
         private int id_area;
+        private string area;
+        private int id_gerencia;
+        private string gerencia;
         private string nombre;
         private string cargo;
         private string t_documento;
@@ -48,6 +51,44 @@ namespace Web_Farmacia.Clases
             }
         }
 
+        public string Area
+        {
+            get
+            {
+                return area;
+            }
+
+            set
+            {
+                area = value;
+            }
+        }
+
+        public int Id_gerencia
+        {
+            get
+            {
+                return id_gerencia;
+            }
+
+            set
+            {
+                id_gerencia = value;
+            }
+        }
+
+        public string Gerencia
+        {
+            get
+            {
+                return gerencia;
+            }
+
+            set
+            {
+                gerencia = value;
+            }
+        }
         public string Nombre
         {
             get

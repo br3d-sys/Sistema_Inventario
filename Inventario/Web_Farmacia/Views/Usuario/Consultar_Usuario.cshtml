@@ -78,9 +78,7 @@
                             <tr>
                                 <th>Nombre</th>
                                 <th>Usuario</th>
-                                <th>T. Doc</th>
                                 <th>N. Doc</th>
-                                <th>Dirección</th>
                                 <th>Celular</th>
                                 <th>Correo</th>
                                 <th>Cargo</th>
@@ -88,47 +86,37 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @*@{
+                            @{
                                 foreach (var usuario in Model.Usu)
                                 {
                                     <tr>
                                         <td>@usuario.Nombre</td>
                                         <td>@usuario.Nom_usuario</td>
-                                        <td>@usuario.Documento</td>
                                         <td>@usuario.N_documento</td>
-                                        <td>@usuario.Direccion</td>
                                         <td>@usuario.Celular</td>
                                         <td>@usuario.Correo</td>
-                                        <td>@usuario.Nom_cargo</td>
+                                        <td>@usuario.Cargo</td>
                                         <td class="text-center">
                                             <a href="/Usuario/Modificar_Usuario?id=@usuario.Id_usuario" class="btn btn-primary" id="actualizar"><i class="fa fa-edit"></i></a>
-                                            <button onclick="eliminar('@usuario.Id_usuario')" class="btn btn-danger" id="Eliminar"><i class="fa fa-trash"></i></button>
+                                            <button data-backdrop="static" onclick="eliminar('@usuario.Id_usuario')" class="btn btn-danger" id="Eliminar"><i class="fa fa-trash"></i></button>
 
                                         </td>
                                     </tr>
                                 }
-                            }*@
+                            }
 
                         </tbody>
                     </table>
                 </div>
                 <!-- /.col -->
             </div>
-
-
-
-
         </div>
-        <!-- /.card-body -->
-        <div class="card-footer">
-            Paginación
-        </div>
-        <!-- /.card-footer-->
+
     </div>
     <!-- /.card -->
 </section>
 <!-- /.content -->
-<div class="modal fade" id="mod" role="dialog">
+<div class="modal fade" id="mod" role="dialog" >
 
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -154,8 +142,6 @@
 
     document.addEventListener("DOMContentLoaded", function (e) {
 
-
-
         document.getElementById("mod-acept").addEventListener("click", function () {
             location.replace("/Usuario/eliminar?id=" + f_id);
             $("#mod").modal("hide");
@@ -164,19 +150,14 @@
             $("#mod").modal("hide");
         })
 
-        function limpiar_spam() {
-            var elementos = document.getElementsByClassName("sp");
-            for (i = 0; i < elementos.length ; i++) {
-                elementos.item(i).innerHTML = "";
-            }
-        }
+        
+
     })
 
     function eliminar(id) {
-        $("#mod").modal({ backdrop: true });
+        $("#mod").modal({ backdrop: 'static' });
         f_id = id;
     }
-
 
 </script>
 

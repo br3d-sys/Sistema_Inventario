@@ -41,7 +41,7 @@
             <form method="post" enctype="multipart/form-data" id="registrar">
 
                 <div class="d-flex mb-4">
-                    <a href="" class="btn btn-secondary ml-auto"><i class="fa fa-caret-left"></i> Lista de Personal</a>
+                    <a href="/Personal/Consultar_Personal" class="btn btn-secondary ml-auto"><i class="fa fa-caret-left"></i> Lista de Personal</a>
                 </div>
 
                 <div class="form-row">
@@ -51,71 +51,103 @@
                         <span class="badge badge-warning sp" id="sp_nombre"></span>
                     </div>
                     <div class="form-group col-sm-3">
-                        <label for="documento">Tipo de Documento</label>
-                        <select class="form-control" name="documento" id="documento">
-                            <option value="DNI">DNI</option>
-                            <option value="RUC">RUC</option>
-                            <option value="LE">LE</option>
+                        <label for="id_gerencia">Gerencia</label>
+                        <select class="form-control" name="id_gerencia" id="id_gerencia">
+                            <option value="1">Gerencia de Administración</option>
+                            <option value="2">Gerencia de Desarrollo Social</option>
                         </select>
-                        <span class="badge badge-warning sp" id="sp_documento"></span>
+                        <span class="badge badge-warning sp" id="sp_gerencia"></span>
                     </div>
                     <div class="form-group col-sm-3">
+                        <label for="id_area">Area</label>
+                        <select class="form-control" name="id_area" id="id_area">
+                            <option value="1">Sub Gerencia de Logistica</option>
+                            <option value="2">Sub Gerencia de Contabilidad</option>
+                        </select>
+                        <span class="badge badge-warning sp" id="sp_area"></span>
+                    </div>
+                </div>
+                <div class="form-row">
+
+                    <div class="form-group col-sm-4">
+                        <label for="cargo">Cargo</label>
+                        <select class="form-control" name="cargo" id="cargo">
+                            <option value="gerente">Gerente</option>
+                            <option value="sub gerente">Sub Gerente</option>
+                            <option value="asistente">Asistente</option>
+                        </select>
+                        <span class="badge badge-warning sp" id="sp_cargo"></span>
+                    </div>
+
+                    <div class="form-group col-sm-2">
+                        <label for="t_documento">T. Documento</label>
+                        <select class="form-control" name="t_documento" id="t_documento">
+                            <option value="DNI">DNI</option>
+                            <option value="LE">LE</option>
+                            <option value="RUC">RUC</option>
+                        </select>
+                        <span class="badge badge-warning sp" id="sp_t_documento"></span>
+                    </div>
+                    <div class="form-group col-sm-4">
                         <label for="n_documento">Numero de Documento</label>
-                        <input class="form-control" type="text" name="n_documento" id="n_documento" placeholder="Ingrese el N°">
+                        <input class="form-control" type="text" name="n_documento" id="n_documento" placeholder="Ingrese su Nro">
                         <span class="badge badge-warning sp" id="sp_n_documento"></span>
+                    </div>
+                    <div class="form-group col-sm-2">
+                        <label for="edad">Edad</label>
+                        <input class="form-control" type="text" name="edad" id="edad" placeholder="Edad">
+                        <span class="badge badge-warning sp" id="sp_edad"></span>
                     </div>
                 </div>
                 <div class="form-row">
                     <div class="form-group col-sm-4">
-                        <label for="direccion">Direccion</label>
-                        <input class="form-control" type="text" name="direccion" id="direccion" placeholder="Ingrese su Dirección" />
-                        <span class="badge badge-warning sp" id="sp_direccion"></span>
+                        <label for="sexo">Sexo</label>
+                        <select class="form-control" name="sexo" id="sexo">
+                            <option value="masculino">Masculino</option>
+                            <option value="femenino">Femenino</option>
+                        </select>
+                        <span class="badge badge-warning sp" id="sp_sexo"></span>
+                    </div>
+
+                    <div class="form-group col-sm-4">
+                        <label for="est_civil">Estado Civil</label>
+                        <select class="form-control" name="est_civil" id="est_civil">
+                            <option value="soltero">Soltero</option>
+                            <option value="casado">Casado</option>
+                        </select>
+                        <span class="badge badge-warning sp" id="sp_est_civil"></span>
                     </div>
                     <div class="form-group col-sm-4">
                         <label for="celular">Celular</label>
-                        <input class="form-control" type="text" name="celular" id="celular" placeholder="Ingrese su Celular">
+                        <input class="form-control" type="text" name="celular" id="celular" placeholder="Ingrese el Celular">
                         <span class="badge badge-warning sp" id="sp_celular"></span>
+                    </div>
+                    
+
+                </div>
+
+                <div class="form-row">
+                    
+                    <div class="form-group col-sm-4">
+                        <label for="direccion">Direccion</label>
+                        <input class="form-control" type="text" name="direccion" id="direccion" placeholder="Direccion">
+                        <span class="badge badge-warning sp" id="sp_direccion"></span>
                     </div>
                     <div class="form-group col-sm-4">
                         <label for="correo">Correo</label>
                         <input class="form-control" type="text" name="correo" id="correo" placeholder="Ingrese su Correo">
                         <span class="badge badge-warning sp" id="sp_correo"></span>
                     </div>
-                </div>
-                <div class="form-row">
-                    <div class="form-group col-sm-4">
-                        <label for="usuario">Usuario</label>
-                        <input class="form-control" type="text" name="usuario" id="usuario" placeholder="Ingrese el Usuario">
-                        <span class="badge badge-warning sp" id="sp_usuario"></span>
-                    </div>
-                    <div class="form-group col-sm-4">
-                        <label for="password">Contraseña</label>
-                        <input class="form-control" type="password" name="password" id="password" placeholder="Ingrese la Contraseña">
-                        <span class="badge badge-warning sp" id="sp_password"></span>
-                    </div>
-                    <div class="form-group col-sm-4">
-                        <label for="id_cargo">Cargo</label>
-                        <select class="form-control" name="id_cargo" id="id_cargo"></select>
-                        <span class="badge badge-warning sp" id="sp_id_cargo"></span>
-                    </div>
 
                 </div>
+
                 <div class="form-row d-flex justify-content-between">
                     <div class="form-group col-auto">
                         <button type="submit" class="btn btn-primary">Guardar</button>
                     </div>
                 </div>
-
             </form>
-
-
-
         </div>
-        <!-- /.card-body -->
-        <div class="card-footer">
-            Paginación
-        </div>
-        <!-- /.card-footer-->
     </div>
     <!-- /.card -->
 </section>
@@ -140,34 +172,27 @@
 
 <script>
 
-    //document.addEventListener("DOMContentLoaded",function(){
+    document.addEventListener("DOMContentLoaded",function(){
 
            document.getElementById("registrar").addEventListener("submit", function (e) {
 
-            var url = "";
+            var url = "@Url.Action("Registrar_Personal","Personal")";
 
-            //var form = document.getElementById("registrar");
+               var id_area = document.getElementById("id_area").value;
                var nombre = document.getElementById("nombre").value;
-               var documento = document.getElementById("documento").value;
+               var cargo = document.getElementById("cargo").value;
+               var t_documento = document.getElementById("t_documento").value;
                var n_documento = document.getElementById("n_documento").value;
-               var direccion = document.getElementById("direccion").value;
+               var edad = document.getElementById("edad").value;
+               var sexo = document.getElementById("sexo").value;
+               var est_civil = document.getElementById("est_civil").value;
                var celular = document.getElementById("celular").value;
+               var direccion = document.getElementById("direccion").value;
                var correo = document.getElementById("correo").value;
-               var id_cargo = document.getElementById("id_cargo").value;
-               var usuario = document.getElementById("usuario").value;
-               var password = document.getElementById("password").value;
 
-               var formdata = new FormData();
-
-               formdata.append("nombre", nombre);
-               formdata.append("documento", documento);
-               formdata.append("n_documento", n_documento);
-               formdata.append("direccion", direccion);
-               formdata.append("celular", celular);
-               formdata.append("correo", correo);
-               formdata.append("id_cargo", id_cargo);
-               formdata.append("usuario", usuario);
-               formdata.append("password", password);
+               var param = "id_area=" + id_area + "&nombre=" + nombre + "&cargo=" + cargo + "&t_documento=" + t_documento +
+                   "&n_documento=" + n_documento + "&edad=" + edad + "&sexo=" + sexo + "&est_civil=" + est_civil +
+                   "&celular=" + celular + "&direccion=" + direccion + "&correo=" + correo
 
                 var ajax = new XMLHttpRequest();
 
@@ -179,7 +204,7 @@
                             console.log(response.message);
 
                             document.getElementById("content").innerHTML = response.message;
-                            $("#mod").modal({ backdrop: true });
+                            $("#mod").modal({ backdrop: 'static' });
                             limpiar_spam();
                         } else {
                             console.log(response);
@@ -193,8 +218,8 @@
                 }
 
                 ajax.open("POST", url, true);
-                //ajax.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-                ajax.send(formdata);
+                ajax.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+                ajax.send(param);
 
                 e.preventDefault();
         })
@@ -202,15 +227,17 @@
         document.getElementById("mod-acept").addEventListener("click", function () {
             $("#mod").modal("hide");
 
-            document.getElementById("nombre").value="";
-            document.getElementById("documento").value = "";
-            document.getElementById("n_documento").value = "";
-            document.getElementById("direccion").value = "";
-            document.getElementById("celular").value = "";
-            document.getElementById("correo").value = "";
-            document.getElementById("id_cargo").value = "";
-            document.getElementById("usuario").value = "";
-            document.getElementById("password").value = "";
+           id_area = document.getElementById("id_area").value="";
+           nombre = document.getElementById("nombre").value="";
+           cargo = document.getElementById("cargo").value="";
+           t_documento = document.getElementById("t_documento").value="";
+           n_documento = document.getElementById("n_documento").value="";
+           edad = document.getElementById("edad").value="";
+           sexo = document.getElementById("sexo").value="";
+           est_civil = document.getElementById("est_civil").value="";
+           celular = document.getElementById("celular").value="";
+           direccion = document.getElementById("direccion").value="";
+           correo = document.getElementById("correo").value="";
 
         })
 
@@ -221,7 +248,7 @@
             }
         }
 
-    //})
+    })
 
 </script>
 
