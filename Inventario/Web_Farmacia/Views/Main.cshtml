@@ -6,25 +6,21 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <title>AdminLTE 3 | Dashboard 3</title>
     <!-- Font Awesome Icons -->
-    <link rel="stylesheet" href="~/Content/plugins/font-awesome/css/font-awesome.min.css">
+    @*<link rel="stylesheet" href="~/Content/plugins/font-awesome/css/font-awesome.min.css">*@
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
     <!-- IonIcons -->
     <link rel="stylesheet" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+   
+    <link rel="stylesheet" href="~/Content/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
 
     <!-- Theme style -->
     <link rel="stylesheet" href="~/Content/dist/css/adminlte.min.css">
     <!-- Google Font: Source Sans Pro -->
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+
+
 </head>
-<!--
-BODY TAG OPTIONS:
-=================
-Apply one or more of the following classes to to the body tag
-to get the desired effect
-|---------------------------------------------------------|
-|LAYOUT OPTIONS | sidebar-collapse                        |
-|               | sidebar-mini                            |
-|---------------------------------------------------------|
--->
+
 <body class="hold-transition sidebar-mini">
     <div class="wrapper">
         <!-- Navbar -->
@@ -76,13 +72,13 @@ to get the desired effect
                             </a>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="/Producto/Consultar_Bien" class="nav-link">
+                                    <a href="/Bien/Consultar_Bien" class="nav-link">
                                         <i class="fa fa-circle-o nav-icon"></i>
                                         <p>Listar Bien</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="/Producto/Registrar_Bien" class="nav-link">
+                                    <a href="/Bien/Registrar_Bien" class="nav-link">
                                         <i class="fa fa-circle-o nav-icon"></i>
                                         <p>Registrar Bien</p>
                                     </a>
@@ -148,13 +144,13 @@ to get the desired effect
                             </a>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="/Cliente/Consultar_Cliente" class="nav-link">
+                                    <a href="/Personal/Consultar_Personal" class="nav-link">
                                         <i class="fa fa-circle-o nav-icon"></i>
                                         <p>Lista de Personal</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="/Cliente/Registrar_Cliente" class="nav-link">
+                                    <a href="/Personal/Registrar_Personal" class="nav-link">
                                         <i class="fa fa-circle-o nav-icon"></i>
                                         <p>Registrar Personal</p>
                                     </a>
@@ -221,11 +217,11 @@ to get the desired effect
     <!-- REQUIRED SCRIPTS -->
     <!-- jQuery -->
     <script src="~/Content/plugins/jquery/jquery.min.js"></script>
-    <!-- Bootstrap -->
+     Bootstrap 
     <script src="~/Content/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <!-- AdminLTE -->
+     AdminLTE 
     <script src="~/Content/dist/js/adminlte.js"></script>
-    <!-- OPTIONAL SCRIPTS -->
+     OPTIONAL SCRIPTS 
     <script src="~/Content/plugins/chart.js/Chart.min.js"></script>
     <script src="~/Content/dist/js/demo.js"></script>
     <script src="~/Content/dist/js/pages/dashboard3.js"></script>

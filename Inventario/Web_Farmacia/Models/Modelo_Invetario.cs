@@ -7,17 +7,16 @@ using Web_Farmacia.Clases;
 
 namespace Web_Farmacia.Models
 {
-    public class Metodo_Gerencia
+    public class Modelo_Invetario
     {
-
         MySqlCommand cmd;
         MySqlConnection con;
 
-        public Metodo_Gerencia()
+        public Modelo_Invetario()
         {
 
         }
-        public Boolean guardar(Gerencia gere)
+        public Boolean guardar(Inventario inven)
         {
             try
             {
@@ -25,12 +24,14 @@ namespace Web_Farmacia.Models
                 {
                     using (cmd = new MySqlCommand())
                     {
-                        cmd.CommandText = "SP_C_Tabla_Gerencia";
+                        cmd.CommandText = "SP_C_Tabla_Inventario";
                         cmd.CommandType = System.Data.CommandType.StoredProcedure;
                         cmd.Connection = con;
 
-                        cmd.Parameters.AddWithValue("_nombre", gere.Nombre);
-                        cmd.Parameters.AddWithValue("_descripcion", gere.Descripcion);
+                        cmd.Parameters.AddWithValue("_id_bien", inven.Id_bien);
+                        cmd.Parameters.AddWithValue("_inventario", inven.N_inventario);
+                        cmd.Parameters.AddWithValue("_fecha", inven.Fecha_inven);
+                        cmd.Parameters.AddWithValue("_estado", inven.Estado);
 
                         if (cmd.ExecuteNonQuery() > 0)
                         {
@@ -49,18 +50,18 @@ namespace Web_Farmacia.Models
             }
         }
 
-        public List<Gerencia> listar()
+        public List<Inventario> listar()
         {
             try
             {
                 MySqlDataReader rd;
-                List<Gerencia> lista = new List<Gerencia>();
+                List<Inventario> lista = new List<Inventario>();
 
                 using (con = Conexion.conectar())
                 {
                     using (cmd = new MySqlCommand())
                     {
-                        cmd.CommandText = "SP_A_Tabla_Gerencia";
+                        cmd.CommandText = "SP_A_Tabla_Inventario";
                         cmd.CommandType = System.Data.CommandType.StoredProcedure;
                         cmd.Connection = con;
 
@@ -68,10 +69,12 @@ namespace Web_Farmacia.Models
 
                         while (rd.Read())
                         {
-                            lista.Add(new Gerencia
+                            lista.Add(new Inventario
                             {
-                                Nombre = rd.GetString("nombre"),
-                                Descripcion = rd.GetString("descripcion")
+                                Id_bien = rd.GetInt32("id_bien"),
+                                N_inventario = rd.GetString("n_inventario"),
+                                Fecha_inven = rd.GetString("fecha_inven"),
+                                Estado = rd.GetString("estado")                         
                             });
                         }
 
@@ -88,7 +91,7 @@ namespace Web_Farmacia.Models
             }
         }
 
-        public Boolean actualizar(Gerencia are)
+        public Boolean actualizar(Inventario inven)
         {
             try
             {
@@ -97,12 +100,14 @@ namespace Web_Farmacia.Models
                     using (cmd = new MySqlCommand())
                     {
 
-                        cmd.CommandText = "SP_M_Tabla_Gerencia";
+                        cmd.CommandText = "SP_M_Tabla_Inventario";
                         cmd.CommandType = System.Data.CommandType.StoredProcedure;
                         cmd.Connection = con;
 
-                        cmd.Parameters.AddWithValue("_nombre", are.Nombre);
-                        cmd.Parameters.AddWithValue("_descripcion", are.Descripcion);
+                        cmd.Parameters.AddWithValue("_id_bien", inven.Id_bien);
+                        cmd.Parameters.AddWithValue("_inventario", inven.N_inventario);
+                        cmd.Parameters.AddWithValue("_fecha", inven.Fecha_inven);
+                        cmd.Parameters.AddWithValue("estado", inven.Estado);
 
                         if (cmd.ExecuteNonQuery() > 0)
                         {
@@ -132,11 +137,11 @@ namespace Web_Farmacia.Models
                 {
                     using (cmd = new MySqlCommand())
                     {
-                        cmd.CommandText = "SP_E_Tabla_Gerencia";
+                        cmd.CommandText = "SP_E_Tabla_Inventario";
                         cmd.CommandType = System.Data.CommandType.StoredProcedure;
                         cmd.Connection = con;
 
-                        cmd.Parameters.AddWithValue("_id_gerencia", id);
+                        cmd.Parameters.AddWithValue("_id_inventario", id);
 
                         if (cmd.ExecuteNonQuery() > 0)
                         {
@@ -154,6 +159,5 @@ namespace Web_Farmacia.Models
                 return false;
             }
         }
-
     }
 }

@@ -5,36 +5,37 @@ using System.Web;
 
 namespace Web_Farmacia.Clases
 {
-    public class Bien
+    public class Bienes
     {
 
-        private int id_bien;
+        private int id_bienes;
         private int id_categoria;
+        private string categoria;
         private string nombre;
         private string descripcion;
         private string codigo;
         private Double precio;
         private string imagen;
         private string estado;
-        private string fecha_ing;
+        private DateTime fecha_ing;
         private string marca;
         private string color;
         private string modelo;
         private string alto;
         private string ancho;
         private string profundidad;
-        private string disponibilidad;
+        private int disponibilidad;
 
-        public int Id_bien
+        public int Id_bienes
         {
             get
             {
-                return id_bien;
+                return id_bienes;
             }
 
             set
             {
-                id_bien = value;
+                id_bienes = value;
             }
         }
 
@@ -48,6 +49,19 @@ namespace Web_Farmacia.Clases
             set
             {
                 id_categoria = value;
+            }
+        }
+
+        public string Categoria
+        {
+            get
+            {
+                return categoria;
+            }
+
+            set
+            {
+                categoria = value;
             }
         }
 
@@ -129,7 +143,7 @@ namespace Web_Farmacia.Clases
             }
         }
 
-        public string Fecha_ing
+        public DateTime Fecha_ing
         {
             get
             {
@@ -220,7 +234,7 @@ namespace Web_Farmacia.Clases
             }
         }
 
-        public string Disponibilidad
+        public int Disponibilidad
         {
             get
             {

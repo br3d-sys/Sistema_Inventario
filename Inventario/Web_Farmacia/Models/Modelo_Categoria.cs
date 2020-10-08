@@ -7,17 +7,18 @@ using Web_Farmacia.Clases;
 
 namespace Web_Farmacia.Models
 {
-    public class Metodo_Gerencia
-    {
+  
 
+    public class Modelo_Categoria
+    {
         MySqlCommand cmd;
         MySqlConnection con;
 
-        public Metodo_Gerencia()
+        public Modelo_Categoria()
         {
 
         }
-        public Boolean guardar(Gerencia gere)
+        public Boolean guardar(Categoria cate)
         {
             try
             {
@@ -25,12 +26,13 @@ namespace Web_Farmacia.Models
                 {
                     using (cmd = new MySqlCommand())
                     {
-                        cmd.CommandText = "SP_C_Tabla_Gerencia";
+                        cmd.CommandText = "SP_C_Tabla_Categoria";
                         cmd.CommandType = System.Data.CommandType.StoredProcedure;
                         cmd.Connection = con;
 
-                        cmd.Parameters.AddWithValue("_nombre", gere.Nombre);
-                        cmd.Parameters.AddWithValue("_descripcion", gere.Descripcion);
+                        cmd.Parameters.AddWithValue("_nombre", cate.Nombre);
+                        cmd.Parameters.AddWithValue("_descripcion", cate.Descripcion);
+
 
                         if (cmd.ExecuteNonQuery() > 0)
                         {
@@ -49,18 +51,18 @@ namespace Web_Farmacia.Models
             }
         }
 
-        public List<Gerencia> listar()
+        public List<Categoria> listar()
         {
             try
             {
                 MySqlDataReader rd;
-                List<Gerencia> lista = new List<Gerencia>();
+                List<Categoria> lista = new List<Categoria>();
 
                 using (con = Conexion.conectar())
                 {
                     using (cmd = new MySqlCommand())
                     {
-                        cmd.CommandText = "SP_A_Tabla_Gerencia";
+                        cmd.CommandText = "SP_A_Tabla_Categoria";
                         cmd.CommandType = System.Data.CommandType.StoredProcedure;
                         cmd.Connection = con;
 
@@ -68,7 +70,7 @@ namespace Web_Farmacia.Models
 
                         while (rd.Read())
                         {
-                            lista.Add(new Gerencia
+                            lista.Add(new Categoria
                             {
                                 Nombre = rd.GetString("nombre"),
                                 Descripcion = rd.GetString("descripcion")
@@ -88,7 +90,7 @@ namespace Web_Farmacia.Models
             }
         }
 
-        public Boolean actualizar(Gerencia are)
+        public Boolean actualizar(Categoria cate)
         {
             try
             {
@@ -97,12 +99,12 @@ namespace Web_Farmacia.Models
                     using (cmd = new MySqlCommand())
                     {
 
-                        cmd.CommandText = "SP_M_Tabla_Gerencia";
+                        cmd.CommandText = "SP_M_Tabla_Categoria";
                         cmd.CommandType = System.Data.CommandType.StoredProcedure;
                         cmd.Connection = con;
 
-                        cmd.Parameters.AddWithValue("_nombre", are.Nombre);
-                        cmd.Parameters.AddWithValue("_descripcion", are.Descripcion);
+                        cmd.Parameters.AddWithValue("_nombre", cate.Nombre);
+                        cmd.Parameters.AddWithValue("_descripcion", cate.Descripcion);
 
                         if (cmd.ExecuteNonQuery() > 0)
                         {
@@ -132,11 +134,11 @@ namespace Web_Farmacia.Models
                 {
                     using (cmd = new MySqlCommand())
                     {
-                        cmd.CommandText = "SP_E_Tabla_Gerencia";
+                        cmd.CommandText = "SP_E_Tabla_Categoria";
                         cmd.CommandType = System.Data.CommandType.StoredProcedure;
                         cmd.Connection = con;
 
-                        cmd.Parameters.AddWithValue("_id_gerencia", id);
+                        cmd.Parameters.AddWithValue("_id_categoria", id);
 
                         if (cmd.ExecuteNonQuery() > 0)
                         {
@@ -156,4 +158,5 @@ namespace Web_Farmacia.Models
         }
 
     }
+
 }

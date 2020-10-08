@@ -13,10 +13,16 @@ namespace Web_Farmacia.Controllers
         {
             return View();
         }
+
         public ActionResult Consultar_Categoria()
         {
             return View();
         }
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> master
         public ActionResult Modificar_Categoria()
         {
             return View();
@@ -25,5 +31,6 @@ namespace Web_Farmacia.Controllers
         {
             return View();
         }
+
     }
 }

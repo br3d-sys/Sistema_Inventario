@@ -7,17 +7,16 @@ using Web_Farmacia.Clases;
 
 namespace Web_Farmacia.Models
 {
-    public class Metodo_Gerencia
+    public class Modelo_Asignacion
     {
-
         MySqlCommand cmd;
         MySqlConnection con;
 
-        public Metodo_Gerencia()
+        public Modelo_Asignacion()
         {
 
         }
-        public Boolean guardar(Gerencia gere)
+        public Boolean guardar(Asignacion asig)
         {
             try
             {
@@ -25,12 +24,15 @@ namespace Web_Farmacia.Models
                 {
                     using (cmd = new MySqlCommand())
                     {
-                        cmd.CommandText = "SP_C_Tabla_Gerencia";
+                        cmd.CommandText = "SP_C_Tabla_Asignacion";
                         cmd.CommandType = System.Data.CommandType.StoredProcedure;
                         cmd.Connection = con;
 
-                        cmd.Parameters.AddWithValue("_nombre", gere.Nombre);
-                        cmd.Parameters.AddWithValue("_descripcion", gere.Descripcion);
+                        cmd.Parameters.AddWithValue("_id_usuario", asig.Id_usuario);
+                        cmd.Parameters.AddWithValue("_id_inventario", asig.Id_inventario);
+                        cmd.Parameters.AddWithValue("_id_personal", asig.Id_personal);
+                        cmd.Parameters.AddWithValue("_id_area", asig.Id_area);
+                        cmd.Parameters.AddWithValue("_fecha_asig", asig.Fecha_asig);
 
                         if (cmd.ExecuteNonQuery() > 0)
                         {
@@ -49,18 +51,18 @@ namespace Web_Farmacia.Models
             }
         }
 
-        public List<Gerencia> listar()
+        public List<Asignacion> listar()
         {
             try
             {
                 MySqlDataReader rd;
-                List<Gerencia> lista = new List<Gerencia>();
+                List<Asignacion> lista = new List<Asignacion>();
 
                 using (con = Conexion.conectar())
                 {
                     using (cmd = new MySqlCommand())
                     {
-                        cmd.CommandText = "SP_A_Tabla_Gerencia";
+                        cmd.CommandText = "SP_A_Tabla_Asignacion";
                         cmd.CommandType = System.Data.CommandType.StoredProcedure;
                         cmd.Connection = con;
 
@@ -68,10 +70,13 @@ namespace Web_Farmacia.Models
 
                         while (rd.Read())
                         {
-                            lista.Add(new Gerencia
+                            lista.Add(new Asignacion
                             {
-                                Nombre = rd.GetString("nombre"),
-                                Descripcion = rd.GetString("descripcion")
+                                Id_usuario = rd.GetInt32("id_usuario"),
+                                Id_inventario = rd.GetInt32("id_inventario"),
+                                Id_personal = rd.GetInt32("id_personal"),
+                                Id_area = rd.GetInt32("id_area"),
+                                Fecha_asig = rd.GetString("fecha_asig")
                             });
                         }
 
@@ -88,7 +93,7 @@ namespace Web_Farmacia.Models
             }
         }
 
-        public Boolean actualizar(Gerencia are)
+        public Boolean actualizar(Asignacion asig)
         {
             try
             {
@@ -97,12 +102,15 @@ namespace Web_Farmacia.Models
                     using (cmd = new MySqlCommand())
                     {
 
-                        cmd.CommandText = "SP_M_Tabla_Gerencia";
+                        cmd.CommandText = "SP_M_Tabla_Asignacion";
                         cmd.CommandType = System.Data.CommandType.StoredProcedure;
                         cmd.Connection = con;
 
-                        cmd.Parameters.AddWithValue("_nombre", are.Nombre);
-                        cmd.Parameters.AddWithValue("_descripcion", are.Descripcion);
+                        cmd.Parameters.AddWithValue("_id_usuario", asig.Id_usuario);
+                        cmd.Parameters.AddWithValue("_id_inventario", asig.Id_inventario);
+                        cmd.Parameters.AddWithValue("_id_personal", asig.Id_personal);
+                        cmd.Parameters.AddWithValue("_id_area", asig.Id_area);
+                        cmd.Parameters.AddWithValue("_fecha_asig", asig.Fecha_asig);
 
                         if (cmd.ExecuteNonQuery() > 0)
                         {
@@ -132,11 +140,11 @@ namespace Web_Farmacia.Models
                 {
                     using (cmd = new MySqlCommand())
                     {
-                        cmd.CommandText = "SP_E_Tabla_Gerencia";
+                        cmd.CommandText = "SP_E_Tabla_Asignacion";
                         cmd.CommandType = System.Data.CommandType.StoredProcedure;
                         cmd.Connection = con;
 
-                        cmd.Parameters.AddWithValue("_id_gerencia", id);
+                        cmd.Parameters.AddWithValue("_id_asignacion", id);
 
                         if (cmd.ExecuteNonQuery() > 0)
                         {
@@ -154,6 +162,5 @@ namespace Web_Farmacia.Models
                 return false;
             }
         }
-
     }
 }

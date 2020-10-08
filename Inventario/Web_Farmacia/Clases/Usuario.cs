@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -16,7 +16,7 @@ namespace Web_Farmacia.Clases
         private string correo;
         private string celular;
         private string direccion;
-        private int cargo;
+        private string cargo;
         private int disponibilidad;
 
         public int Id_usuario
@@ -136,7 +136,7 @@ namespace Web_Farmacia.Clases
             }
         }
 
-        public int Cargo
+        public string Cargo
         {
             get
             {

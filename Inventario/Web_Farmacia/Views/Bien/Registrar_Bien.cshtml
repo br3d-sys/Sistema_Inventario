@@ -41,62 +41,86 @@
             <form method="post" enctype="multipart/form-data" id="registrar">
 
                 <div class="d-flex mb-4">
-                    <a href="" class="btn btn-secondary ml-auto"><i class="fa fa-caret-left"></i> Lista de Bienes</a>
+                    <a href="/Bien/Consultar_Bien" class="btn btn-secondary ml-auto"><i class="fa fa-caret-left"></i> Lista de Patrimonio</a>
                 </div>
 
                 <div class="form-row">
-                    <div class="form-group col-sm-6">
+                    <div class="form-group col-sm-4">
                         <label for="nombre">Nombre</label>
                         <input class="form-control" type="text" name="nombre" id="nombre" placeholder="Ingrese su Nombre">
                         <span class="badge badge-warning sp" id="sp_nombre"></span>
                     </div>
                     <div class="form-group col-sm-3">
-                        <label for="documento">Categoria</label>
-                        <select class="form-control" name="categoria" id="categoria">
-                            <option value="DNI">Muebles</option>
-                            <option value="RUC">Equipos Informaticos</option>
-                            <option value="LE">Otros</option>
+                        <label for="id_categoria">Categoria</label>
+                        <select class="form-control" name="id_categoria" id="id_categoria">
+                            <option value="1">Muebles</option>
+                            <option value="2">Equipos Informaticos</option>
+                            <option value="3">Otros</option>
                         </select>
-                        <span class="badge badge-warning sp" id="sp_documento"></span>
+                        <span class="badge badge-warning sp" id="sp_categoria"></span>
                     </div>
+                    <div class="form-group col-sm-5">
+                        <label for="descripcion">Descripcion</label>
+                        <input class="form-control" type="text" name="descripcion" id="descripcion" placeholder="Ingrese la Descripcion">
+                        <span class="badge badge-warning sp" id="sp_descripcion"></span>
+                    </div>
+                </div>
+                <div class="form-row">
                     <div class="form-group col-sm-3">
                         <label for="codigo">Codigo</label>
-                        <input class="form-control" type="text" name="codigo" id="codigo" placeholder="Ingrese el Codigo">
-                        <span class="badge badge-warning sp" id="sp_n_documento"></span>
+                        <input class="form-control" type="text" name="codigo" id="codigo" placeholder="Ingrese el Codigo" />
+                        <span class="badge badge-warning sp" id="sp_codigo"></span>
+                    </div>
+                    <div class="form-group col-sm-2">
+                        <label for="precio">Precio</label>
+                        <input class="form-control" type="text" name="precio" id="precio" placeholder="Precio">
+                        <span class="badge badge-warning sp" id="sp_precio"></span>
+                    </div>
+                    <div class="form-group col-sm-3">
+                        <label for="estado">Estado</label>
+                        <select class="form-control" name="estado" id="estado">
+                            <option value="1">Nuevo</option>
+                            <option value="2">Usado</option>
+                            <option value="3">Otros</option>
+                        </select>
+                        <span class="badge badge-warning sp" id="sp_estado"></span>
+                    </div>
+                    <div class="form-group col-sm-2">
+                        <label for="fecha_ing">Fecha</label>
+                        <input class="form-control" type="date" name="fecha_ing" id="fecha_ing" placeholder="Ingrese la Fecha">
+                        <span class="badge badge-warning sp" id="sp_fecha_ing"></span>
+                    </div>
+                    <div class="form-group col-sm-2">
+                        <label for="marca">Marca</label>
+                        <input class="form-control" type="text" name="marca" id="marca" placeholder="Ingrese la Marca">
+                        <span class="badge badge-warning sp" id="sp_marca"></span>
                     </div>
                 </div>
                 <div class="form-row">
-                    <div class="form-group col-sm-4">
-                        <label for="descripcion">Descripcion</label>
-                        <input class="form-control" type="text" name="descripcion" id="descripcion" placeholder="Ingrese su Descripcion" />
-                        <span class="badge badge-warning sp" id="sp_direccion"></span>
+                    <div class="form-group col-sm-3">
+                        <label for="color">Color</label>
+                        <input class="form-control" type="text" name="color" id="color" placeholder="Ingrese el Color">
+                        <span class="badge badge-warning sp" id="sp_color"></span>
                     </div>
-                    <div class="form-group col-sm-4">
-                        <label for="celular">Precio</label>
-                        <input class="form-control" type="text" name="celular" id="celular" placeholder="Ingrese su Celular">
-                        <span class="badge badge-warning sp" id="sp_celular"></span>
+                    <div class="form-group col-sm-3">
+                        <label for="modelo">Modelo</label>
+                        <input class="form-control" type="text" name="modelo" id="modelo" placeholder="Ingrese el Modelo">
+                        <span class="badge badge-warning sp" id="sp_modelo"></span>
                     </div>
-                    <div class="form-group col-sm-4">
-                        <label for="correo">Correo</label>
-                        <input class="form-control" type="text" name="correo" id="correo" placeholder="Ingrese su Correo">
-                        <span class="badge badge-warning sp" id="sp_correo"></span>
+                    <div class="form-group col-sm-2">
+                        <label for="alto">Alto</label>
+                        <input class="form-control" type="text" name="alto" id="alto" placeholder="Ingrese el Alto">
+                        <span class="badge badge-warning sp" id="sp_alto"></span>
                     </div>
-                </div>
-                <div class="form-row">
-                    <div class="form-group col-sm-4">
-                        <label for="usuario">Usuario</label>
-                        <input class="form-control" type="text" name="usuario" id="usuario" placeholder="Ingrese el Usuario">
-                        <span class="badge badge-warning sp" id="sp_usuario"></span>
+                    <div class="form-group col-sm-2">
+                        <label for="ancho">Ancho</label>
+                        <input class="form-control" type="text" name="ancho" id="ancho" placeholder="Ingrese el Ancho">
+                        <span class="badge badge-warning sp" id="sp_ancho"></span>
                     </div>
-                    <div class="form-group col-sm-4">
-                        <label for="password">Contraseña</label>
-                        <input class="form-control" type="password" name="password" id="password" placeholder="Ingrese la Contraseña">
-                        <span class="badge badge-warning sp" id="sp_password"></span>
-                    </div>
-                    <div class="form-group col-sm-4">
-                        <label for="id_cargo">Cargo</label>
-                        <select class="form-control" name="id_cargo" id="id_cargo"></select>
-                        <span class="badge badge-warning sp" id="sp_id_cargo"></span>
+                    <div class="form-group col-sm-2">
+                        <label for="profundidad">Profundidad</label>
+                        <input class="form-control" type="text" name="profundidad" id="profundidad" placeholder="Ingrese la Profundidad">
+                        <span class="badge badge-warning sp" id="sp_profundidad"></span>
                     </div>
 
                 </div>
@@ -111,11 +135,6 @@
 
 
         </div>
-        <!-- /.card-body -->
-        <div class="card-footer">
-            Paginación
-        </div>
-        <!-- /.card-footer-->
     </div>
     <!-- /.card -->
 </section>
@@ -140,34 +159,41 @@
 
 <script>
 
-    //document.addEventListener("DOMContentLoaded",function(){
+    document.addEventListener("DOMContentLoaded",function(){
 
            document.getElementById("registrar").addEventListener("submit", function (e) {
 
-            var url = "";
-
-            //var form = document.getElementById("registrar");
+            var url = "@Url.Action("Registrar_Bien", "Bien")";
+               var id_categoria = document.getElementById("id_categoria").value;
                var nombre = document.getElementById("nombre").value;
-               var documento = document.getElementById("documento").value;
-               var n_documento = document.getElementById("n_documento").value;
-               var direccion = document.getElementById("direccion").value;
-               var celular = document.getElementById("celular").value;
-               var correo = document.getElementById("correo").value;
-               var id_cargo = document.getElementById("id_cargo").value;
-               var usuario = document.getElementById("usuario").value;
-               var password = document.getElementById("password").value;
+               var descripcion = document.getElementById("descripcion").value;
+               var codigo = document.getElementById("codigo").value;
+               var precio = document.getElementById("precio").value;
+               var estado = document.getElementById("estado").value;
+               var fecha_ing = document.getElementById("fecha_ing").value;
+               var marca = document.getElementById("marca").value;
+               var color = document.getElementById("color").value;
+               var modelo = document.getElementById("modelo").value;
+               var alto = document.getElementById("alto").value;
+               var ancho = document.getElementById("ancho").value;
+               var profundidad = document.getElementById("profundidad").value;
 
-               var formdata = new FormData();
+               var param = "id_categoria=" + id_categoria + "&nombre=" + nombre + "&descripcion=" + descripcion +
+                   "&codigo=" + codigo + "&precio=" + precio + "&estado=" + estado + "&fecha_ing=" + fecha_ing +
+                   "&marca=" + marca + "&color=" + color + "&modelo=" + modelo + "&alto=" + alto + "&ancho=" + ancho +
+                    "&profundidad=" + profundidad;
 
-               formdata.append("nombre", nombre);
-               formdata.append("documento", documento);
-               formdata.append("n_documento", n_documento);
-               formdata.append("direccion", direccion);
-               formdata.append("celular", celular);
-               formdata.append("correo", correo);
-               formdata.append("id_cargo", id_cargo);
-               formdata.append("usuario", usuario);
-               formdata.append("password", password);
+               //var formdata = new FormData();
+
+               //formdata.append("nombre", nombre);
+               //formdata.append("documento", documento);
+               //formdata.append("n_documento", n_documento);
+               //formdata.append("direccion", direccion);
+               //formdata.append("celular", celular);
+               //formdata.append("correo", correo);
+               //formdata.append("id_cargo", id_cargo);
+               //formdata.append("usuario", usuario);
+               //formdata.append("password", password);
 
                 var ajax = new XMLHttpRequest();
 
@@ -179,7 +205,7 @@
                             console.log(response.message);
 
                             document.getElementById("content").innerHTML = response.message;
-                            $("#mod").modal({ backdrop: true });
+                            $("#mod").modal({ backdrop: 'static' });
                             limpiar_spam();
                         } else {
                             console.log(response);
@@ -193,8 +219,8 @@
                 }
 
                 ajax.open("POST", url, true);
-                //ajax.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-                ajax.send(formdata);
+                ajax.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+                ajax.send(param);
 
                 e.preventDefault();
         })
@@ -202,15 +228,19 @@
         document.getElementById("mod-acept").addEventListener("click", function () {
             $("#mod").modal("hide");
 
+            document.getElementById("id_categoria").value="";
             document.getElementById("nombre").value="";
-            document.getElementById("documento").value = "";
-            document.getElementById("n_documento").value = "";
-            document.getElementById("direccion").value = "";
-            document.getElementById("celular").value = "";
-            document.getElementById("correo").value = "";
-            document.getElementById("id_cargo").value = "";
-            document.getElementById("usuario").value = "";
-            document.getElementById("password").value = "";
+            document.getElementById("descripcion").value="";
+            document.getElementById("codigo").value="";
+            document.getElementById("precio").value="";
+            document.getElementById("estado").value="";
+            document.getElementById("fecha_ing").value="";
+            document.getElementById("marca").value="";
+            document.getElementById("color").value="";
+            document.getElementById("modelo").value="";
+            document.getElementById("alto").value="";
+            document.getElementById("ancho").value="";
+            document.getElementById("profundidad").value="";
 
         })
 
@@ -221,7 +251,7 @@
             }
         }
 
-    //})
+    })
 
 </script>
 
