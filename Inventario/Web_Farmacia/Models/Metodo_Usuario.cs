@@ -30,7 +30,7 @@ namespace Web_Farmacia.Models
 
                         cmd.Parameters.AddWithValue("_nombre", usu.Nombre);
                         cmd.Parameters.AddWithValue("_usuario", usu.Nom_usuario);
-                        cmd.Parameters.AddWithValue("_contrasena", usu.Password);
+                        cmd.Parameters.AddWithValue("_contrasena", usu.Contrasena);
                         cmd.Parameters.AddWithValue("_documento", usu.Documento);
                         cmd.Parameters.AddWithValue("_n_documento", usu.N_documento);
                         cmd.Parameters.AddWithValue("_correo", usu.Correo);
@@ -145,7 +145,7 @@ namespace Web_Farmacia.Models
 
                         cmd.Parameters.AddWithValue("_nombre", usu.Nombre);
                         cmd.Parameters.AddWithValue("_usuario", usu.Nom_usuario);
-                        cmd.Parameters.AddWithValue("_contrasena", usu.Password);
+                        cmd.Parameters.AddWithValue("_contrasena", usu.Contrasena);
                         cmd.Parameters.AddWithValue("_documento", usu.Documento);
                         cmd.Parameters.AddWithValue("_n_documento", usu.N_documento);
                         cmd.Parameters.AddWithValue("_correo", usu.Correo);
@@ -198,7 +198,7 @@ namespace Web_Farmacia.Models
                             usu.Id_usuario = rd.GetInt32("id_usuario");
                             usu.Nombre = rd.GetString("nombre");
                             usu.Nom_usuario = rd.GetString("usuario");
-                            usu.Password = rd.GetString("contrasena");
+                            usu.Contrasena = rd.GetString("contrasena");
                             usu.Documento = rd.GetString("documento");
                             usu.N_documento = rd.GetString("n_documento");
                             usu.Correo = rd.GetString("correo");
