@@ -177,6 +177,7 @@ namespace Web_Farmacia.Controllers
         public ActionResult Registrar_Personal()
         {
 
+<<<<<<< HEAD
             return View();
         }
 <<<<<<< HEAD
@@ -188,6 +189,10 @@ namespace Web_Farmacia.Controllers
         {
             return View();
 =======
+=======
+            return View();
+        }
+>>>>>>> master
 
         [HttpPost]
         public ActionResult Registrar_Personal(int id_area, string nombre, string cargo, string t_documento, string n_documento, int edad, string sexo, string est_civil, string celular, string direccion, string correo)
@@ -279,6 +284,9 @@ namespace Web_Farmacia.Controllers
                 return Json(new { message = message, success = false, datos = error });
             }
 
+<<<<<<< HEAD
+>>>>>>> master
+=======
 >>>>>>> master
         }
     }

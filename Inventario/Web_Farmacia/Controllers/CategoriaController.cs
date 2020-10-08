@@ -19,6 +19,11 @@ namespace Web_Farmacia.Controllers
             return View();
         }
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> master
 =======
 
 

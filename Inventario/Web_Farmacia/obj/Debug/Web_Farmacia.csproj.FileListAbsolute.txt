@@ -230,7 +230,10 @@ E:\Sistema\Sistema_Inventario\Inventario\Web_Farmacia\bin\System.Web.Webpages.Ra
 E:\Sistema\Sistema_Inventario\Inventario\Web_Farmacia\bin\System.Web.Helpers.xml
 E:\Sistema\Sistema_Inventario\Inventario\Web_Farmacia\bin\System.Web.Mvc.xml
 E:\Sistema\Sistema_Inventario\Inventario\Web_Farmacia\obj\Debug\Web_Farmacia.csproj.CopyComplete
+<<<<<<< HEAD
 E:\SISTEMA_INVENTARIO\Sistema_Inventario\Inventario\Web_Farmacia\obj\Debug\Web_Farmacia.csprojAssemblyReference.cache
 E:\SISTEMA_INVENTARIO\Sistema_Inventario\Inventario\Web_Farmacia\obj\Debug\Web_Farmacia.csproj.CoreCompileInputs.cache
 E:\SISTEMA_INVENTARIO\Sistema_Inventario\Inventario\Web_Farmacia\obj\Debug\Web_Farmacia.dll
 E:\SISTEMA_INVENTARIO\Sistema_Inventario\Inventario\Web_Farmacia\obj\Debug\Web_Farmacia.pdb
+=======
+>>>>>>> master
