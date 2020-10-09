@@ -301,6 +301,9 @@
     <Content Include="Content\plugins\jquery\jquery.min.js" />
     <Content Include="Content\plugins\jquery\jquery.slim.js" />
     <Content Include="Content\plugins\jquery\jquery.slim.min.js" />
+    <Content Include="Content\plugins\qrcode\jquery.min.js" />
+    <Content Include="Content\plugins\qrcode\qrcode.js" />
+    <Content Include="Content\plugins\qrcode\qrcode.min.js" />
     <Content Include="Content\plugins\slimScroll\jquery.slimscroll.js" />
     <Content Include="Content\plugins\slimScroll\jquery.slimscroll.min.js" />
     <Content Include="Content\plugins\tempusdominus-bootstrap-4\css\tempusdominus-bootstrap-4.css" />
@@ -411,7 +414,8 @@
     <Content Include="Views\Inventario\Consultar_Inventario.cshtml" />
     <Content Include="Views\Inventario\Modificar_Inventario.cshtml" />
     <Content Include="Views\Inventario\Registrar_Inventario.cshtml" />
-    <Content Include="Views\Usuario_Catalogo.cshtml" />
+    <Content Include="Views\Usuario\Login_Usuario.cshtml" />
+    <Content Include="Views\Usuario\Menu_Principal.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
