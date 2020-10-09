@@ -411,6 +411,7 @@
     <Content Include="Views\Inventario\Consultar_Inventario.cshtml" />
     <Content Include="Views\Inventario\Modificar_Inventario.cshtml" />
     <Content Include="Views\Inventario\Registrar_Inventario.cshtml" />
+    <Content Include="Views\Usuario_Catalogo.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
