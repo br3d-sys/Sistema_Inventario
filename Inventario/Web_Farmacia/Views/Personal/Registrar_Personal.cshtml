@@ -90,12 +90,12 @@
                     </div>
                     <div class="form-group col-sm-4">
                         <label for="n_documento">Numero de Documento</label>
-                        <input class="form-control" type="text" name="n_documento" id="n_documento" placeholder="Ingrese su Nro">
+                        <input class="form-control" type="number" name="n_documento" id="n_documento" placeholder="Ingrese su Nro" minlength="8" maxlength="10" required>
                         <span class="badge badge-warning sp" id="sp_n_documento"></span>
                     </div>
                     <div class="form-group col-sm-2">
                         <label for="edad">Edad</label>
-                        <input class="form-control" type="text" name="edad" id="edad" placeholder="Edad">
+                        <input class="form-control" type="number" name="edad" id="edad" placeholder="Edad" >
                         <span class="badge badge-warning sp" id="sp_edad"></span>
                     </div>
                 </div>
@@ -114,12 +114,13 @@
                         <select class="form-control" name="est_civil" id="est_civil">
                             <option value="soltero">Soltero</option>
                             <option value="casado">Casado</option>
+                            <option value="otros">Otros</option>
                         </select>
                         <span class="badge badge-warning sp" id="sp_est_civil"></span>
                     </div>
                     <div class="form-group col-sm-4">
                         <label for="celular">Celular</label>
-                        <input class="form-control" type="text" name="celular" id="celular" placeholder="Ingrese el Celular">
+                        <input class="form-control" type="number" name="celular" id="celular" placeholder="Ingrese el Celular" maxlength="9">
                         <span class="badge badge-warning sp" id="sp_celular"></span>
                     </div>
                     
@@ -135,7 +136,7 @@
                     </div>
                     <div class="form-group col-sm-4">
                         <label for="correo">Correo</label>
-                        <input class="form-control" type="text" name="correo" id="correo" placeholder="Ingrese su Correo">
+                        <input class="form-control" type="email" name="correo" id="correo" placeholder="Ingrese su Correo">
                         <span class="badge badge-warning sp" id="sp_correo"></span>
                     </div>
 
