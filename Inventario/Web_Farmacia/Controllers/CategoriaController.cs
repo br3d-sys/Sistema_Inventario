@@ -18,16 +18,6 @@ namespace Web_Farmacia.Controllers
         {
             return View();
         }
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-
-
->>>>>>> master
-=======
-
-
->>>>>>> master
         public ActionResult Modificar_Categoria()
         {
             return View();

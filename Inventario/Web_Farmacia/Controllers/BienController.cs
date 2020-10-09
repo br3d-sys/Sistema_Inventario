@@ -183,11 +183,9 @@ namespace Web_Farmacia.Controllers
 
         public ActionResult Registrar_Bien()
         {
-
-<<<<<<< HEAD
             return View();
         }
-<<<<<<< HEAD
+
         public ActionResult Consultar_Bien()
         {
             return View();
@@ -195,11 +193,9 @@ namespace Web_Farmacia.Controllers
         public ActionResult Modificar_Bien()
         {
             return View();
-=======
-=======
+
             return View();
         }
->>>>>>> master
 
         [HttpPost]
         public ActionResult Registrar_Bien(int id_categoria, string nombre, string descripcion, string codigo, double precio, string estado, DateTime fecha_ing, string marca, string color, string modelo, string alto, string ancho, string profundidad)
@@ -298,10 +294,6 @@ namespace Web_Farmacia.Controllers
                 return Json(new { message = message, success = false, datos = error });
             }
 
-<<<<<<< HEAD
->>>>>>> master
-=======
->>>>>>> master
         }
     }
 }
