@@ -179,15 +179,6 @@ namespace Web_Farmacia.Controllers
 
             return View();
         }
-        //public ActionResult Consultar_Personal()
-        //{
-        //    return View();
-        //}
-        public ActionResult Modificar_Personal()
-        {
-            return View();
-        }
-
 
         [HttpPost]
         public ActionResult Registrar_Personal(int id_area, string nombre, string cargo, string t_documento, string n_documento, int edad, string sexo, string est_civil, string celular, string direccion, string correo)

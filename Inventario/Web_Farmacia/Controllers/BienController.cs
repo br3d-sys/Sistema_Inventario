@@ -183,17 +183,8 @@ namespace Web_Farmacia.Controllers
 
         public ActionResult Registrar_Bien()
         {
-            return View();
-        }
 
-        //public ActionResult Consultar_Bien()
-        //{
-        //    return View();
-        //}
-        public ActionResult Modificar_Bien()
-        {
             return View();
-
         }
 
         [HttpPost]

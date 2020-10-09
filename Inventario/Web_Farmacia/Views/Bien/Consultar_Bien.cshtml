@@ -105,10 +105,9 @@
                                         <td>@bien.Color</td>
                                         <td>@bien.Modelo</td>
                                         <td class="text-center">
-                                            <button onclick="generarqr('@bien.Codigo')" class="btn btn-light" id="generar"><i class="fas fa-qrcode"></i></button>
                                             <a href="/Bien/Modificar_Bien?id=@bien.Id_bienes" class="btn btn-primary" id="actualizar"><i class="fa fa-edit"></i></a>
-                                            <button onclick="eliminar('@bien.Id_bienes')" class="btn btn-danger" id="Eliminar"><i class="fa fa-trash"></i></button>
-                                            
+                                            <button data-backdrop="static" onclick="eliminar('@bien.Id_bienes')" class="btn btn-danger" id="Eliminar"><i class="fa fa-trash"></i></button>
+
                                         </td>
                                     </tr>
                                 }
