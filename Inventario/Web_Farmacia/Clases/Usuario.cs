@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.ComponentModel.DataAnnotations;
 
 namespace Web_Farmacia.Clases
 {
@@ -109,7 +110,6 @@ namespace Web_Farmacia.Clases
                 correo = value;
             }
         }
-
         public string Celular
         {
             get
