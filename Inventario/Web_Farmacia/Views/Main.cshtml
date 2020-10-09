@@ -4,13 +4,13 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>AdminLTE 3 | Dashboard 3</title>
+    <title>Sistema de Inventario</title>
     <!-- Font Awesome Icons -->
     @*<link rel="stylesheet" href="~/Content/plugins/font-awesome/css/font-awesome.min.css">*@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
     <!-- IonIcons -->
     <link rel="stylesheet" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
-   
+
     <link rel="stylesheet" href="~/Content/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
 
     <!-- Theme style -->
@@ -18,6 +18,10 @@
     <!-- Google Font: Source Sans Pro -->
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 
+    <link rel="stylesheet" href="~/Content/plugins/fontawesome-free/css/all.min.css">
+
+    <script src="~/Content/plugins/jquery/jquery.min.js"></script>
+    
 
 </head>
 
@@ -30,17 +34,16 @@
                 <li class="nav-item">
                     <a class="nav-link" data-widget="pushmenu" href="#"><i class="fa fa-bars"></i></a>
                 </li>
-                
+
             </ul>
             <!-- SEARCH FORM -->
-            
             <!-- Right navbar links -->
         </nav>
         <!-- /.navbar -->
         <!-- Main Sidebar Container -->
         <aside class="main-sidebar sidebar-dark-primary elevation-4">
             <!-- Brand Logo -->
-            <a href="index3.html" class="brand-link">
+            <a href="/Usuario/Menu_Principal" class="brand-link">
                 <img src="~/Content/dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
                      style="opacity: .8">
                 <span class="brand-text font-weight-light">Sistema de Inventario</span>
@@ -106,7 +109,7 @@
                                         <p>Registrar Categorias</p>
                                     </a>
                                 </li>
-                                
+
                             </ul>
                         </li>
                         <li class="nav-item has-treeview">
@@ -132,7 +135,7 @@
                                 </li>
                             </ul>
                         </li>
-                       
+
                         @* ------------------------------------------------ *@
                         <li class="nav-item has-treeview">
                             <a href="#" class="nav-link">
@@ -179,10 +182,10 @@
                                         <p>Registrar Usuario</p>
                                     </a>
                                 </li>
-                               
+
                             </ul>
                         </li>
-                       
+
                     </ul>
                 </nav>
                 <!-- /.sidebar-menu -->
@@ -216,12 +219,15 @@
     <!-- ./wrapper -->
     <!-- REQUIRED SCRIPTS -->
     <!-- jQuery -->
-    <script src="~/Content/plugins/jquery/jquery.min.js"></script>
-     Bootstrap 
+    @*<script src="~/Content/plugins/jquery/jquery.min.js"></script>*@
+
+    @*Bootstrap*@
     <script src="~/Content/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-     AdminLTE 
+    @*AdminLTE*@
     <script src="~/Content/dist/js/adminlte.js"></script>
-     OPTIONAL SCRIPTS 
+    @*OPTIONAL SCRIPTS*@
+    <script src="~/Content/plugins/qrcode/qrcode.js"</script>
+    @*<script src="~/Content/plugins/qrcode/qrcode.min.js"</script>*@
     <script src="~/Content/plugins/chart.js/Chart.min.js"></script>
     <script src="~/Content/dist/js/demo.js"></script>
     <script src="~/Content/dist/js/pages/dashboard3.js"></script>
