@@ -221,53 +221,52 @@ namespace Web_Farmacia.Models
 
         }
 
-        //public Usuario validar(string usuario, string contrasena)
-        //{
-        //    try
-        //    {
-        //        MySqlDataReader rd;
-        //        Usuario usu = new Usuario();
+        public Usuario validar(string usuario, string contrasena)
+        {
+            try
+            {
+                MySqlDataReader rd;
+                Usuario usu = new Usuario();
 
-        //        using (con = Conexion.conectar())
-        //        {
-        //            using (cmd = new MySqlCommand())
-        //            {
-        //                cmd.CommandText = "SP_V_Tabla_Usuario";
-        //                //cmd.CommandText = string.Format("Select * from tbl_categoria where id_categoria='{0}'", id);
-        //                cmd.CommandType = System.Data.CommandType.StoredProcedure;
-        //                cmd.Connection = con;
+                using (con = Conexion.conectar())
+                {
+                    using (cmd = new MySqlCommand())
+                    {
+                        cmd.CommandText = "SP_V_Tabla_Usuario";
+                        //cmd.CommandText = string.Format("Select * from tbl_categoria where id_categoria='{0}'", id);
+                        cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                        cmd.Connection = con;
 
-        //                cmd.Parameters.AddWithValue("_usuario", usuario);
-        //                cmd.Parameters.AddWithValue("_contrasena", contrasena);
+                        cmd.Parameters.AddWithValue("_usuario", usuario);
+                        cmd.Parameters.AddWithValue("_contrasena", contrasena);
 
-        //                rd = cmd.ExecuteReader();
+                        rd = cmd.ExecuteReader();
 
-        //                while (rd.Read())
-        //                {
-        //                    usu.Id_usuario = rd.GetInt32("id_usuario");
-        //                    usu.Nombre = rd.GetString("nombre");
-        //                    usu.Nom_usuario = rd.GetString("usuario");
-        //                    usu.Password = rd.GetString("contrasena");
-        //                    usu.Documento = rd.GetString("documento");
-        //                    usu.N_documento = rd.GetString("n_documento");
-        //                    usu.Correo = rd.GetString("correo");
-        //                    usu.Celular = rd.GetString("celular");
-        //                    usu.Direccion = rd.GetString("direccion");
-        //                    usu.Id_cargo = rd.GetInt32("id_cargo");
-        //                }
+                        while (rd.Read())
+                        {
+                            usu.Id_usuario = rd.GetInt32("id_usuario");
+                            usu.Nombre = rd.GetString("nombre");
+                            usu.Nom_usuario = rd.GetString("usuario");
+                            usu.Documento = rd.GetString("documento");
+                            usu.N_documento = rd.GetString("n_documento");
+                            usu.Correo = rd.GetString("correo");
+                            usu.Celular = rd.GetString("celular");
+                            usu.Direccion = rd.GetString("direccion");
+                            usu.Cargo = rd.GetString("cargo");
+                        }
 
-        //                rd.Close();
+                        rd.Close();
 
-        //            }
-        //        }
+                    }
+                }
 
-        //        return usu;
-        //    }
-        //    catch (Exception)
-        //    {
-        //        return null;
-        //    }
+                return usu;
+            }
+            catch (Exception)
+            {
+                return null;
+            }
 
-        //}
+        }
     }
 }

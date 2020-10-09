@@ -90,6 +90,7 @@ namespace Web_Farmacia.Controllers
             {
                 if (String.IsNullOrEmpty(nombre))
                 {
+                    
                     error.Add("sp_nombre", "Ingrese el nombre del Usuario");
                 }
                 if (String.IsNullOrEmpty(usuario))
@@ -237,6 +238,59 @@ namespace Web_Farmacia.Controllers
                 return Json(new { message = message, success = false, datos = error });
             }
 
+        }
+
+        [HttpPost]
+        public ActionResult Login_Usuario(string usuario, string contrasena)
+        {
+
+            Metodo_Usuario mu = new Metodo_Usuario();
+            Usuario usu;
+            string message;
+            SortedList<string, string> error = new SortedList<string, string>();
+
+                if (String.IsNullOrEmpty(usuario))
+                {
+                    error.Add("sp_usuario", "Ingrese su Usuario");
+                }
+                if (String.IsNullOrEmpty(contrasena))
+                {
+                    error.Add("sp_contrasena", "Ingrese su contrasena");
+                }
+
+            if (error.Count == 0)
+            {
+
+                usu = mu.validar(usuario, contrasena);
+
+                if (usu.Id_usuario !=0)
+                {
+                    message = "Se actualizaron los datos correctamente";
+                    return Json(new { message = message, success = true });
+                }
+                else
+                {
+                    message = "El usuario o contraseña son incorrectos";
+                    return Json(new { message = message, success = false });
+                }
+
+            }
+            else
+            {
+                message = "Ingrese los datos necesarios";
+                return Json(new { message = message, success = false, datos = error });
+            }
+            
+        }
+        public ActionResult Login_Usuario()
+        {
+
+            return View();
+        }
+        public ActionResult Menu_Principal()
+        {
+
+            return View();
         }
     }
 }

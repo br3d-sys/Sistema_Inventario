@@ -105,8 +105,14 @@
                                         <td>@bien.Color</td>
                                         <td>@bien.Modelo</td>
                                         <td class="text-center">
+<<<<<<< HEAD
                                             <a href="/Bien/Modificar_Bien?id=@bien.Id_bienes" class="btn btn-primary" id="actualizar"><i class="fa fa-edit"></i></a>
                                             <button data-backdrop="static" onclick="eliminar('@bien.Id_bienes')" class="btn btn-danger" id="Eliminar"><i class="fa fa-trash"></i></button>
+=======
+                                            <button onclick="generarqr('@bien.Codigo')" class="btn btn-dark" id="generar"><i class="fas fa-qrcode"></i></button>
+                                            <a href="/Bien/Modificar_Bien?id=@bien.Id_bienes" class="btn btn-primary" id="actualizar"><i class="fa fa-edit"></i></a>
+                                            <button onclick="eliminar('@bien.Id_bienes')" class="btn btn-danger" id="Eliminar"><i class="fa fa-trash"></i></button>
+>>>>>>> master
 
                                         </td>
                                     </tr>
@@ -117,6 +123,11 @@
                     </table>
                 </div>
                 <!-- /.col -->
+            </div>
+
+            <div class="row">
+                <div id="qrcode"></div>
+
             </div>
         </div>
 
@@ -144,28 +155,62 @@
 
 </div>
 
+<div class="modal fade bd-example-modal-sm" id="codqr_mod" role="dialog">
+
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="row d-flex justify-content-center p-4" id="codQR"></div>
+                <div class="row d-flex justify-content-between">
+                    <button id="btn_regresar" type="submit" class="btn btn-primary">Regresar</button>
+                    <button type="submit" class="btn btn-secondary">Imprimir</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
 <script>
 
+
     var f_id;
+    var codqr;
+
+    
 
     document.addEventListener("DOMContentLoaded", function (e) {
+        codqr = new QRCode(document.getElementById("codQR"), {
+            text: "Esto esta vacio",
+            width: 200,
+            height: 200
+        });
+
 
         document.getElementById("mod-acept").addEventListener("click", function () {
             location.replace("/Bien/eliminar?id=" + f_id);
             $("#mod").modal("hide");
-        })
+        });
         document.getElementById("mod-can").addEventListener("click", function () {
             $("#mod").modal("hide");
+        });
+
+        document.getElementById("btn_regresar").addEventListener("click", function () {
+            $("#codqr_mod").modal("hide");
         })
+    });
 
-
-
-    })
+    function generarqr(cod) {
+        codqr.makeCode(cod);
+        $("#codqr_mod").modal({ backdrop: 'static' });
+    }
 
     function eliminar(id) {
         $("#mod").modal({ backdrop: 'static' });
         f_id = id;
     }
+
 
 </script>
 
