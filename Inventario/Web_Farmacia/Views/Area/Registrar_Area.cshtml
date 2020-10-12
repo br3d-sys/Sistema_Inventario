@@ -4,6 +4,190 @@
     Layout = "~/Views/Main.cshtml";
 }
 
-<h2>Registrar_Area</h2>
-<h2>Registrar_Area02</h2>
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>Registrar Area</h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="#">Home</a></li>
+                    <li class="breadcrumb-item active">Registrar Area</li>
+                </ol>
+            </div>
+        </div>
+    </div><!-- /.container-fluid -->
+</section>
+<!-- Main content -->
+<section class="content">
+    <!-- Default box -->
+    <div class="card">
+        <div class="card-header">
+            <h3 class="card-title">Area</h3>
+            <div class="card-tools">
+                <button type="button" class="btn btn-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse">
+                    <i class="fa fa-minus"></i>
+                </button>
+                <button type="button" class="btn btn-tool" data-widget="remove" data-toggle="tooltip" title="Remove">
+                    <i class="fa fa-times"></i>
+                </button>
+            </div>
+        </div>
+        <div class="card-body">
+
+
+            <form method="post" enctype="multipart/form-data" id="registrar">
+
+       
+
+                <div class="form-row">
+                    <div class="form-group col-sm-6">
+                        <label for="nombre">Nombre</label>
+                        <input class="form-control" type="text" name="nombre" id="nombre" placeholder="Ingrese su Nombre">
+                        <span class="badge badge-warning sp" id="sp_nombre"></span>
+                    </div>
+                    <div class="form-group col-sm-6">
+                        <label for="id_gerencia">Gerencia</label>
+                        <select class="form-control" name="id_gerencia" id="id_gerencia">
+                            <option value="1">Gerencia de Administración</option>
+                            <option value="2">Gerencia de Desarrollo Social</option>
+                        </select>
+                        <span class="badge badge-warning sp" id="sp_gerencia"></span>
+                    </div>
+              
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-sm-6">
+                        <label for="ubicacion">Ubicacion</label>
+                        <input class="form-control" type="text" name="ubicacion id="nombre" placeholder="Ingrese Ubicacion">
+                        <span class="badge badge-warning sp" id="sp_ubicacion"></span>
+                    </div>
+                    <div class="form-group col-sm-6">
+                        <label for="descripcion">Descripcion</label>
+                        <input class="form-control" type="text" name="descripcion" id="nombre" placeholder="Ingrese Descripcion">
+                        <span class="badge badge-warning sp" id="sp_descripcion"></span>
+                    </div>
+                    
+                </div>
+
+
+        </div>
+        <div class="form-row d-flex justify-content-lg-end">
+            <div class="form-group col-auto">
+                <button type="submit" class="btn btn-primary">Guardar</button>
+            </div>
+            <div class="form-row d-flex justify-content-lg-end">
+                <div class="form-group col-auto">
+                    <button type="submit" class="btn btn-secondary">Limpiar</button>
+                </div>
+            </div>
+        </div>
+            </form>
+        </div>
+    </div>
+    <!-- /.card -->
+</section>
+<!-- /.content -->
+
+<div class="modal fade" id="mod" role="dialog">
+
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Información</h4>
+            </div>
+            <div class="modal-body">
+                <p id="content"></p>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-primary" id="mod-acept"> Aceptar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+
+    document.addEventListener("DOMContentLoaded",function(){
+
+           document.getElementById("registrar").addEventListener("submit", function (e) {
+
+            var url = "@Url.Action("Registrar_Personal","Personal")";
+
+               var id_area = document.getElementById("id_area").value;
+               var nombre = document.getElementById("nombre").value;
+               var cargo = document.getElementById("cargo").value;
+               var t_documento = document.getElementById("t_documento").value;
+               var n_documento = document.getElementById("n_documento").value;
+               var edad = document.getElementById("edad").value;
+               var sexo = document.getElementById("sexo").value;
+               var est_civil = document.getElementById("est_civil").value;
+               var celular = document.getElementById("celular").value;
+               var direccion = document.getElementById("direccion").value;
+               var correo = document.getElementById("correo").value;
+
+               var param = "id_area=" + id_area + "&nombre=" + nombre + "&cargo=" + cargo + "&t_documento=" + t_documento +
+                   "&n_documento=" + n_documento + "&edad=" + edad + "&sexo=" + sexo + "&est_civil=" + est_civil +
+                   "&celular=" + celular + "&direccion=" + direccion + "&correo=" + correo
+
+                var ajax = new XMLHttpRequest();
+
+                ajax.onreadystatechange = function () {
+                    if (ajax.readyState == 4) {
+
+                        var response = JSON.parse(ajax.responseText);
+                        if (response.success) {
+                            console.log(response.message);
+
+                            document.getElementById("content").innerHTML = response.message;
+                            $("#mod").modal({ backdrop: 'static' });
+                            limpiar_spam();
+                        } else {
+                            console.log(response);
+                            limpiar_spam();
+                            for (var prop in response.datos) {
+                                //console.log("propiedad " + prop + " valor " + response.datos[prop]);
+                                document.getElementById(prop).innerHTML = response.datos[prop]
+                            }
+                        }
+                    }
+                }
+
+                ajax.open("POST", url, true);
+                ajax.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+                ajax.send(param);
+
+                e.preventDefault();
+        })
+
+        document.getElementById("mod-acept").addEventListener("click", function () {
+            $("#mod").modal("hide");
+
+           id_area = document.getElementById("id_area").value="";
+           nombre = document.getElementById("nombre").value="";
+           cargo = document.getElementById("cargo").value="";
+           t_documento = document.getElementById("t_documento").value="";
+           n_documento = document.getElementById("n_documento").value="";
+           edad = document.getElementById("edad").value="";
+           sexo = document.getElementById("sexo").value="";
+           est_civil = document.getElementById("est_civil").value="";
+           celular = document.getElementById("celular").value="";
+           direccion = document.getElementById("direccion").value="";
+           correo = document.getElementById("correo").value="";
+
+        })
+
+        function limpiar_spam() {
+            var elementos = document.getElementsByClassName("sp");
+            for (i = 0; i < elementos.length ; i++) {
+                elementos.item(i).innerHTML = "";
+            }
+        }
+
+    })
+
+</script>
+
 
