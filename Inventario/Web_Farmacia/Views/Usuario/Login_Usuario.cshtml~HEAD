@@ -1,0 +1,131 @@
+﻿<!doctype html>
+<html lang="es">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <!-- Ionicons -->
+    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="~/Content/dist/css/adminlte.min.css">
+    <!-- iCheck -->
+    <link rel="stylesheet" href="~/Content/plugins/iCheck/square/blue.css">
+    <!-- Google Font: Source Sans Pro -->
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+    <title>Sistema de Inventario</title>
+</head>
+<body class="hold-transition login-page">
+    <div class="login-box">
+        <div class="login-logo">
+            <h3><b>Sistema</b> Inventario</h3>
+        </div>
+        <!-- /.login-logo -->
+        <div class="card">
+            <div class="card-body login-card-body">
+                <p class="login-box-msg">Inicio de Sesión</p>
+
+                <form id="formulario" method="post">
+                    <div class="form-group has-feedback row">
+                        <span class="fa fa-envelope form-control-feedback col-sm-1 col-1 mr-3"></span>
+                        <input type="text" class="form-control col-sm-10 col-10" placeholder="Usuario" id="usuario" name="usuario">
+                        <span class="badge badge-warning sp" id="sp_usuario"></span>
+                    </div>
+                    <div class="form-group has-feedback row">
+                        <span class="fa fa-lock form-control-feedback col-sm-1 col-1 mr-3"></span>
+                        <input type="password" class="form-control col-sm-10 col-10" placeholder="Password" id="contrasena" name="contrasena">
+                        <span class="badge badge-warning sp" id="sp_contrasena"></span>
+                    </div>
+                    <div class="alert alert-dark" role="alert" id="alerta">
+
+                    </div>
+                    <div class="row">
+
+                        <!-- /.col -->
+                        <div class="col-4">
+                            <button type="submit" class="btn btn-primary btn-block btn-flat">Ingresar</button>
+                        </div>
+                        <!-- /.col -->
+                    </div>
+                </form>
+                <!-- /.social-auth-links -->
+            </div>
+            <!-- /.login-card-body -->
+        </div>
+    </div>
+    <!-- /.login-box -->
+    <!-- jQuery -->
+    <script src="~/Content/plugins/plugins/jquery.min.js"></script>
+
+    @*<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"</script>*@
+    <!-- Bootstrap 4 -->
+    <script src="~/Content/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- iCheck -->
+    <script src="~/Content/plugins/iCheck/icheck.min.js"></script>
+
+    <script>
+
+        document.addEventListener("DOMContentLoaded", function () {
+
+           
+                var alerta = document.getElementById("alerta");
+                alerta.style.display = "none";
+
+                document.getElementById("formulario").addEventListener("submit",function(e){
+
+                var url = "@Url.Action("Login_Usuario", "Usuario")";
+
+                var usuario = document.getElementById("usuario").value;
+                var contrasena = document.getElementById("contrasena").value;
+
+                var param = "usuario="+usuario+"&contrasena="+contrasena;
+
+
+              var ajax = new XMLHttpRequest();
+
+              ajax.onreadystatechange = function () {
+                  if (ajax.readyState == 4) {
+                      var response = JSON.parse(ajax.responseText);
+                      if (response.success) {
+                          console.log(response.message);
+                          alerta.style.display = "none";
+                          limpiar_spam();
+                          document.getElementById("alerta").innerHTML = response.message;
+                          location.replace('@Url.Action("Menu_Principal", "Usuario")');
+                      } else {
+                          console.log(response);
+                          limpiar_spam();
+                          for (var prop in response.datos) {
+                              document.getElementById(prop).innerHTML = response.datos[prop]
+                          }
+
+                          alerta.style.display = "block";
+                          document.getElementById("alerta").innerHTML = response.message;
+                      }
+
+                }
+              }
+
+                ajax.open("POST", url, true);
+
+                ajax.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+
+                ajax.send(param);
+
+              e.preventDefault();
+            })
+
+              function limpiar_spam() {
+                  var elementos = document.getElementsByClassName("sp");
+                  for (i = 0; i < elementos.length ; i++) {
+                      elementos.item(i).innerHTML = "";
+                  }
+              }
+          })
+
+
+    </script>
+</body>
+</html>

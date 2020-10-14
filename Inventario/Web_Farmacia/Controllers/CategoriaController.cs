@@ -18,6 +18,8 @@ namespace Web_Farmacia.Controllers
         {
             return View();
         }
+
+
         public ActionResult Modificar_Categoria()
         {
             return View();

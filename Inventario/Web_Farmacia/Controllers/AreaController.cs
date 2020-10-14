@@ -13,17 +13,5 @@ namespace Web_Farmacia.Controllers
         {
             return View();
         }
-        public ActionResult Consultar_Area()
-        {
-            return View();
-        }
-        public ActionResult Modificar_Area()
-        {
-            return View();
-        }
-        public ActionResult Registrar_Area()
-        {
-            return View();
-        }
     }
 }
