@@ -90,7 +90,6 @@ namespace Web_Farmacia.Controllers
             {
                 if (String.IsNullOrEmpty(nombre))
                 {
-                    
                     error.Add("sp_nombre", "Ingrese el nombre del Usuario");
                 }
                 if (String.IsNullOrEmpty(usuario))

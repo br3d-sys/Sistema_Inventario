@@ -3,6 +3,8 @@
     ViewBag.Title = "Modificar_Personal";
     Layout = "~/Views/Main.cshtml";
 }
+
+
 <!-- Content Header (Page header) -->
 <section class="content-header">
     <div class="container-fluid">
@@ -24,7 +26,7 @@
     <!-- Default box -->
     <div class="card">
         <div class="card-header">
-            <h3 class="card-title">Registrar</h3>
+            <h3 class="card-title">Modificar</h3>
             <div class="card-tools">
                 <button type="button" class="btn btn-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse">
                     <i class="fa fa-minus"></i>
@@ -36,22 +38,26 @@
         </div>
         <div class="card-body">
 
+            @model Web_Farmacia.Controllers.Info
 
-            <form method="post" enctype="multipart/form-data" id="registrar">
+            <form method="post" enctype="multipart/form-data" id="modificar">
 
-                <div class="d-flex mb-4">
-                    <a href="/Personal/Consultar_Personal" class="btn btn-secondary ml-auto"><i class="fa fa-caret-left"></i> Lista de Personal</a>
+                <div class="d-flex">
+                    <a href="@Url.Action("Consultar_Personal", "Personal")" class="btn btn-secondary ml-auto"><i class="fa fa-caret-left"></i> Regresar</a>
                 </div>
 
                 <div class="form-row">
+
+                    <input class="form-control" type="hidden" name="id" id="id" value="@Model.Obj_per.Id_personal">
+
                     <div class="form-group col-sm-6">
                         <label for="nombre">Nombre</label>
-                        <input class="form-control" type="text" name="nombre" id="nombre" placeholder="Ingrese su Nombre">
+                        <input class="form-control" type="text" name="nombre" id="nombre" placeholder="Ingrese su Nombre" value="@Model.Obj_per.Nombre">
                         <span class="badge badge-warning sp" id="sp_nombre"></span>
                     </div>
                     <div class="form-group col-sm-3">
                         <label for="id_gerencia">Gerencia</label>
-                        <select class="form-control" name="id_gerencia" id="id_gerencia">
+                        <select class="form-control" name="id_gerencia" id="id_gerencia" value="@Model.Obj_per.Id_gerencia">
                             <option value="1">Gerencia de Administración</option>
                             <option value="2">Gerencia de Desarrollo Social</option>
                         </select>
@@ -59,7 +65,7 @@
                     </div>
                     <div class="form-group col-sm-3">
                         <label for="id_area">Area</label>
-                        <select class="form-control" name="id_area" id="id_area">
+                        <select class="form-control" name="id_area" id="id_area" value="@Model.Obj_per.Id_area">
                             <option value="1">Sub Gerencia de Logistica</option>
                             <option value="2">Sub Gerencia de Contabilidad</option>
                         </select>
@@ -70,7 +76,7 @@
 
                     <div class="form-group col-sm-4">
                         <label for="cargo">Cargo</label>
-                        <select class="form-control" name="cargo" id="cargo">
+                        <select class="form-control" name="cargo" id="cargo" value="@Model.Obj_per.Cargo">
                             <option value="gerente">Gerente</option>
                             <option value="sub gerente">Sub Gerente</option>
                             <option value="asistente">Asistente</option>
@@ -80,7 +86,7 @@
 
                     <div class="form-group col-sm-2">
                         <label for="t_documento">T. Documento</label>
-                        <select class="form-control" name="t_documento" id="t_documento">
+                        <select class="form-control" name="t_documento" id="t_documento" value="@Model.Obj_per.T_documento">
                             <option value="DNI">DNI</option>
                             <option value="LE">LE</option>
                             <option value="RUC">RUC</option>
@@ -89,19 +95,19 @@
                     </div>
                     <div class="form-group col-sm-4">
                         <label for="n_documento">Numero de Documento</label>
-                        <input class="form-control" type="number" name="n_documento" id="n_documento" placeholder="Ingrese su Nro" minlength="8" maxlength="10" required>
+                        <input class="form-control" type="text" name="n_documento" id="n_documento" placeholder="Ingrese su Nro" value="@Model.Obj_per.N_documento">
                         <span class="badge badge-warning sp" id="sp_n_documento"></span>
                     </div>
                     <div class="form-group col-sm-2">
                         <label for="edad">Edad</label>
-                        <input class="form-control" type="number" name="edad" id="edad" placeholder="Edad">
+                        <input class="form-control" type="text" name="edad" id="edad" placeholder="Edad" value="@Model.Obj_per.Edad">
                         <span class="badge badge-warning sp" id="sp_edad"></span>
                     </div>
                 </div>
                 <div class="form-row">
                     <div class="form-group col-sm-4">
                         <label for="sexo">Sexo</label>
-                        <select class="form-control" name="sexo" id="sexo">
+                        <select class="form-control" name="sexo" id="sexo" value="@Model.Obj_per.Sexo">
                             <option value="masculino">Masculino</option>
                             <option value="femenino">Femenino</option>
                         </select>
@@ -110,16 +116,15 @@
 
                     <div class="form-group col-sm-4">
                         <label for="est_civil">Estado Civil</label>
-                        <select class="form-control" name="est_civil" id="est_civil">
+                        <select class="form-control" name="est_civil" id="est_civil" value="@Model.Obj_per.Est_civil">
                             <option value="soltero">Soltero</option>
                             <option value="casado">Casado</option>
-                            <option value="otros">Otros</option>
                         </select>
                         <span class="badge badge-warning sp" id="sp_est_civil"></span>
                     </div>
                     <div class="form-group col-sm-4">
                         <label for="celular">Celular</label>
-                        <input class="form-control" type="number" name="celular" id="celular" placeholder="Ingrese el Celular" maxlength="9">
+                        <input class="form-control" type="text" name="celular" id="celular" placeholder="Ingrese el Celular" value="@Model.Obj_per.Celular">
                         <span class="badge badge-warning sp" id="sp_celular"></span>
                     </div>
 
@@ -130,12 +135,12 @@
 
                     <div class="form-group col-sm-4">
                         <label for="direccion">Direccion</label>
-                        <input class="form-control" type="text" name="direccion" id="direccion" placeholder="Direccion">
+                        <input class="form-control" type="text" name="direccion" id="direccion" placeholder="Direccion" value="@Model.Obj_per.Direccion">
                         <span class="badge badge-warning sp" id="sp_direccion"></span>
                     </div>
                     <div class="form-group col-sm-4">
                         <label for="correo">Correo</label>
-                        <input class="form-control" type="email" name="correo" id="correo" placeholder="Ingrese su Correo">
+                        <input class="form-control" type="text" name="correo" id="correo" placeholder="Ingrese su Correo" value="@Model.Obj_per.Correo">
                         <span class="badge badge-warning sp" id="sp_correo"></span>
                     </div>
 
@@ -148,11 +153,11 @@
                 </div>
             </form>
         </div>
+
     </div>
     <!-- /.card -->
 </section>
 <!-- /.content -->
-
 <div class="modal fade" id="mod" role="dialog">
 
     <div class="modal-dialog" role="document">
@@ -164,7 +169,7 @@
                 <p id="content"></p>
             </div>
             <div class="modal-footer">
-                <button class="btn btn-primary" id="mod-acept"> Aceptar</button>
+                <button class="btn btn-primary" id="mod-acept"><i class="fa fa-caret-left"></i> Regresar</button>
             </div>
         </div>
     </div>
@@ -172,73 +177,62 @@
 
 <script>
 
-    document.addEventListener("DOMContentLoaded",function(){
+    document.addEventListener("DOMContentLoaded", function () {
 
-           document.getElementById("registrar").addEventListener("submit", function (e) {
+        document.getElementById("modificar").addEventListener("submit", function (e) {
 
-            var url = "@Url.Action("Registrar_Personal","Personal")";
+            var url = "@Url.Action("Modificar_Personal", "Personal")"
 
-               var id_area = document.getElementById("id_area").value;
-               var nombre = document.getElementById("nombre").value;
-               var cargo = document.getElementById("cargo").value;
-               var t_documento = document.getElementById("t_documento").value;
-               var n_documento = document.getElementById("n_documento").value;
-               var edad = document.getElementById("edad").value;
-               var sexo = document.getElementById("sexo").value;
-               var est_civil = document.getElementById("est_civil").value;
-               var celular = document.getElementById("celular").value;
-               var direccion = document.getElementById("direccion").value;
-               var correo = document.getElementById("correo").value;
+            var id = document.getElementById("id").value;
+            var id_area = document.getElementById("id_area").value;
+            var nombre = document.getElementById("nombre").value;
+            var cargo = document.getElementById("cargo").value;
+            var t_documento = document.getElementById("t_documento").value;
+            var n_documento = document.getElementById("n_documento").value;
+            var edad = document.getElementById("edad").value;
+            var sexo = document.getElementById("sexo").value;
+            var est_civil = document.getElementById("est_civil").value;
+            var celular = document.getElementById("celular").value;
+            var direccion = document.getElementById("direccion").value;
+            var correo = document.getElementById("correo").value;
 
-               var param = "id_area=" + id_area + "&nombre=" + nombre + "&cargo=" + cargo + "&t_documento=" + t_documento +
-                   "&n_documento=" + n_documento + "&edad=" + edad + "&sexo=" + sexo + "&est_civil=" + est_civil +
-                   "&celular=" + celular + "&direccion=" + direccion + "&correo=" + correo
+            var param = "id_area=" + id_area + "&nombre=" + nombre + "&cargo=" + cargo + "&t_documento=" + t_documento +
+                "&n_documento=" + n_documento + "&edad=" + edad + "&sexo=" + sexo + "&est_civil=" + est_civil +
+                "&celular=" + celular + "&direccion=" + direccion + "&correo=" + correo + "&id=" + id;
 
-                var ajax = new XMLHttpRequest();
+            var ajax = new XMLHttpRequest();
 
-                ajax.onreadystatechange = function () {
-                    if (ajax.readyState == 4) {
+            ajax.onreadystatechange = function () {
+                if (ajax.readyState == 4) {
 
-                        var response = JSON.parse(ajax.responseText);
-                        if (response.success) {
-                            console.log(response.message);
+                    var response = JSON.parse(ajax.responseText);
+                    if (response.success) {
+                        console.log(response.message);
 
-                            document.getElementById("content").innerHTML = response.message;
-                            $("#mod").modal({ backdrop: 'static' });
-                            limpiar_spam();
-                        } else {
-                            console.log(response);
-                            limpiar_spam();
-                            for (var prop in response.datos) {
-                                //console.log("propiedad " + prop + " valor " + response.datos[prop]);
-                                document.getElementById(prop).innerHTML = response.datos[prop]
-                            }
+                        document.getElementById("content").innerHTML = response.message;
+                        $("#mod").modal({ backdrop: 'static' });
+                        limpiar_spam();
+                    } else {
+                        console.log(response);
+                        limpiar_spam();
+                        for (var prop in response.datos) {
+                            document.getElementById(prop).innerHTML = response.datos[prop]
                         }
                     }
                 }
+            }
 
-                ajax.open("POST", url, true);
-                ajax.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-                ajax.send(param);
+            ajax.open("POST", url, true);
+            ajax.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+            ajax.send(param);
 
-                e.preventDefault();
+            e.preventDefault();
         })
 
         document.getElementById("mod-acept").addEventListener("click", function () {
             $("#mod").modal("hide");
 
-           id_area = document.getElementById("id_area").value="";
-           nombre = document.getElementById("nombre").value="";
-           cargo = document.getElementById("cargo").value="";
-           t_documento = document.getElementById("t_documento").value="";
-           n_documento = document.getElementById("n_documento").value="";
-           edad = document.getElementById("edad").value="";
-           sexo = document.getElementById("sexo").value="";
-           est_civil = document.getElementById("est_civil").value="";
-           celular = document.getElementById("celular").value="";
-           direccion = document.getElementById("direccion").value="";
-           correo = document.getElementById("correo").value="";
-
+            location.replace("@Url.Action("Consultar_Personal", "Personal")");
         })
 
         function limpiar_spam() {
@@ -251,6 +245,4 @@
     })
 
 </script>
-
-
 
