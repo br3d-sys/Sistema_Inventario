@@ -12,7 +12,7 @@ namespace Web_Farmacia
 
         public Conexion()
         {
-            con = new MySqlConnection("server=localhost;database=sistema_inventario;Uid=root;pwd=;port=3308");
+            con = new MySqlConnection("server=localhost;database=sistema_inventario;Uid=root;pwd=;port=3306");
             //con = new MySqlConnection("Server=MYSQL5021.site4now.net;Database=db_a63fe8_ventas;Uid=a63fe8_ventas;Pwd=branco_937");
         }
 
