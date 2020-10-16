@@ -18,7 +18,13 @@ namespace Web_Farmacia.Controllers
         {
             return View();
         }
+
+
         public ActionResult Modificar_Gerencia()
+        {
+            return View();
+        }
+        public ActionResult Registrar_Gerencia()
         {
             return View();
         }
