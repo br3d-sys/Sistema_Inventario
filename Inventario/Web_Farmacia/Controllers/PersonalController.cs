@@ -21,24 +21,49 @@ namespace Web_Farmacia.Controllers
         public ActionResult Consultar_Personal()
         {
             List<Personal> per;
+            List<Area> are;
+            List<Gerencia> ger;
             Modelo_Personal mp = new Modelo_Personal();
+            Modelo_Area ma = new Modelo_Area();
+            Metodo_Gerencia mg = new Metodo_Gerencia();
 
             Info datos = new Info();
             per = mp.listar();
+            are = ma.listar();
+            ger = mg.listar();
 
             ViewBag.eliminar = TempData["Eliminar"];
 
             datos.Per = per;
+            datos.Are = are;
+            datos.Ger = ger;
 
             return View(datos);
 
         }
-        //[HttpPost]
-        //public ActionResult Consultar_Personal(string nombre, string dni)
-        //{
+        [HttpPost]
+        public ActionResult Consultar_Personal(string nombre, int id_gerencia, int id_area)
+        {
+            List<Personal> per;
+            List<Area> are;
+            List<Gerencia> ger;
+            Modelo_Personal mp = new Modelo_Personal();
+            Modelo_Area ma = new Modelo_Area();
+            Metodo_Gerencia mg = new Metodo_Gerencia();
 
-        //    return View();
-        //}
+            Info datos = new Info();
+            per = mp.buscar(nombre,id_gerencia,id_area);
+            are = ma.listar();
+            ger = mg.listar();
+
+            ViewBag.eliminar = TempData["Eliminar"];
+
+            datos.Per = per;
+            datos.Are = are;
+            datos.Ger = ger;
+
+            return View(datos);
+        }
 
         public ActionResult eliminar(int id)
         {
@@ -61,12 +86,23 @@ namespace Web_Farmacia.Controllers
         {
             Modelo_Personal mp = new Modelo_Personal();
 
+            Modelo_Area ma = new Modelo_Area();
+            Metodo_Gerencia mg = new Metodo_Gerencia();
+            List<Area> are;
+            List<Gerencia> ger;
+
             if (id != null)
             {
                 v_per = mp.obtener(id);
+                are = ma.listar();
+                ger = mg.listar();
 
                 Info datos = new Info();
+               
                 datos.Obj_per = v_per;
+                datos.Are = are;
+                datos.Ger = ger;
+                
 
                 return View(datos);
             }
@@ -176,8 +212,19 @@ namespace Web_Farmacia.Controllers
 
         public ActionResult Registrar_Personal()
         {
+            Modelo_Area ma = new Modelo_Area();
+            Metodo_Gerencia mg = new Metodo_Gerencia();
+            List<Area> are;
+            List<Gerencia> ger;
+            Info dato = new Info();
 
-            return View();
+            are = ma.listar();
+            ger = mg.listar();
+
+            dato.Are = are;
+            dato.Ger = ger;
+
+            return View(dato);
         }
 
         [HttpPost]
@@ -185,6 +232,7 @@ namespace Web_Farmacia.Controllers
         {
             Personal per = new Personal();
             Modelo_Personal mp = new Modelo_Personal();
+
 
             string message;
             SortedList<string, string> error = new SortedList<string, string>();

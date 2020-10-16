@@ -242,5 +242,63 @@ namespace Web_Farmacia.Models
 
         }
 
+        public List<Personal> buscar(string nombre, int id_gerencia, int id_area)
+        {
+            //try
+            //{
+            MySqlDataReader rd;
+            List<Personal> lista = new List<Personal>();
+
+            using (con = Conexion.conectar())
+            {
+                using (cmd = new MySqlCommand())
+                {
+                    cmd.CommandText = "SP_B_Tabla_Personal";
+                    cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                    cmd.Connection = con;
+
+                    cmd.Parameters.AddWithValue("_nombre", nombre);
+                    cmd.Parameters.AddWithValue("_id_gerencia", id_gerencia);
+                    cmd.Parameters.AddWithValue("_id_area", id_area);
+
+                    rd = cmd.ExecuteReader();
+
+                    while (rd.Read())
+                    {
+                        lista.Add(new Personal
+                        {
+
+                            Id_personal = rd.GetInt32("id_personal"),
+                            Id_area = rd.GetInt32("id_area"),
+                            Area = rd.GetString("area"),
+                            Id_gerencia = rd.GetInt32("id_gerencia"),
+                            Gerencia = rd.GetString("gerencia"),
+                            Nombre = rd.GetString("nombre"),
+                            Cargo = rd.GetString("cargo"),
+                            T_documento = rd.GetString("t_documento"),
+                            N_documento = rd.GetString("n_documento"),
+                            Edad = rd.GetInt16("edad"),
+                            Sexo = rd.GetString("sexo"),
+                            Est_civil = rd.GetString("est_civil"),
+                            Celular = rd.GetString("celular"),
+                            Direccion = rd.GetString("direccion"),
+                            Correo = rd.GetString("correo")
+
+                        });
+                    }
+
+                    rd.Close();
+
+                }
+            }
+
+            return lista;
+            //}
+            //catch (Exception)
+            //{
+            //    return null;
+            //}
+        }
+
     }
 }

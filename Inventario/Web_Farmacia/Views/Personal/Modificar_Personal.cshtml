@@ -58,16 +58,36 @@
                     <div class="form-group col-sm-3">
                         <label for="id_gerencia">Gerencia</label>
                         <select class="form-control" name="id_gerencia" id="id_gerencia" value="@Model.Obj_per.Id_gerencia">
-                            <option value="1">Gerencia de Administración</option>
-                            <option value="2">Gerencia de Desarrollo Social</option>
+                            @foreach (var ger in Model.Ger)
+                            {
+                                if (ger.Id_gerencia == Model.Obj_per.Id_gerencia)
+                                {
+                                    <option value="@ger.Id_gerencia" selected="selected">@ger.Nombre</option>
+                                }
+                                else
+                                {
+                                    <option value="@ger.Id_gerencia">@ger.Nombre</option>
+                                }
+
+                            }
                         </select>
                         <span class="badge badge-warning sp" id="sp_gerencia"></span>
                     </div>
                     <div class="form-group col-sm-3">
                         <label for="id_area">Area</label>
                         <select class="form-control" name="id_area" id="id_area" value="@Model.Obj_per.Id_area">
-                            <option value="1">Sub Gerencia de Logistica</option>
-                            <option value="2">Sub Gerencia de Contabilidad</option>
+                            @foreach (var are in Model.Are)
+                            {
+                                if (are.Id_area == Model.Obj_per.Id_area)
+                                {
+                                    <option value="@are.Id_area" selected="selected">@are.Nombre</option>
+                                }
+                                else
+                                {
+                                    <option value="@are.Id_area">@are.Nombre</option>
+                                }
+
+                            }
                         </select>
                         <span class="badge badge-warning sp" id="sp_area"></span>
                     </div>
@@ -77,9 +97,20 @@
                     <div class="form-group col-sm-4">
                         <label for="cargo">Cargo</label>
                         <select class="form-control" name="cargo" id="cargo" value="@Model.Obj_per.Cargo">
-                            <option value="gerente">Gerente</option>
-                            <option value="sub gerente">Sub Gerente</option>
-                            <option value="asistente">Asistente</option>
+                
+                            @{string[] cargos = { "Gerente", "Sub Gerente", "Asistente" };}
+                            @foreach (var car in cargos)
+                            {
+                                if (car == @Model.Obj_per.Cargo)
+                                {
+                                    <option value="@car" selected="selected">@car</option>
+                                }
+                                else
+                                {
+                                    <option value="@car">@car</option>
+                                }
+
+                            }
                         </select>
                         <span class="badge badge-warning sp" id="sp_cargo"></span>
                     </div>
@@ -87,9 +118,19 @@
                     <div class="form-group col-sm-2">
                         <label for="t_documento">T. Documento</label>
                         <select class="form-control" name="t_documento" id="t_documento" value="@Model.Obj_per.T_documento">
-                            <option value="DNI">DNI</option>
-                            <option value="LE">LE</option>
-                            <option value="RUC">RUC</option>
+                            @{string[] documentos = { "DNI", "RUC", "LE" };}
+                            @foreach (var doc in documentos)
+                            {
+                                if (doc == Model.Obj_per.T_documento)
+                                {
+                                    <option value="@doc" selected="selected">@doc</option>
+                                }
+                                else
+                                {
+                                    <option value="@doc">@doc</option>
+                                }
+
+                            }
                         </select>
                         <span class="badge badge-warning sp" id="sp_t_documento"></span>
                     </div>
@@ -108,8 +149,19 @@
                     <div class="form-group col-sm-4">
                         <label for="sexo">Sexo</label>
                         <select class="form-control" name="sexo" id="sexo" value="@Model.Obj_per.Sexo">
-                            <option value="masculino">Masculino</option>
-                            <option value="femenino">Femenino</option>
+                            @{string[] sexos = { "Masculino", "Femenino"};}
+                            @foreach (var sex in sexos)
+                            {
+                                if (sex == Model.Obj_per.Sexo)
+                                {
+                                    <option value="@sex" selected="selected">@sex</option>
+                                }
+                                else
+                                {
+                                    <option value="@sex">@sex</option>
+                                }
+
+                            }
                         </select>
                         <span class="badge badge-warning sp" id="sp_sexo"></span>
                     </div>
@@ -117,8 +169,19 @@
                     <div class="form-group col-sm-4">
                         <label for="est_civil">Estado Civil</label>
                         <select class="form-control" name="est_civil" id="est_civil" value="@Model.Obj_per.Est_civil">
-                            <option value="soltero">Soltero</option>
-                            <option value="casado">Casado</option>
+                            @{string[] civil = { "Soltero", "Casado"};}
+                            @foreach (var civ in civil)
+                            {
+                                if (civ == Model.Obj_per.Est_civil)
+                                {
+                                    <option value="@civ" selected="selected">@civ</option>
+                                }
+                                else
+                                {
+                                    <option value="@civ">@civ</option>
+                                }
+
+                            }
                         </select>
                         <span class="badge badge-warning sp" id="sp_est_civil"></span>
                     </div>
@@ -127,10 +190,7 @@
                         <input class="form-control" type="text" name="celular" id="celular" placeholder="Ingrese el Celular" value="@Model.Obj_per.Celular">
                         <span class="badge badge-warning sp" id="sp_celular"></span>
                     </div>
-
-
                 </div>
-
                 <div class="form-row">
 
                     <div class="form-group col-sm-4">

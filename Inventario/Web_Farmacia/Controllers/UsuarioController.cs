@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using Web_Farmacia.Clases;
 using Web_Farmacia.Models;
+using System.Web.Script.Serialization;
 
 namespace Web_Farmacia.Controllers
 {
@@ -35,10 +36,20 @@ namespace Web_Farmacia.Controllers
             //return View();
         }
         [HttpPost]
-        public ActionResult Consultar_Usuario(string nombre, string dni)
+        public ActionResult Consultar_Usuario(string nombre, string n_documento)
         {
-           
-            return View();
+
+            List<Usuario> usu;
+            Metodo_Usuario mu = new Metodo_Usuario();
+
+            Info datos = new Info();
+            usu = mu.buscar(nombre,n_documento);
+
+            ViewBag.eliminar = TempData["Eliminar"];
+
+            datos.Usu = usu;
+
+            return View(datos);
         }
 
         public ActionResult eliminar(int id)
@@ -79,7 +90,7 @@ namespace Web_Farmacia.Controllers
             //return View();
         }
         [HttpPost]
-        public ActionResult Modificar_Usuario(int id, string nombre, string usuario, string password, string documento, string n_documento, string correo, string celular, string direccion, string cargo)
+        public ActionResult Modificar_Usuario(int id, string nombre, string password, string documento, string n_documento, string correo, string celular, string direccion, string cargo)
         {
             Metodo_Usuario mu = new Metodo_Usuario();
             Usuario usu = new Usuario();
@@ -91,10 +102,6 @@ namespace Web_Farmacia.Controllers
                 if (String.IsNullOrEmpty(nombre))
                 {
                     error.Add("sp_nombre", "Ingrese el nombre del Usuario");
-                }
-                if (String.IsNullOrEmpty(usuario))
-                {
-                    error.Add("sp_usuario", "Ingrese el su usuario");
                 }
                 if (String.IsNullOrEmpty(password))
                 {
@@ -125,7 +132,6 @@ namespace Web_Farmacia.Controllers
                 {
                     usu.Id_usuario = id;
                     usu.Nombre = nombre == null ? "" : nombre;
-                    usu.Nom_usuario = usuario == null ? "" : usuario;
                     usu.Contrasena = password == null ? "" : password;
                     usu.Documento = documento == null ? "" : documento;
                     usu.N_documento = n_documento == null ? "" : n_documento;
@@ -158,12 +164,19 @@ namespace Web_Farmacia.Controllers
 
         public ActionResult Registrar_Usuario()
         {
-            
-            return View();
+            List<Usuario> usu;
+            Metodo_Usuario mu = new Metodo_Usuario();
+            Info dato = new Info();
+
+            usu = mu.listar();
+            dato.Usu = usu;
+
+             
+            return View(dato);
         }
 
         [HttpPost]
-        public ActionResult Registrar_Usuario(string nombre, string usuario, string password, string documento, string n_documento, string correo, string celular, string direccion, string cargo)
+        public ActionResult Registrar_Usuario(string nombre, string password, string documento, string n_documento, string correo, string celular, string direccion, string cargo)
         {
             Usuario usu = new Usuario();
             Metodo_Usuario mu = new Metodo_Usuario();
@@ -175,10 +188,7 @@ namespace Web_Farmacia.Controllers
             {
                 error.Add("sp_nombre", "Ingrese el nombre del Usuario");
             }
-            if (String.IsNullOrEmpty(usuario))
-            {
-                error.Add("sp_usuario", "Ingrese el su usuario");
-            }
+            
             if (String.IsNullOrEmpty(password))
             {
                 error.Add("sp_password", "Ingrese el Password");
@@ -211,7 +221,6 @@ namespace Web_Farmacia.Controllers
             if (error.Count == 0)
             {
                 usu.Nombre = nombre == null ? "" : nombre;
-                usu.Nom_usuario = usuario == null ? "" : usuario;
                 usu.Contrasena = password == null ? "" : password;
                 usu.Documento = documento == null ? "" : documento;
                 usu.N_documento = n_documento == null ? "" : n_documento;

@@ -29,7 +29,6 @@ namespace Web_Farmacia.Models
                         cmd.Connection = con;
 
                         cmd.Parameters.AddWithValue("_nombre", usu.Nombre);
-                        cmd.Parameters.AddWithValue("_usuario", usu.Nom_usuario);
                         cmd.Parameters.AddWithValue("_contrasena", usu.Contrasena);
                         cmd.Parameters.AddWithValue("_documento", usu.Documento);
                         cmd.Parameters.AddWithValue("_n_documento", usu.N_documento);
@@ -80,7 +79,6 @@ namespace Web_Farmacia.Models
                             {
                                 Id_usuario = rd.GetInt32("id_usuario"),
                                 Nombre = rd.GetString("nombre"),
-                                Nom_usuario = rd.GetString("usuario"),
                                 Documento = rd.GetString("documento"),
                                 N_documento = rd.GetString("n_documento"),
                                 Correo = rd.GetString("correo"),
@@ -144,7 +142,6 @@ namespace Web_Farmacia.Models
                         cmd.Connection = con;
 
                         cmd.Parameters.AddWithValue("_nombre", usu.Nombre);
-                        cmd.Parameters.AddWithValue("_usuario", usu.Nom_usuario);
                         cmd.Parameters.AddWithValue("_contrasena", usu.Contrasena);
                         cmd.Parameters.AddWithValue("_documento", usu.Documento);
                         cmd.Parameters.AddWithValue("_n_documento", usu.N_documento);
@@ -197,7 +194,6 @@ namespace Web_Farmacia.Models
                         {
                             usu.Id_usuario = rd.GetInt32("id_usuario");
                             usu.Nombre = rd.GetString("nombre");
-                            usu.Nom_usuario = rd.GetString("usuario");
                             usu.Contrasena = rd.GetString("contrasena");
                             usu.Documento = rd.GetString("documento");
                             usu.N_documento = rd.GetString("n_documento");
@@ -246,7 +242,6 @@ namespace Web_Farmacia.Models
                         {
                             usu.Id_usuario = rd.GetInt32("id_usuario");
                             usu.Nombre = rd.GetString("nombre");
-                            usu.Nom_usuario = rd.GetString("usuario");
                             usu.Documento = rd.GetString("documento");
                             usu.N_documento = rd.GetString("n_documento");
                             usu.Correo = rd.GetString("correo");
@@ -267,6 +262,52 @@ namespace Web_Farmacia.Models
                 return null;
             }
 
+        }
+
+        public List<Usuario> buscar(string nombre, string n_documento)
+        {
+            //try
+            //{
+
+            MySqlDataReader rd;
+            List<Usuario> lista = new List<Usuario>();
+
+            using (con = Conexion.conectar())
+            {
+                using (cmd = new MySqlCommand())
+                {
+                    cmd.CommandText = "SP_B_Tabla_Usuario";
+                    cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                    cmd.Connection = con;
+
+                    cmd.Parameters.AddWithValue("_nombre", nombre);
+                    cmd.Parameters.AddWithValue("_n_documento", n_documento);
+
+                    rd = cmd.ExecuteReader();
+
+                    while (rd.Read())
+                    {
+                        lista.Add(new Usuario
+                        {
+                            Id_usuario = rd.GetInt32("id_usuario"),
+                            Nombre = rd.GetString("nombre"),
+                            Documento = rd.GetString("documento"),
+                            N_documento = rd.GetString("n_documento"),
+                            Correo = rd.GetString("correo"),
+                            Celular = rd.GetString("celular"),
+                            Direccion = rd.GetString("direccion"),
+                            Cargo = rd.GetString("cargo")
+                        });
+                    }
+                    rd.Close();
+                }
+            }
+            return lista;
+            //}
+            //catch (Exception)
+            //{
+            //    return null;
+            //}
         }
     }
 }

@@ -57,9 +57,19 @@
                     <div class="form-group col-sm-3">
                         <label for="id_categoria">Categoria</label>
                         <select class="form-control" name="id_categoria" id="id_categoria" value="@Model.Obj_bie.Id_categoria">
-                            <option value="1">Muebles</option>
-                            <option value="2">Equipos Informaticos</option>
-                            <option value="3">Otros</option>
+                            @foreach (var cat in Model.Cat)
+                            {
+                                if (cat.Id_categoria == Model.Obj_bie.Id_categoria)
+                                {
+                                    <option value="@cat.Id_categoria" selected="selected">@cat.Nombre</option>
+                                }
+                                else
+                                {
+                                    <option value="@cat.Id_categoria">@cat.Nombre</option>
+                                }
+
+                            }
+
                         </select>
                         <span class="badge badge-warning sp" id="sp_categoria"></span>
                     </div>
@@ -83,9 +93,19 @@
                     <div class="form-group col-sm-3">
                         <label for="estado">Estado</label>
                         <select class="form-control" name="estado" id="estado" value="@Model.Obj_bie.Estado">
-                            <option value="1">Nuevo</option>
-                            <option value="2">Usado</option>
-                            <option value="3">Otros</option>
+                            @{string[] estados = { "Nuevo", "Usado", "Otros" };}
+                            @foreach (var est in estados)
+                            {
+                                if (est == @Model.Obj_bie.Estado)
+                                {
+                                    <option value="@est" selected="selected">@est</option>
+                                }
+                                else
+                                {
+                                    <option value="@est">@est</option>
+                                }
+
+                            }
                         </select>
                         <span class="badge badge-warning sp" id="sp_estado"></span>
                     </div>

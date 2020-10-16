@@ -53,8 +53,8 @@ namespace Web_Farmacia.Models
 
         public List<Area> listar()
         {
-            try
-            {
+            //try
+            //{
                 MySqlDataReader rd;
                 List<Area> lista = new List<Area>();
 
@@ -62,7 +62,7 @@ namespace Web_Farmacia.Models
                 {
                     using (cmd = new MySqlCommand())
                     {
-                        cmd.CommandText = "SP_A_Tabla_Area";
+                        cmd.CommandText = "SP_R_Tabla_Area";
                         cmd.CommandType = System.Data.CommandType.StoredProcedure;
                         cmd.Connection = con;
 
@@ -73,9 +73,9 @@ namespace Web_Farmacia.Models
                             lista.Add(new Area
                             {
                                 Id_area = rd.GetInt32("id_area"),
-                                Id_categoria = rd.GetInt32("id_categoria"),
+                                Id_categoria = rd.GetInt32("id_gerencia"),
                                 Nombre = rd.GetString("nombre"),
-                                Ubicacion = rd.GetString("Ubicacion"),
+                                Ubicacion = rd.GetString("ubicacion"),
                                 Descripcion = rd.GetString("descripcion")
                             });
                         }
@@ -86,11 +86,11 @@ namespace Web_Farmacia.Models
                 }
 
                 return lista;
-            }
-            catch (Exception)
-            {
-                return null;
-            }
+            //}
+            //catch (Exception)
+            //{
+            //    return null;
+            //}
         }
 
         public Boolean actualizar(Area are)

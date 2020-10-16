@@ -30,8 +30,8 @@
                 <form id="formulario" method="post">
                     <div class="form-group has-feedback row">
                         <span class="fa fa-envelope form-control-feedback col-sm-1 col-1 mr-3"></span>
-                        <input type="text" class="form-control col-sm-10 col-10" placeholder="Usuario" id="usuario" name="usuario">
-                        <span class="badge badge-warning sp" id="sp_usuario"></span>
+                        <input type="text" class="form-control col-sm-10 col-10" placeholder="Correo" id="correo" name="correo">
+                        <span class="badge badge-warning sp" id="sp_correo"></span>
                     </div>
                     <div class="form-group has-feedback row">
                         <span class="fa fa-lock form-control-feedback col-sm-1 col-1 mr-3"></span>
@@ -78,10 +78,10 @@
 
                 var url = "@Url.Action("Login_Usuario", "Usuario")";
 
-                var usuario = document.getElementById("usuario").value;
+                var correo = document.getElementById("correo").value;
                 var contrasena = document.getElementById("contrasena").value;
 
-                var param = "usuario="+usuario+"&contrasena="+contrasena;
+                var param = "correo="+correo+"&contrasena="+contrasena;
 
 
               var ajax = new XMLHttpRequest();

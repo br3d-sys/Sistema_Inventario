@@ -20,25 +20,40 @@ namespace Web_Farmacia.Controllers
 
         public ActionResult Consultar_Bien()
         {
+            Modelo_Categoria mc = new Modelo_Categoria();
+            List<Categoria> cat;
             List<Bienes> bie;
             Modelo_Bienes mb = new Modelo_Bienes();
 
             Info datos = new Info();
             bie = mb.listar();
+            cat = mc.listar();
 
             ViewBag.eliminar = TempData["Eliminar"];
 
             datos.Bie = bie;
+            datos.Cat = cat;
 
             return View(datos);
 
         }
-        //[HttpPost]
-        //public ActionResult Consultar_Personal(string nombre, string dni)
-        //{
+        [HttpPost]
+        public ActionResult Consultar_Bien(string nombre, string codigo,int id_categoria)
+        {
+            Modelo_Categoria mc = new Modelo_Categoria();
+            List<Categoria> cat;
+            List<Bienes> bie;
+            Modelo_Bienes mb = new Modelo_Bienes();
 
-        //    return View();
-        //}
+            Info datos = new Info();
+            bie = mb.buscar(nombre,codigo,id_categoria);
+            cat = mc.listar();
+
+            datos.Bie = bie;
+            datos.Cat = cat;
+
+            return View(datos);
+        }
 
         public ActionResult eliminar(int id)
         {
@@ -60,13 +75,16 @@ namespace Web_Farmacia.Controllers
         public ActionResult Modificar_Bien(int? id)
         {
             Modelo_Bienes mb = new Modelo_Bienes();
+            Modelo_Categoria mc = new Modelo_Categoria();
+            List<Categoria> cat;
 
             if (id != null)
             {
                 v_bie = mb.obtener(id);
-
+                cat = mc.listar();
                 Info datos = new Info();
                 datos.Obj_bie = v_bie;
+                datos.Cat = cat;
 
                 return View(datos);
             }
@@ -78,7 +96,7 @@ namespace Web_Farmacia.Controllers
             //return View();
         }
         [HttpPost]
-        public ActionResult Modificar_Bien(int id, int id_categoria, string nombre, string descripcion, string codigo, double precio, string estado, DateTime fecha_ing, string marca, string color, string modelo, string alto, string ancho, string profundidad)
+        public ActionResult Modificar_Bien(int id, int id_categoria, string nombre, string descripcion, string codigo, double precio, string estado, DateTime fecha_ing, string marca, string color, string modelo, int alto, int ancho, int profundidad)
         {
             Modelo_Bienes mb = new Modelo_Bienes();
             Bienes bie = new Bienes();
@@ -128,15 +146,15 @@ namespace Web_Farmacia.Controllers
                 {
                     error.Add("sp_modelo", "Ingrese el modelo");
                 }
-                if (String.IsNullOrEmpty(alto))
+                if (alto==0)
                 {
                     error.Add("sp_alto", "Ingrese el alto");
                 }
-                if (String.IsNullOrEmpty(ancho))
+                if (ancho==0)
                 {
                     error.Add("sp_anchor", "Ingrese el ancho");
                 }
-                if (String.IsNullOrEmpty(profundidad))
+                if (profundidad==0)
                 {
                     error.Add("sp_profundidad", "Ingrese la Profundidad");
                 }
@@ -154,9 +172,9 @@ namespace Web_Farmacia.Controllers
                     bie.Marca = marca == null ? "" : marca;
                     bie.Color = color == null ? "" : color;
                     bie.Modelo = modelo == null ? "" : modelo;
-                    bie.Alto = alto == null ? "" : alto;
-                    bie.Ancho = ancho == null ? "" : ancho;
-                    bie.Profundidad = profundidad == null ? "" : profundidad;
+                    bie.Alto = alto == 0 ? 0 : alto;
+                    bie.Ancho = ancho == 0 ? 0 : ancho;
+                    bie.Profundidad = profundidad == 0 ? 0 : profundidad;
                     bie.Imagen = imagen == null ? "" : imagen;
 
                     if (mb.actualizar(bie))
@@ -183,12 +201,18 @@ namespace Web_Farmacia.Controllers
 
         public ActionResult Registrar_Bien()
         {
+            Modelo_Categoria mc = new Modelo_Categoria();
+            List<Categoria> cat;
+            Info dato = new Info();
 
-            return View();
+            cat = mc.listar();
+            dato.Cat = cat;
+
+            return View(dato);
         }
 
         [HttpPost]
-        public ActionResult Registrar_Bien(int id_categoria, string nombre, string descripcion, string codigo, double precio, string estado, DateTime fecha_ing, string marca, string color, string modelo, string alto, string ancho, string profundidad)
+        public ActionResult Registrar_Bien(int id_categoria, string nombre, string descripcion, string codigo, double precio, string estado, DateTime fecha_ing, string marca, string color, string modelo, int alto, int ancho, int profundidad)
         {
             Bienes bie = new Bienes();
             Modelo_Bienes mb = new Modelo_Bienes();
@@ -237,15 +261,15 @@ namespace Web_Farmacia.Controllers
             {
                 error.Add("sp_modelo", "Ingrese el modelo");
             }
-            if (String.IsNullOrEmpty(alto))
+            if (alto==0)
             {
                 error.Add("sp_alto", "Ingrese el alto");
             }
-            if (String.IsNullOrEmpty(ancho))
+            if (ancho==0)
             {
                 error.Add("sp_anchor", "Ingrese el ancho");
             }
-            if (String.IsNullOrEmpty(profundidad))
+            if (profundidad==0)
             {
                 error.Add("sp_profundidad", "Ingrese la Profundidad");
             }
@@ -262,9 +286,9 @@ namespace Web_Farmacia.Controllers
                 bie.Marca = marca == null ? "" : marca;
                 bie.Color = color == null ? "" : color;
                 bie.Modelo = modelo == null ? "" : modelo;
-                bie.Alto = alto == null ? "" : alto;
-                bie.Ancho = ancho == null ? "" : ancho;
-                bie.Profundidad = profundidad == null ? "" : profundidad;
+                bie.Alto = alto == 0 ? 0 : alto;
+                bie.Ancho = ancho == 0 ? 0 : ancho;
+                bie.Profundidad = profundidad == 0 ? 0 : profundidad;
                 bie.Imagen = imagen == null ? "" : imagen;
 
                 if (mb.guardar(bie))

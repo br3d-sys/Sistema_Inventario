@@ -21,9 +21,9 @@ namespace Web_Farmacia.Clases
         private string marca;
         private string color;
         private string modelo;
-        private string alto;
-        private string ancho;
-        private string profundidad;
+        private int alto;
+        private int ancho;
+        private int profundidad;
         private int disponibilidad;
 
         public int Id_bienes
@@ -195,7 +195,7 @@ namespace Web_Farmacia.Clases
             }
         }
 
-        public string Alto
+        public int Alto
         {
             get
             {
@@ -208,7 +208,7 @@ namespace Web_Farmacia.Clases
             }
         }
 
-        public string Ancho
+        public int Ancho
         {
             get
             {
@@ -221,7 +221,7 @@ namespace Web_Farmacia.Clases
             }
         }
 
-        public string Profundidad
+        public int Profundidad
         {
             get
             {

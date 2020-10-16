@@ -53,41 +53,42 @@ namespace Web_Farmacia.Models
 
         public List<Categoria> listar()
         {
-            try
-            {
-                MySqlDataReader rd;
-                List<Categoria> lista = new List<Categoria>();
+            //try
+            //{
+            MySqlDataReader rd;
+            List<Categoria> lista = new List<Categoria>();
 
-                using (con = Conexion.conectar())
+            using (con = Conexion.conectar())
+            {
+                using (cmd = new MySqlCommand())
                 {
-                    using (cmd = new MySqlCommand())
+                    cmd.CommandText = "SP_R_Tabla_Categoria";
+                    cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                    cmd.Connection = con;
+
+                    rd = cmd.ExecuteReader();
+
+                    while (rd.Read())
                     {
-                        cmd.CommandText = "SP_A_Tabla_Categoria";
-                        cmd.CommandType = System.Data.CommandType.StoredProcedure;
-                        cmd.Connection = con;
-
-                        rd = cmd.ExecuteReader();
-
-                        while (rd.Read())
+                        lista.Add(new Categoria
                         {
-                            lista.Add(new Categoria
-                            {
-                                Nombre = rd.GetString("nombre"),
-                                Descripcion = rd.GetString("descripcion")
-                            });
-                        }
-
-                        rd.Close();
-
+                            Id_categoria = rd.GetInt32("id_categoria"),
+                            Nombre = rd.GetString("nombre"),
+                            Descripcion = rd.GetString("descripcion")
+                        });
                     }
-                }
 
-                return lista;
+                    rd.Close();
+
+                }
             }
-            catch (Exception)
-            {
-                return null;
-            }
+
+            return lista;
+            //}
+            //catch (Exception)
+            //{
+            //    return null;
+            //}
         }
 
         public Boolean actualizar(Categoria cate)
@@ -155,6 +156,87 @@ namespace Web_Farmacia.Models
             {
                 return false;
             }
+        }
+
+        public Categoria obtener(int? id)
+        {
+            //try
+            //{
+            MySqlDataReader rd;
+            Categoria cat = new Categoria();
+
+            using (con = Conexion.conectar())
+            {
+                using (cmd = new MySqlCommand())
+                {
+                    cmd.CommandText = "SP_O_Tabla_Categoria";
+                    //cmd.CommandText = string.Format("Select * from tbl_categoria where id_categoria='{0}'", id);
+                    cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                    cmd.Connection = con;
+
+                    cmd.Parameters.AddWithValue("_id_categoria", id);
+
+                    rd = cmd.ExecuteReader();
+
+                    while (rd.Read())
+                    {
+                        cat.Id_categoria = rd.GetInt32("id_categoria");
+                        cat.Nombre = rd.GetString("nombre");
+                        cat.Descripcion = rd.GetString("descripcion");
+                    }
+
+                    rd.Close();
+
+                }
+            }
+
+            return cat;
+            //}
+            //catch (Exception)
+            //{
+            //    return null;
+            //}
+
+        }
+
+        public List<Categoria> buscar(string nombre)
+        {
+            //try
+            //{
+
+            MySqlDataReader rd;
+            List<Categoria> lista = new List<Categoria>();
+
+            using (con = Conexion.conectar())
+            {
+                using (cmd = new MySqlCommand())
+                {
+                    cmd.CommandText = "SP_B_Tabla_Categoria";
+                    cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                    cmd.Connection = con;
+
+                    cmd.Parameters.AddWithValue("_nombre", nombre);
+
+                    rd = cmd.ExecuteReader();
+
+                    while (rd.Read())
+                    {
+                        lista.Add(new Categoria
+                        {
+                            Id_categoria = rd.GetInt32("id_categoria"),
+                            Nombre = rd.GetString("nombre"),
+                            Descripcion = rd.GetString("descripcion")
+                        });
+                    }
+                    rd.Close();
+                }
+            }
+            return lista;
+            //}
+            //catch (Exception)
+            //{
+            //    return null;
+            //}
         }
 
     }

@@ -94,9 +94,9 @@ namespace Web_Farmacia.Models
                                 Marca = rd.GetString("marca"),
                                 Color = rd.GetString("color"),
                                 Modelo = rd.GetString("modelo"),
-                                Alto = rd.GetString("alto"),
-                                Ancho = rd.GetString("ancho"),
-                                Profundidad = rd.GetString("profundidad")
+                                Alto = rd.GetInt32("alto"),
+                                Ancho = rd.GetInt32("ancho"),
+                                Profundidad = rd.GetInt32("profundidad")
                             });
                         }
 
@@ -227,9 +227,9 @@ namespace Web_Farmacia.Models
                         bie.Marca = rd.GetString("marca");
                         bie.Color = rd.GetString("color");
                         bie.Modelo = rd.GetString("modelo");
-                        bie.Alto = rd.GetString("alto");
-                        bie.Ancho = rd.GetString("ancho");
-                        bie.Profundidad = rd.GetString("profundidad");
+                        bie.Alto = rd.GetInt32("alto");
+                        bie.Ancho = rd.GetInt32("ancho");
+                        bie.Profundidad = rd.GetInt32("profundidad");
                     }
 
                     rd.Close();
@@ -246,6 +246,64 @@ namespace Web_Farmacia.Models
 
         }
 
-    
-}
+
+        public List<Bienes> buscar(string nombre, string codigo, int id_categoria)
+        {
+            //try
+            //{
+            MySqlDataReader rd;
+            List<Bienes> lista = new List<Bienes>();
+
+            using (con = Conexion.conectar())
+            {
+                using (cmd = new MySqlCommand())
+                {
+                    cmd.CommandText = "SP_B_Tabla_Bienes";
+                    cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                    cmd.Connection = con;
+
+                    cmd.Parameters.AddWithValue("_nombre", nombre);
+                    cmd.Parameters.AddWithValue("_codigo", codigo);
+                    cmd.Parameters.AddWithValue("_id_categoria", id_categoria);
+
+                    rd = cmd.ExecuteReader();
+
+                    while (rd.Read())
+                    {
+                        lista.Add(new Bienes
+                        {
+                            Id_bienes = rd.GetInt32("id_bienes"),
+                            Id_categoria = rd.GetInt32("id_categoria"),
+                            Categoria = rd.GetString("categoria"),
+                            Nombre = rd.GetString("nombre"),
+                            Descripcion = rd.GetString("descripcion"),
+                            Codigo = rd.GetString("codigo"),
+                            Precio = rd.GetDouble("precio"),
+                            Imagen = rd.GetString("imagen"),
+                            Estado = rd.GetString("estado"),
+                            Fecha_ing = rd.GetDateTime("fecha_ing"),
+                            Marca = rd.GetString("marca"),
+                            Color = rd.GetString("color"),
+                            Modelo = rd.GetString("modelo"),
+                            Alto = rd.GetInt32("alto"),
+                            Ancho = rd.GetInt32("ancho"),
+                            Profundidad = rd.GetInt32("profundidad")
+                        });
+                    }
+
+                    rd.Close();
+
+                }
+            }
+
+            return lista;
+            //}
+            //catch (Exception)
+            //{
+            //    return null;
+            //}
+        }
+
+
+    }
 }

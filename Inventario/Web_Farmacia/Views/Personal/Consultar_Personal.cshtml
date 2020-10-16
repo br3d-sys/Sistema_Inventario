@@ -45,7 +45,7 @@
             </div>
 
 
-            <form action="/Personal/Consultar_Personal" method="post" class="">
+            <form action="/Personal/Consultar_Personal" method="post" class="" id="buscar">
 
                 <div class="form-row">
                     <div class="form-group col-sm-4">
@@ -53,17 +53,23 @@
                         <input class="form-control" type="text" name="nombre" id="nombre" placeholder="Ingrese su Nombre">
                     </div>
                     <div class="form-group col-sm-3">
-                        <label for="gerencia">Gerencia</label>
-                        <select name="gerencia" id="gerencia" class="form-control">
-                            <option value="1">Gerencia de Administración</option>
-                            <option value="2">Gerencia de Desarrollo Social</option>
+                        <label for="id_gerencia">Gerencia</label>
+                        <select name="id_gerencia" id="id_gerencia" class="form-control">
+                            @foreach (var gerencia in Model.Ger)
+                            {
+                            <option value="@gerencia.Id_gerencia">@gerencia.Nombre</option>
+                            }
+                            
+
                         </select>
                     </div>
                     <div class="form-group col-sm-3">
-                        <label for="area">Area</label>
-                        <select name="area" id="area" class="form-control">
-                            <option value="1">Sub Gerencia de Contabilidad</option>
-                            <option value="2">Sub Gerencia de Logistica</option>
+                        <label for="id_area">Area</label>
+                        <select name="id_area" id="id_area" class="form-control">
+                            @foreach (var area in Model.Are)
+                            {
+                            <option value="@area.Id_area">@area.Nombre</option>
+                            }
                         </select>
                     </div>
                     <div class="col-sm-2 align-self-center align-self-end text-center">
@@ -149,6 +155,33 @@
     var f_id;
 
     document.addEventListener("DOMContentLoaded", function (e) {
+
+         document.getElementById("buscar").addEventListener("submit", function () {
+
+             var url = "@Url.Action("Consultar_Personal", "Personal")";
+
+                var nombre = document.getElementById("nombre").value;
+             var id_gerencia = document.getElementById("id_gerencia").value;
+             var id_area = document.getElementById("id_area").value;
+
+             var param = "nombre=" + nombre + "&id_gerencia=" + id_gerencia + "&id_area=" + id_area;
+
+
+              var ajax = new XMLHttpRequest();
+
+              ajax.onreadystatechange = function () {
+                  if (ajax.readyState == 4) {
+
+                }
+              }
+
+                ajax.open("POST", url, true);
+
+                ajax.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+
+            ajax.send(param);
+
+        });
 
         document.getElementById("mod-acept").addEventListener("click", function () {
             location.replace("/Personal/eliminar?id=" + f_id);
