@@ -20,6 +20,7 @@
         </div>
     </div><!-- /.container-fluid -->
 </section>
+@model Web_Farmacia.Controllers.Info
 <!-- Main content -->
 <section class="content">
     <!-- Default box -->
@@ -53,16 +54,20 @@
                     <div class="form-group col-sm-3">
                         <label for="id_gerencia">Gerencia</label>
                         <select class="form-control" name="id_gerencia" id="id_gerencia">
-                            <option value="1">Gerencia de Administración</option>
-                            <option value="2">Gerencia de Desarrollo Social</option>
+                            @foreach  (var ger in Model.Ger)
+                            {
+                                <option value="@ger.Id_gerencia">@ger.Nombre</option>
+                            }
                         </select>
                         <span class="badge badge-warning sp" id="sp_gerencia"></span>
                     </div>
                     <div class="form-group col-sm-3">
                         <label for="id_area">Area</label>
                         <select class="form-control" name="id_area" id="id_area">
-                            <option value="1">Sub Gerencia de Logistica</option>
-                            <option value="2">Sub Gerencia de Contabilidad</option>
+                            @foreach (var are in Model.Are)
+                            {
+                                <option value="@are.Id_area">@are.Nombre</option>
+                            }
                         </select>
                         <span class="badge badge-warning sp" id="sp_area"></span>
                     </div>
@@ -72,9 +77,9 @@
                     <div class="form-group col-sm-4">
                         <label for="cargo">Cargo</label>
                         <select class="form-control" name="cargo" id="cargo">
-                            <option value="gerente">Gerente</option>
-                            <option value="sub gerente">Sub Gerente</option>
-                            <option value="asistente">Asistente</option>
+                            <option value="Gerente">Gerente</option>
+                            <option value="Sub Gerente">Sub Gerente</option>
+                            <option value="Asistente">Asistente</option>
                         </select>
                         <span class="badge badge-warning sp" id="sp_cargo"></span>
                     </div>
@@ -103,8 +108,8 @@
                     <div class="form-group col-sm-4">
                         <label for="sexo">Sexo</label>
                         <select class="form-control" name="sexo" id="sexo">
-                            <option value="masculino">Masculino</option>
-                            <option value="femenino">Femenino</option>
+                            <option value="Masculino">Masculino</option>
+                            <option value="Femenino">Femenino</option>
                         </select>
                         <span class="badge badge-warning sp" id="sp_sexo"></span>
                     </div>
@@ -112,8 +117,8 @@
                     <div class="form-group col-sm-4">
                         <label for="est_civil">Estado Civil</label>
                         <select class="form-control" name="est_civil" id="est_civil">
-                            <option value="soltero">Soltero</option>
-                            <option value="casado">Casado</option>
+                            <option value="Soltero">Soltero</option>
+                            <option value="Casado">Casado</option>
                         </select>
                         <span class="badge badge-warning sp" id="sp_est_civil"></span>
                     </div>

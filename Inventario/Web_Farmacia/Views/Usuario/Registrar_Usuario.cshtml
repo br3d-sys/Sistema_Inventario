@@ -20,6 +20,9 @@
         </div>
     </div><!-- /.container-fluid -->
 </section>
+
+@model Web_Farmacia.Controllers.Info
+
 <!-- Main content -->
 <section class="content">
     <!-- Default box -->
@@ -91,9 +94,9 @@
                     <div class="form-group col-sm-4">
                         <label for="id_cargo">Cargo</label>
                         <select class="form-control" name="cargo" id="cargo">
-                           <option value="administrador">Administrador</option>
-                           <option value="asistente">Asistente</option>
-                           <option value="inventariador">Inventariador</option>
+                           <option value="Administrador">Administrador</option>
+                           <option value="Asistente">Asistente</option>
+                           <option value="Inventariador">Inventariador</option>
                         </select>
                         <span class="badge badge-warning sp" id="sp_cargo"></span>
                     </div>
@@ -131,12 +134,23 @@
 
 <script>
 
+    valores = [];
+
+    @foreach(var valor in Model.Usu)
+    {
+        @:agregarVal("@valor.Correo");
+    }
+
+    function agregarVal(correo) {
+        valores.push(correo);
+    }
+
     document.addEventListener("DOMContentLoaded",function(){
 
            document.getElementById("registrar").addEventListener("submit", function (e) {
 
                var url ="@Url.Action("Registrar_Usuario","Usuario")";
-               
+
 
                var nombre = document.getElementById("nombre").value;
                var documento = document.getElementById("documento").value;
@@ -145,12 +159,11 @@
                var celular = document.getElementById("celular").value;
                var correo = document.getElementById("correo").value;
                var cargo = document.getElementById("cargo").value;
-               var usuario = document.getElementById("usuario").value;
                var password = document.getElementById("password").value;
 
                var param = "nombre=" + nombre + "&documento=" + documento + "&n_documento=" + n_documento +
                    "&direccion=" + direccion + "&celular=" + celular + "&correo=" + correo +
-                   "&cargo=" + cargo + "&usuario=" + usuario + "&password=" + password;
+                   "&cargo=" + cargo + "&password=" + password;
 
                 var ajax = new XMLHttpRequest();
 
@@ -191,7 +204,6 @@
             document.getElementById("celular").value = "";
             document.getElementById("correo").value = "";
             document.getElementById("cargo").value = "";
-            document.getElementById("usuario").value = "";
             document.getElementById("password").value = "";
 
         })
@@ -202,6 +214,18 @@
                 elementos.item(i).innerHTML = "";
             }
         }
+
+        document.getElementById("correo").addEventListener("input", function () {
+            var resultado = valores.find(function (element) {
+                return element == document.getElementById("correo").value
+            });
+
+            if (resultado != undefined) {
+                document.getElementById("sp_correo").innerHTML = "Correo existente"
+            } else {
+                document.getElementById("sp_correo").innerHTML = ""
+            }
+        });
 
     })
 

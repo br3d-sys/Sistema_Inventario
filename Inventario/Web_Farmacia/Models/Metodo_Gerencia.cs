@@ -60,7 +60,7 @@ namespace Web_Farmacia.Models
                 {
                     using (cmd = new MySqlCommand())
                     {
-                        cmd.CommandText = "SP_A_Tabla_Gerencia";
+                        cmd.CommandText = "SP_R_Tabla_Gerencia";
                         cmd.CommandType = System.Data.CommandType.StoredProcedure;
                         cmd.Connection = con;
 
@@ -70,6 +70,7 @@ namespace Web_Farmacia.Models
                         {
                             lista.Add(new Gerencia
                             {
+                                Id_gerencia = rd.GetInt32("id_gerencia"),
                                 Nombre = rd.GetString("nombre"),
                                 Descripcion = rd.GetString("descripcion")
                             });

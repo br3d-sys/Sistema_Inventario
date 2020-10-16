@@ -19,6 +19,9 @@
         </div>
     </div><!-- /.container-fluid -->
 </section>
+
+@model Web_Farmacia.Controllers.Info
+
 <!-- Main content -->
 <section class="content">
     <!-- Default box -->
@@ -51,9 +54,10 @@
                     <div class="form-group col-sm-3">
                         <label for="id_categoria">Categoria</label>
                         <select class="form-control" name="id_categoria" id="id_categoria">
-                            <option value="1">Muebles</option>
-                            <option value="2">Equipos Informaticos</option>
-                            <option value="3">Otros</option>
+                            @foreach (var cat in Model.Cat)
+                            {
+                                <option value="@cat.Id_categoria">@cat.Nombre</option>
+                            }
                         </select>
                         <span class="badge badge-warning sp" id="sp_categoria"></span>
                     </div>
@@ -82,10 +86,9 @@
                     <div class="form-group col-sm-3">
                         <label for="estado">Estado</label>
                         <select class="form-control" name="estado" id="estado">
-                            <option value="1">Nuevo</option>
-                            <option value="2">Usado</option>
-                            <option value="3">Aberiado</option>
-                            <option value="4">Otros</option>
+                            <option value="Nuevo">Nuevo</option>
+                            <option value="Usado">Usado</option>
+                            <option value="Otros">Otros</option>
                         </select>
                         <span class="badge badge-warning sp" id="sp_estado"></span>
                     </div>

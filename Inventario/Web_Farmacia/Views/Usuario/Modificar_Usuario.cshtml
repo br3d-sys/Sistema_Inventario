@@ -56,10 +56,22 @@
                         </div>
                         <div class="form-group col-sm-3">
                             <label for="documento">Tipo de Documento</label>
-                            <select class="form-control" name="documento" id="documento" value="@Model.Obj_usu.Documento">
-                                <option value="DNI">DNI</option>
-                                <option value="RUC">RUC</option>
-                                <option value="LE">LE</option>
+                            <select class="form-control" name="documento" id="documento">
+                                @{string[] documentos = { "DNI", "RUC", "LE" };}
+                                @foreach (var doc in documentos)
+                                {
+                                    if (doc == @Model.Obj_usu.Documento)
+                                    {
+                                        <option value="@doc" selected="selected">@doc</option>
+                                    }
+                                    else
+                                    {
+                                        <option value="@doc">@doc</option>
+                                    }
+
+                                }
+
+
                             </select>
                             <span class="badge badge-warning sp" id="sp_documento"></span>
                         </div>
@@ -95,11 +107,20 @@
                         </div>
                         <div class="form-group col-sm-4">
                             <label for="cargo">Cargo</label>
-                            <select class="form-control" name="cargo" id="cargo" value="@Model.Obj_usu.Cargo">
+                            <select class="form-control" name="cargo" id="cargo">
+                                @{string[] cargos = { "Administrador", "Asistente", "Inventariador" };}
+                                @foreach (var car in cargos)
+                                {
+                                    if (car == @Model.Obj_usu.Cargo)
+                                    {
+                                        <option value="@car" selected="selected">@car</option>
+                                    }
+                                    else
+                                    {
+                                        <option value="@car">@car</option>
+                                    }
 
-                                <option value="administrador">Administrador</option>
-                                <option value="asistente">Asistente</option>
-                                <option value="inventariador">Inventariador</option>
+                                }
 
                             </select>
                             <span class="badge badge-warning sp" id="sp_cargo"></span>
@@ -139,68 +160,67 @@
 
     document.addEventListener("DOMContentLoaded", function () {
 
-        document.getElementById("modificar").addEventListener("submit", function (e) {
+                                        document.getElementById("modificar").addEventListener("submit", function (e) {
 
-            var url = "@Url.Action("Modificar_Usuario", "Usuario")"
-
+                                            var url = "@Url.Action("Modificar_Usuario", "Usuario")"
+                                
             var id = document.getElementById("id").value;
-            var nombre = document.getElementById("nombre").value;
-            var documento = document.getElementById("documento").value;
-            var n_documento = document.getElementById("n_documento").value;
-            var direccion = document.getElementById("direccion").value;
-            var celular = document.getElementById("celular").value;
-            var correo = document.getElementById("correo").value;
-            var cargo = document.getElementById("cargo").value;
-            var usuario = document.getElementById("usuario").value;
-            var password = document.getElementById("password").value;
+                                            var nombre = document.getElementById("nombre").value;
+                                            var documento = document.getElementById("documento").value;
+                                            var n_documento = document.getElementById("n_documento").value;
+                                            var direccion = document.getElementById("direccion").value;
+                                            var celular = document.getElementById("celular").value;
+                                            var correo = document.getElementById("correo").value;
+                                            var cargo = document.getElementById("cargo").value;
+                                            var password = document.getElementById("password").value;
 
-            var param = "nombre=" + nombre + "&documento=" + documento + "&n_documento=" + n_documento +
-                "&direccion=" + direccion + "&celular=" + celular + "&correo=" + correo +
-                "&cargo=" + cargo + "&usuario=" + usuario + "&password=" + password + "&id=" + id;
+                                            var param = "nombre=" + nombre + "&documento=" + documento + "&n_documento=" + n_documento +
+                                                "&direccion=" + direccion + "&celular=" + celular + "&correo=" + correo +
+                                                "&cargo=" + cargo + "&password=" + password + "&id=" + id;
 
-            var ajax = new XMLHttpRequest();
+                                            var ajax = new XMLHttpRequest();
 
-            ajax.onreadystatechange = function () {
-                if (ajax.readyState == 4) {
+                                            ajax.onreadystatechange = function () {
+                                                if (ajax.readyState == 4) {
 
-                    var response = JSON.parse(ajax.responseText);
-                    if (response.success) {
-                        console.log(response.message);
+                                                    var response = JSON.parse(ajax.responseText);
+                                                    if (response.success) {
+                                                        console.log(response.message);
 
-                        document.getElementById("content").innerHTML = response.message;
+                                                        document.getElementById("content").innerHTML = response.message;
                         $("#mod").modal({ backdrop: 'static' });
-                        limpiar_spam();
-                    } else {
-                        console.log(response);
-                        limpiar_spam();
+                                                        limpiar_spam();
+                                                    } else {
+                                                        console.log(response);
+                                                        limpiar_spam();
                         for (var prop in response.datos) {
-                            document.getElementById(prop).innerHTML = response.datos[prop]
+                                                            document.getElementById(prop).innerHTML = response.datos[prop]
                         }
-                    }
-                }
-            }
+                                                    }
+                                                }
+                                            }
 
-            ajax.open("POST", url, true);
-            ajax.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-            ajax.send(param);
+                                            ajax.open("POST", url, true);
+                                            ajax.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+                                            ajax.send(param);
 
-            e.preventDefault();
-        })
+                                            e.preventDefault();
+                                        })
 
         document.getElementById("mod-acept").addEventListener("click", function () {
             $("#mod").modal("hide");
 
-            location.replace("@Url.Action("Consultar_Usuario", "Usuario")");
-        })
+                                            location.replace("@Url.Action("Consultar_Usuario", "Usuario")");
+                                        })
 
         function limpiar_spam() {
-            var elementos = document.getElementsByClassName("sp");
-            for (i = 0; i < elementos.length ; i++) {
-                elementos.item(i).innerHTML = "";
-            }
-        }
+                                            var elementos = document.getElementsByClassName("sp");
+                                            for (i = 0; i < elementos.length ; i++) {
+                                                elementos.item(i).innerHTML = "";
+                                            }
+                                        }
 
-    })
+                                    })
 
 </script>
 
