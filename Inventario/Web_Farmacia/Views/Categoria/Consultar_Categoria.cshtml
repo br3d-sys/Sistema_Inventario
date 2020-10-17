@@ -86,7 +86,7 @@
                                         <td>@categoria.Descripcion</td>
                                         <td class="text-center">
                                             <a href="/Categoria/Modificar_Categoria?id=@categoria.Id_categoria" class="btn btn-primary" id="actualizar"><i class="fa fa-edit"></i></a>
-                                            <button data-backdrop="static" onclick="eliminar('@categoria.Id_categoria')" class="btn btn-danger" id="Eliminar"><i class="fa fa-trash"></i></button>
+                                            <button onclick="eliminar('@categoria.Id_categoria')" class="btn btn-danger" id="Eliminar"><i class="fa fa-trash"></i></button>
 
                                         </td>
                                     </tr>
@@ -159,10 +159,11 @@
         document.getElementById("mod-acept").addEventListener("click", function () {
             location.replace("/Categoria/eliminar?id=" + f_id);
             $("#mod").modal("hide");
-        })
+        });
+
         document.getElementById("mod-can").addEventListener("click", function () {
             $("#mod").modal("hide");
-        })
+        });
 
 
 

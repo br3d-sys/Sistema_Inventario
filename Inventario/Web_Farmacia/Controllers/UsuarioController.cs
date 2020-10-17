@@ -259,7 +259,7 @@ namespace Web_Farmacia.Controllers
 
                 if (String.IsNullOrEmpty(correo))
                 {
-                    error.Add("sp_usuario", "Ingrese su Correo");
+                    error.Add("sp_correo", "Ingrese su Correo");
                 }
                 if (String.IsNullOrEmpty(contrasena))
                 {
