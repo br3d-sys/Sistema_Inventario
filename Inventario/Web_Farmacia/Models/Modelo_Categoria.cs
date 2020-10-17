@@ -20,8 +20,8 @@ namespace Web_Farmacia.Models
         }
         public Boolean guardar(Categoria cate)
         {
-            try
-            {
+            //try
+            //{
                 using (con = Conexion.conectar())
                 {
                     using (cmd = new MySqlCommand())
@@ -44,11 +44,11 @@ namespace Web_Farmacia.Models
                         }
                     }
                 }
-            }
-            catch (Exception ex)
-            {
-                return false;
-            }
+            //}
+            //catch (Exception ex)
+            //{
+            //    return false;
+            //}
         }
 
         public List<Categoria> listar()
@@ -93,18 +93,19 @@ namespace Web_Farmacia.Models
 
         public Boolean actualizar(Categoria cate)
         {
-            try
-            {
+            //try
+            //{
                 using (con = Conexion.conectar())
                 {
                     using (cmd = new MySqlCommand())
                     {
 
-                        cmd.CommandText = "SP_M_Tabla_Categoria";
+                        cmd.CommandText = "SP_U_Tabla_Categoria";
                         cmd.CommandType = System.Data.CommandType.StoredProcedure;
                         cmd.Connection = con;
 
-                        cmd.Parameters.AddWithValue("_nombre", cate.Nombre);
+                    cmd.Parameters.AddWithValue("_id_categoria", cate.Id_categoria);
+                    cmd.Parameters.AddWithValue("_nombre", cate.Nombre);
                         cmd.Parameters.AddWithValue("_descripcion", cate.Descripcion);
 
                         if (cmd.ExecuteNonQuery() > 0)
@@ -119,23 +120,23 @@ namespace Web_Farmacia.Models
                     }
 
                 }
-            }
-            catch (Exception)
-            {
+            //}
+            //catch (Exception)
+            //{
 
-                return false;
-            }
+            //    return false;
+            //}
 
         }
         public Boolean eliminar(int id)
         {
-            try
-            {
+            //try
+            //{
                 using (con = Conexion.conectar())
                 {
                     using (cmd = new MySqlCommand())
                     {
-                        cmd.CommandText = "SP_E_Tabla_Categoria";
+                        cmd.CommandText = "SP_D_Tabla_Categoria";
                         cmd.CommandType = System.Data.CommandType.StoredProcedure;
                         cmd.Connection = con;
 
@@ -151,11 +152,11 @@ namespace Web_Farmacia.Models
                         }
                     }
                 }
-            }
-            catch (Exception)
-            {
-                return false;
-            }
+            //}
+            //catch (Exception)
+            //{
+            //    return false;
+            //}
         }
 
         public Categoria obtener(int? id)

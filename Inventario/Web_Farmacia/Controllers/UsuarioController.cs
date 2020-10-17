@@ -249,7 +249,7 @@ namespace Web_Farmacia.Controllers
         }
 
         [HttpPost]
-        public ActionResult Login_Usuario(string usuario, string contrasena)
+        public ActionResult Login_Usuario(string correo, string contrasena)
         {
 
             Metodo_Usuario mu = new Metodo_Usuario();
@@ -257,9 +257,9 @@ namespace Web_Farmacia.Controllers
             string message;
             SortedList<string, string> error = new SortedList<string, string>();
 
-                if (String.IsNullOrEmpty(usuario))
+                if (String.IsNullOrEmpty(correo))
                 {
-                    error.Add("sp_usuario", "Ingrese su Usuario");
+                    error.Add("sp_usuario", "Ingrese su Correo");
                 }
                 if (String.IsNullOrEmpty(contrasena))
                 {
@@ -269,7 +269,7 @@ namespace Web_Farmacia.Controllers
             if (error.Count == 0)
             {
 
-                usu = mu.validar(usuario, contrasena);
+                usu = mu.validar(correo, contrasena);
 
                 if (usu.Id_usuario !=0)
                 {

@@ -217,10 +217,10 @@ namespace Web_Farmacia.Models
 
         }
 
-        public Usuario validar(string usuario, string contrasena)
+        public Usuario validar(string correo, string contrasena)
         {
-            try
-            {
+            //try
+            //{
                 MySqlDataReader rd;
                 Usuario usu = new Usuario();
 
@@ -233,7 +233,7 @@ namespace Web_Farmacia.Models
                         cmd.CommandType = System.Data.CommandType.StoredProcedure;
                         cmd.Connection = con;
 
-                        cmd.Parameters.AddWithValue("_usuario", usuario);
+                        cmd.Parameters.AddWithValue("_correo", correo);
                         cmd.Parameters.AddWithValue("_contrasena", contrasena);
 
                         rd = cmd.ExecuteReader();
@@ -256,11 +256,11 @@ namespace Web_Farmacia.Models
                 }
 
                 return usu;
-            }
-            catch (Exception)
-            {
-                return null;
-            }
+            //}
+            //catch (Exception)
+            //{
+            //    return null;
+            //}
 
         }
 
