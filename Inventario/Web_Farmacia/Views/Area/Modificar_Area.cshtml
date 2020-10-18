@@ -20,6 +20,8 @@
         </div>
     </div><!-- /.container-fluid -->
 </section>
+
+@model Web_Farmacia.Controllers.Info
 <!-- Main content -->
 <section class="content">
     <!-- Default box -->
@@ -36,56 +38,58 @@
             </div>
         </div>
         <div class="card-body">
+            <form method="post" enctype="multipart/form-data" id="modificar">
 
-
-            <form method="post" enctype="multipart/form-data" id="registrar">
-
-
+                <div class="d-flex mb-4">
+                    <a href="/Area/Consultar_Area" class="btn btn-secondary ml-auto"><i class="fa fa-caret-left"></i> Lista de Area</a>
+                </div>
 
                 <div class="form-row">
+                    <input class="form-control" type="hidden" name="id" id="id" value="@Model.Obj_are.Id_area">
+
                     <div class="form-group col-sm-6">
                         <label for="nombre">Nombre</label>
-                        <input class="form-control" type="text" name="nombre" id="nombre" placeholder="Ingrese su Nombre">
+                        <input class="form-control" type="text" name="nombre" id="nombre" placeholder="Ingrese su Nombre" value="@Model.Obj_are.Nombre">
                         <span class="badge badge-warning sp" id="sp_nombre"></span>
                     </div>
                     <div class="form-group col-sm-6">
                         <label for="id_gerencia">Gerencia</label>
-                        <select class="form-control" name="id_gerencia" id="id_gerencia">
+                        <select class="form-control" name="id_gerencia" id="id_gerencia" value="@Model.Obj_are.Id_gerencia">
                             <option value="1">Gerencia de Administración</option>
                             <option value="2">Gerencia de Desarrollo Social</option>
                         </select>
-                        <span class="badge badge-warning sp" id="sp_gerencia"></span>
+                        <span class="badge badge-warning sp" id="sp_id_gerencia"></span>
                     </div>
 
                 </div>
                 <div class="form-row">
                     <div class="form-group col-sm-6">
                         <label for="ubicacion">Ubicacion</label>
-                        <input class="form-control" type="text" name="ubicacion id="nombre" placeholder="Ingrese Ubicacion">
+                        <input class="form-control" type="text" name="ubicacion" id="ubicacion" placeholder="Ingrese Ubicacion" value="@Model.Obj_are.Ubicacion">
                         <span class="badge badge-warning sp" id="sp_ubicacion"></span>
                     </div>
                     <div class="form-group col-sm-6">
                         <label for="descripcion">Descripcion</label>
-                        <input class="form-control" type="text" name="descripcion" id="nombre" placeholder="Ingrese Descripcion">
+                        <input class="form-control" type="text" name="descripcion" id="descripcion" placeholder="Ingrese Descripcion" value="@Model.Obj_are.Descripcion">
                         <span class="badge badge-warning sp" id="sp_descripcion"></span>
                     </div>
+                </div>
 
+                <div class="form-row d-flex justify-content-lg-end">
+                    <div class="form-group col-auto">
+                        <button type="submit" class="btn btn-primary">Guardar</button>
+                    </div>
+                    <div class="form-group col-auto">
+                        <button type="button" class="btn btn-secondary">Limpiar</button>
+                    </div>
                 </div>
 
 
+            </form>
+
+
+
         </div>
-        <div class="form-row d-flex justify-content-lg-end">
-            <div class="form-group col-auto">
-                <button type="submit" class="btn btn-primary">Guardar</button>
-            </div>
-            <div class="form-row d-flex justify-content-lg-end">
-                <div class="form-group col-auto">
-                    <button type="submit" class="btn btn-secondary">Limpiar</button>
-                </div>
-            </div>
-        </div>
-        </form>
-    </div>
     </div>
     <!-- /.card -->
 </section>
@@ -110,73 +114,52 @@
 
 <script>
 
-    document.addEventListener("DOMContentLoaded",function(){
+    document.addEventListener("DOMContentLoaded", function () {
 
-           document.getElementById("registrar").addEventListener("submit", function (e) {
+            document.getElementById("modificar").addEventListener("submit", function (e) {
 
-            var url = "@Url.Action("Registrar_Personal","Personal")";
+            var url = "@Url.Action("Modificar_Area", "Area")"
 
-               var id_area = document.getElementById("id_area").value;
-               var nombre = document.getElementById("nombre").value;
-               var cargo = document.getElementById("cargo").value;
-               var t_documento = document.getElementById("t_documento").value;
-               var n_documento = document.getElementById("n_documento").value;
-               var edad = document.getElementById("edad").value;
-               var sexo = document.getElementById("sexo").value;
-               var est_civil = document.getElementById("est_civil").value;
-               var celular = document.getElementById("celular").value;
-               var direccion = document.getElementById("direccion").value;
-               var correo = document.getElementById("correo").value;
+            var id = document.getElementById("id").value;
+            var nombre = document.getElementById("nombre").value;
+            var id_gerencia = document.getElementById("id_gerencia").value;
+            var ubicacion = document.getElementById("ubicacion").value;
+            var descripcion = document.getElementById("descripcion").value;
 
-               var param = "id_area=" + id_area + "&nombre=" + nombre + "&cargo=" + cargo + "&t_documento=" + t_documento +
-                   "&n_documento=" + n_documento + "&edad=" + edad + "&sexo=" + sexo + "&est_civil=" + est_civil +
-                   "&celular=" + celular + "&direccion=" + direccion + "&correo=" + correo
+            var param = "id=" + id + "&nombre=" + nombre + "&id_gerencia=" + id_gerencia +
+                "&ubicacion=" + ubicacion + "&descripcion=" + descripcion;
 
-                var ajax = new XMLHttpRequest();
+            var ajax = new XMLHttpRequest();
 
-                ajax.onreadystatechange = function () {
-                    if (ajax.readyState == 4) {
+            ajax.onreadystatechange = function () {
+                if (ajax.readyState == 4) {
 
-                        var response = JSON.parse(ajax.responseText);
-                        if (response.success) {
-                            console.log(response.message);
-
-                            document.getElementById("content").innerHTML = response.message;
-                            $("#mod").modal({ backdrop: 'static' });
-                            limpiar_spam();
-                        } else {
-                            console.log(response);
-                            limpiar_spam();
-                            for (var prop in response.datos) {
-                                //console.log("propiedad " + prop + " valor " + response.datos[prop]);
-                                document.getElementById(prop).innerHTML = response.datos[prop]
-                            }
+                    var response = JSON.parse(ajax.responseText);
+                    if (response.success) {
+                        console.log(response.message);
+                        document.getElementById("content").innerHTML = response.message;
+                        $("#mod").modal({ backdrop: 'static' });
+                        limpiar_spam();
+                    } else {
+                        console.log(response);
+                        limpiar_spam();
+                        for (var prop in response.datos) {
+                           document.getElementById(prop).innerHTML = response.datos[prop]
                         }
                     }
                 }
+            }
 
-                ajax.open("POST", url, true);
-                ajax.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-                ajax.send(param);
+             ajax.open("POST", url, true);
+             ajax.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+             ajax.send(param);
 
-                e.preventDefault();
+             e.preventDefault();
         })
 
         document.getElementById("mod-acept").addEventListener("click", function () {
             $("#mod").modal("hide");
-
-           id_area = document.getElementById("id_area").value="";
-           nombre = document.getElementById("nombre").value="";
-           cargo = document.getElementById("cargo").value="";
-           t_documento = document.getElementById("t_documento").value="";
-           n_documento = document.getElementById("n_documento").value="";
-           edad = document.getElementById("edad").value="";
-           sexo = document.getElementById("sexo").value="";
-           est_civil = document.getElementById("est_civil").value="";
-           celular = document.getElementById("celular").value="";
-           direccion = document.getElementById("direccion").value="";
-           correo = document.getElementById("correo").value="";
-
+            location.replace("@Url.Action("Consultar_Area", "Area")");
         })
 
         function limpiar_spam() {

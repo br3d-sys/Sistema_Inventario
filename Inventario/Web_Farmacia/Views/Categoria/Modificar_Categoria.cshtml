@@ -1,8 +1,7 @@
 
 @{
-
-                ViewBag.Title = "Modificar_Categoria";
-                Layout = "~/Views/Main.cshtml";
+   ViewBag.Title = "Modificar_Categoria";
+   Layout = "~/Views/Main.cshtml";
 }
 
 <!-- Content Header (Page header) -->
@@ -100,66 +99,49 @@
 
 <script>
 
-    document.addEventListener("DOMContentLoaded",function(){
+    document.addEventListener("DOMContentLoaded", function () {
 
-           document.getElementById("modificar").addEventListener("submit", function (e) {
+            document.getElementById("modificar").addEventListener("submit", function (e) {
 
-            var url = "@Url.Action("Modificar_Categoria", "Categoria")";
-               var id = document.getElementById("id").value;
-               var nombre = document.getElementById("nombre").value;
-               var descripcion = document.getElementById("descripcion").value;
+            var url = "@Url.Action("Modificar_Categoria", "Categoria")"
 
-               var param = "id=" + id + "&nombre=" + nombre + "&descripcion=" + descripcion;
+            var id = document.getElementById("id").value;
+            var nombre = document.getElementById("nombre").value;
+            var descripcion = document.getElementById("descripcion").value;
 
-               //var formdata = new FormData();
+            var param = "id=" + id + "&nombre=" + nombre  + "&descripcion=" + descripcion;
 
-               //formdata.append("nombre", nombre);
-               //formdata.append("documento", documento);
-               //formdata.append("n_documento", n_documento);
-               //formdata.append("direccion", direccion);
-               //formdata.append("celular", celular);
-               //formdata.append("correo", correo);
-               //formdata.append("id_cargo", id_cargo);
-               //formdata.append("usuario", usuario);
-               //formdata.append("password", password);
+            var ajax = new XMLHttpRequest();
 
-                var ajax = new XMLHttpRequest();
+            ajax.onreadystatechange = function () {
+                if (ajax.readyState == 4) {
 
-                ajax.onreadystatechange = function () {
-                    if (ajax.readyState == 4) {
-
-                        var response = JSON.parse(ajax.responseText);
-                        if (response.success) {
-                            console.log(response.message);
-
-                            document.getElementById("content").innerHTML = response.message;
-                            $("#mod").modal({ backdrop: 'static' });
-                            limpiar_spam();
-                        } else {
-                            console.log(response);
-                            limpiar_spam();
-                            for (var prop in response.datos) {
-                                //console.log("propiedad " + prop + " valor " + response.datos[prop]);
-                                document.getElementById(prop).innerHTML = response.datos[prop]
-                            }
+                    var response = JSON.parse(ajax.responseText);
+                    if (response.success) {
+                        console.log(response.message);
+                        document.getElementById("content").innerHTML = response.message;
+                        $("#mod").modal({ backdrop: 'static' });
+                        limpiar_spam();
+                    } else {
+                        console.log(response);
+                        limpiar_spam();
+                        for (var prop in response.datos) {
+                           document.getElementById(prop).innerHTML = response.datos[prop]
                         }
                     }
                 }
+            }
 
-                ajax.open("POST", url, true);
-                ajax.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-                ajax.send(param);
+             ajax.open("POST", url, true);
+             ajax.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+             ajax.send(param);
 
-                e.preventDefault();
+             e.preventDefault();
         })
 
         document.getElementById("mod-acept").addEventListener("click", function () {
             $("#mod").modal("hide");
-
-            document.getElementById("id").value="";
-            document.getElementById("nombre").value="";
-            document.getElementById("descripcion").value="";
-
+            location.replace("@Url.Action("Consultar_Categoria", "Categoria")");
         })
 
         function limpiar_spam() {

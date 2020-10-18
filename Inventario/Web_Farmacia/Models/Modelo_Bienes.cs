@@ -30,7 +30,8 @@ namespace Web_Farmacia.Models
 
                         cmd.Parameters.AddWithValue("_id_categoria", bn.Id_categoria);
                         cmd.Parameters.AddWithValue("_nombre", bn.Nombre);
-                        cmd.Parameters.AddWithValue("_descripcion", bn.Descripcion);
+                    cmd.Parameters.AddWithValue("_serie", bn.Serie);
+                    cmd.Parameters.AddWithValue("_descripcion", bn.Descripcion);
                         cmd.Parameters.AddWithValue("_codigo", bn.Codigo);
                         cmd.Parameters.AddWithValue("_precio", bn.Precio);
                         cmd.Parameters.AddWithValue("_imagen", bn.Imagen);
@@ -85,6 +86,7 @@ namespace Web_Farmacia.Models
                                 Id_categoria = rd.GetInt32("id_categoria"),
                                 Categoria = rd.GetString("categoria"),
                                 Nombre = rd.GetString("nombre"),
+                                Serie = rd.GetString("serie"),
                                 Descripcion = rd.GetString("descripcion"),
                                 Codigo = rd.GetString("codigo"),
                                 Precio = rd.GetDouble ("precio"),
@@ -128,7 +130,8 @@ namespace Web_Farmacia.Models
 
                         cmd.Parameters.AddWithValue("_id_categoria", bnn.Id_categoria);
                         cmd.Parameters.AddWithValue("_nombre", bnn.Nombre);
-                        cmd.Parameters.AddWithValue("_descripcion", bnn.Descripcion);
+                    cmd.Parameters.AddWithValue("_serie", bnn.Serie);
+                    cmd.Parameters.AddWithValue("_descripcion", bnn.Descripcion);
                         cmd.Parameters.AddWithValue("_codigo", bnn.Codigo);
                         cmd.Parameters.AddWithValue("_precio", bnn.Precio);
                         cmd.Parameters.AddWithValue("_imagen", bnn.Imagen);
@@ -219,6 +222,7 @@ namespace Web_Farmacia.Models
                         bie.Id_categoria = rd.GetInt32("id_categoria");
                         bie.Categoria = rd.GetString("categoria");
                         bie.Nombre = rd.GetString("nombre");
+                        bie.Serie = rd.GetString("serie");
                         bie.Descripcion = rd.GetString("descripcion");
                         bie.Codigo = rd.GetString("codigo");
                         bie.Precio = rd.GetDouble("precio");
@@ -276,6 +280,7 @@ namespace Web_Farmacia.Models
                             Id_categoria = rd.GetInt32("id_categoria"),
                             Categoria = rd.GetString("categoria"),
                             Nombre = rd.GetString("nombre"),
+                            Serie = rd.GetString("serie"),
                             Descripcion = rd.GetString("descripcion"),
                             Codigo = rd.GetString("codigo"),
                             Precio = rd.GetDouble("precio"),

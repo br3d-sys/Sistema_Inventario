@@ -9,7 +9,7 @@ namespace Web_Farmacia.Clases
     {
         private int id_asignacion;
         private int id_usuario;
-        private int id_inventario;
+        private int id_encontrado;
         private int id_personal;
         private int id_area;
         private string fecha_asig;
@@ -41,16 +41,16 @@ namespace Web_Farmacia.Clases
             }
         }
 
-        public int Id_inventario
+        public int Id_encontrado
         {
             get
             {
-                return id_inventario;
+                return id_encontrado;
             }
 
             set
             {
-                id_inventario = value;
+                id_encontrado = value;
             }
         }
 

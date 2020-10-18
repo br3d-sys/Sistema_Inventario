@@ -37,44 +37,47 @@
         </div>
         <div class="card-body">
 
+            @model Web_Farmacia.Controllers.Info
 
-            <form method="post" enctype="multipart/form-data" id="registrar">
+            <form method="post" enctype="multipart/form-data" id="modificar">
 
-                <div class="d-flex mb-4">
-                    <a href="/Gerencia/Consultar_Gerencia" class="btn btn-secondary ml-auto"><i class="fa fa-caret-left"></i> Lista Gerencia</a>
+                <div class="d-flex">
+                    <a href="@Url.Action("Consultar_Gerencia", "Gerencia")" class="btn btn-secondary ml-auto"><i class="fa fa-caret-left"></i> Regresar</a>
                 </div>
 
                 <div class="form-row">
+
+                    <input class="form-control" type="hidden" name="id" id="id" value="@Model.Obj_ger.Id_gerencia">
+
                     <div class="form-group col-sm-6">
                         <label for="nombre">Nombre</label>
-                        <input class="form-control" type="text" name="nombre" id="nombre" placeholder="Ingrese su Nombre">
+                        <input class="form-control" type="text" name="nombre" id="nombre" placeholder="Ingrese su Nombre" value="@Model.Obj_ger.Nombre">
                         <span class="badge badge-warning sp" id="sp_nombre"></span>
                     </div>
                     <div class="form-group col-sm-6">
                         <label for="descripcion">Descripcion</label>
-                        <input class="form-control" type="text" name="descripcion" id="descripcion" placeholder="Ingrese la Descripcion">
+                        <input class="form-control" type="text" name="descripcion" id="descripcion" placeholder="Ingrese la Descripcion" value="@Model.Obj_ger.Descripcion">
                         <span class="badge badge-warning sp" id="sp_descripcion"></span>
                     </div>
                 </div>
 
-        </div>
-        <div class="form-row d-flex justify-content-lg-end">
-            <div class="form-group col-auto">
-                <button type="submit" class="btn btn-primary">Guardar</button>
-            </div>
-            <div class="form-row d-flex justify-content-lg-end">
-                <div class="form-group col-auto">
-                    <button type="submit" class="btn btn-secondary">Limpiar</button>
+                <div class="form-row d-flex justify-content-lg-end">
+                    <div class="form-group col-auto">
+                        <button type="submit" class="btn btn-primary">Guardar</button>
+                    </div>
+
+                    <div class="form-group col-auto">
+                        <button type="button" class="btn btn-secondary">Limpiar</button>
+                    </div>
+
                 </div>
-            </div>
+
+
+            </form>
+
+
+
         </div>
-
-
-        </form>
-
-
-
-    </div>
     </div>
     <!-- /.card -->
 </section>
@@ -99,89 +102,49 @@
 
 <script>
 
-    document.addEventListener("DOMContentLoaded",function(){
+    document.addEventListener("DOMContentLoaded", function () {
 
-           document.getElementById("registrar").addEventListener("submit", function (e) {
+            document.getElementById("modificar").addEventListener("submit", function (e) {
 
-            var url = "@Url.Action("Registrar_Bien", "Bien")";
-               var id_categoria = document.getElementById("id_categoria").value;
-               var nombre = document.getElementById("nombre").value;
-               var descripcion = document.getElementById("descripcion").value;
-               var codigo = document.getElementById("codigo").value;
-               var precio = document.getElementById("precio").value;
-               var estado = document.getElementById("estado").value;
-               var fecha_ing = document.getElementById("fecha_ing").value;
-               var marca = document.getElementById("marca").value;
-               var color = document.getElementById("color").value;
-               var modelo = document.getElementById("modelo").value;
-               var alto = document.getElementById("alto").value;
-               var ancho = document.getElementById("ancho").value;
-               var profundidad = document.getElementById("profundidad").value;
+            var url = "@Url.Action("Modificar_Gerencia", "Gerencia")"
 
-               var param = "id_categoria=" + id_categoria + "&nombre=" + nombre + "&descripcion=" + descripcion +
-                   "&codigo=" + codigo + "&precio=" + precio + "&estado=" + estado + "&fecha_ing=" + fecha_ing +
-                   "&marca=" + marca + "&color=" + color + "&modelo=" + modelo + "&alto=" + alto + "&ancho=" + ancho +
-                    "&profundidad=" + profundidad;
+            var id = document.getElementById("id").value;
+            var nombre = document.getElementById("nombre").value;
+            var descripcion = document.getElementById("descripcion").value;
 
-               //var formdata = new FormData();
+            var param = "id=" + id + "&nombre=" + nombre + "&descripcion=" + descripcion;
 
-               //formdata.append("nombre", nombre);
-               //formdata.append("documento", documento);
-               //formdata.append("n_documento", n_documento);
-               //formdata.append("direccion", direccion);
-               //formdata.append("celular", celular);
-               //formdata.append("correo", correo);
-               //formdata.append("id_cargo", id_cargo);
-               //formdata.append("usuario", usuario);
-               //formdata.append("password", password);
+            var ajax = new XMLHttpRequest();
 
-                var ajax = new XMLHttpRequest();
+            ajax.onreadystatechange = function () {
+                if (ajax.readyState == 4) {
 
-                ajax.onreadystatechange = function () {
-                    if (ajax.readyState == 4) {
-
-                        var response = JSON.parse(ajax.responseText);
-                        if (response.success) {
-                            console.log(response.message);
-
-                            document.getElementById("content").innerHTML = response.message;
-                            $("#mod").modal({ backdrop: 'static' });
-                            limpiar_spam();
-                        } else {
-                            console.log(response);
-                            limpiar_spam();
-                            for (var prop in response.datos) {
-                                //console.log("propiedad " + prop + " valor " + response.datos[prop]);
-                                document.getElementById(prop).innerHTML = response.datos[prop]
-                            }
+                    var response = JSON.parse(ajax.responseText);
+                    if (response.success) {
+                        console.log(response.message);
+                        document.getElementById("content").innerHTML = response.message;
+                        $("#mod").modal({ backdrop: 'static' });
+                        limpiar_spam();
+                    } else {
+                        console.log(response);
+                        limpiar_spam();
+                        for (var prop in response.datos) {
+                           document.getElementById(prop).innerHTML = response.datos[prop]
                         }
                     }
                 }
+            }
 
-                ajax.open("POST", url, true);
-                ajax.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-                ajax.send(param);
+             ajax.open("POST", url, true);
+             ajax.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+             ajax.send(param);
 
-                e.preventDefault();
+             e.preventDefault();
         })
 
         document.getElementById("mod-acept").addEventListener("click", function () {
             $("#mod").modal("hide");
-
-            document.getElementById("id_categoria").value="";
-            document.getElementById("nombre").value="";
-            document.getElementById("descripcion").value="";
-            document.getElementById("codigo").value="";
-            document.getElementById("precio").value="";
-            document.getElementById("estado").value="";
-            document.getElementById("fecha_ing").value="";
-            document.getElementById("marca").value="";
-            document.getElementById("color").value="";
-            document.getElementById("modelo").value="";
-            document.getElementById("alto").value="";
-            document.getElementById("ancho").value="";
-            document.getElementById("profundidad").value="";
-
+            location.replace("@Url.Action("Consultar_Gerencia", "Gerencia")");
         })
 
         function limpiar_spam() {

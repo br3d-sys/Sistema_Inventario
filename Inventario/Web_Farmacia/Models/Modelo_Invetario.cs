@@ -28,10 +28,9 @@ namespace Web_Farmacia.Models
                         cmd.CommandType = System.Data.CommandType.StoredProcedure;
                         cmd.Connection = con;
 
-                        cmd.Parameters.AddWithValue("_id_bien", inven.Id_bien);
-                        cmd.Parameters.AddWithValue("_inventario", inven.N_inventario);
-                        cmd.Parameters.AddWithValue("_fecha", inven.Fecha_inven);
-                        cmd.Parameters.AddWithValue("_estado", inven.Estado);
+                        cmd.Parameters.AddWithValue("_nombre", inven.Nombre);
+                        cmd.Parameters.AddWithValue("_fecha_ini", inven.Fecha_ini);
+                        cmd.Parameters.AddWithValue("_fecha_fin", inven.Fecha_fin);
 
                         if (cmd.ExecuteNonQuery() > 0)
                         {
@@ -61,7 +60,7 @@ namespace Web_Farmacia.Models
                 {
                     using (cmd = new MySqlCommand())
                     {
-                        cmd.CommandText = "SP_A_Tabla_Inventario";
+                        cmd.CommandText = "SP_R_Tabla_Inventario";
                         cmd.CommandType = System.Data.CommandType.StoredProcedure;
                         cmd.Connection = con;
 
@@ -71,10 +70,10 @@ namespace Web_Farmacia.Models
                         {
                             lista.Add(new Inventario
                             {
-                                Id_bien = rd.GetInt32("id_bien"),
-                                N_inventario = rd.GetString("n_inventario"),
-                                Fecha_inven = rd.GetString("fecha_inven"),
-                                Estado = rd.GetString("estado")                         
+                                Id_inventario = rd.GetInt32("id_inventario"),
+                                Nombre = rd.GetString("nombre"),
+                                Fecha_ini = rd.GetDateTime("fecha_ini"),
+                                Fecha_fin = rd.GetDateTime("fecha_fin")                         
                             });
                         }
 
@@ -100,14 +99,13 @@ namespace Web_Farmacia.Models
                     using (cmd = new MySqlCommand())
                     {
 
-                        cmd.CommandText = "SP_M_Tabla_Inventario";
+                        cmd.CommandText = "SP_U_Tabla_Inventario";
                         cmd.CommandType = System.Data.CommandType.StoredProcedure;
                         cmd.Connection = con;
 
-                        cmd.Parameters.AddWithValue("_id_bien", inven.Id_bien);
-                        cmd.Parameters.AddWithValue("_inventario", inven.N_inventario);
-                        cmd.Parameters.AddWithValue("_fecha", inven.Fecha_inven);
-                        cmd.Parameters.AddWithValue("estado", inven.Estado);
+                        cmd.Parameters.AddWithValue("_nombre", inven.Nombre);
+                        cmd.Parameters.AddWithValue("_fecha_ini", inven.Fecha_ini);
+                        cmd.Parameters.AddWithValue("_fecha_fin", inven.Fecha_fin);
 
                         if (cmd.ExecuteNonQuery() > 0)
                         {
@@ -137,7 +135,7 @@ namespace Web_Farmacia.Models
                 {
                     using (cmd = new MySqlCommand())
                     {
-                        cmd.CommandText = "SP_E_Tabla_Inventario";
+                        cmd.CommandText = "SP_D_Tabla_Inventario";
                         cmd.CommandType = System.Data.CommandType.StoredProcedure;
                         cmd.Connection = con;
 

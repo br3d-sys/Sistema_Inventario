@@ -12,6 +12,7 @@ namespace Web_Farmacia.Clases
         private int id_categoria;
         private string categoria;
         private string nombre;
+        private string serie;
         private string descripcion;
         private string codigo;
         private Double precio;
@@ -75,6 +76,19 @@ namespace Web_Farmacia.Clases
             set
             {
                 nombre = value;
+            }
+        }
+
+        public string Serie
+        {
+            get
+            {
+                return serie;
+            }
+
+            set
+            {
+                serie = value;
             }
         }
 

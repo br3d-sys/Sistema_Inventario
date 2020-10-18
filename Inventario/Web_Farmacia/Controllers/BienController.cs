@@ -96,7 +96,7 @@ namespace Web_Farmacia.Controllers
             //return View();
         }
         [HttpPost]
-        public ActionResult Modificar_Bien(int id, int id_categoria, string nombre, string descripcion, string codigo, double precio, string estado, DateTime fecha_ing, string marca, string color, string modelo, int alto, int ancho, int profundidad)
+        public ActionResult Modificar_Bien(int id, int id_categoria, string nombre, string serie, string descripcion, string codigo, double precio, string estado, DateTime fecha_ing, string marca, string color, string modelo, int alto, int ancho, int profundidad)
         {
             Modelo_Bienes mb = new Modelo_Bienes();
             Bienes bie = new Bienes();
@@ -113,6 +113,10 @@ namespace Web_Farmacia.Controllers
                 if (String.IsNullOrEmpty(nombre))
                 {
                     error.Add("sp_nombre", "Ingrese el nombre");
+                }
+                if (String.IsNullOrEmpty(serie))
+                {
+                    error.Add("sp_serie", "Ingrese la serie");
                 }
                 if (String.IsNullOrEmpty(descripcion))
                 {
@@ -164,6 +168,7 @@ namespace Web_Farmacia.Controllers
                     bie.Id_bienes = id;
                     bie.Id_categoria = id_categoria == 0 ? 0 : id_categoria; ;
                     bie.Nombre = nombre == null ? "" : nombre;
+                    bie.Serie = serie == null ? "" : serie;
                     bie.Descripcion = descripcion == null ? "" : descripcion;
                     bie.Codigo = codigo == null ? "" : codigo;
                     bie.Precio = precio == 0 ? 0 : precio;
@@ -212,7 +217,7 @@ namespace Web_Farmacia.Controllers
         }
 
         [HttpPost]
-        public ActionResult Registrar_Bien(int id_categoria, string nombre, string descripcion, string codigo, double precio, string estado, DateTime fecha_ing, string marca, string color, string modelo, int alto, int ancho, int profundidad)
+        public ActionResult Registrar_Bien(int id_categoria, string nombre, string serie, string descripcion, string codigo, double precio, string estado, DateTime fecha_ing, string marca, string color, string modelo, int alto, int ancho, int profundidad)
         {
             Bienes bie = new Bienes();
             Modelo_Bienes mb = new Modelo_Bienes();
@@ -226,6 +231,10 @@ namespace Web_Farmacia.Controllers
                 error.Add("sp_id_categoria", "Seleccione la categoria");
             }
             if (String.IsNullOrEmpty(nombre))
+            {
+                error.Add("sp_nombre", "Ingrese el nombre");
+            }
+            if (String.IsNullOrEmpty(serie))
             {
                 error.Add("sp_nombre", "Ingrese el nombre");
             }
@@ -278,6 +287,7 @@ namespace Web_Farmacia.Controllers
             {
                 bie.Id_categoria = id_categoria == 0 ? 0 : id_categoria; ;
                 bie.Nombre = nombre == null ? "" : nombre;
+                bie.Serie = serie == null ? "" : serie;
                 bie.Descripcion = descripcion == null ? "" : descripcion;
                 bie.Codigo = codigo == null ? "" : codigo;
                 bie.Precio = precio == 0 ? 0 : precio;

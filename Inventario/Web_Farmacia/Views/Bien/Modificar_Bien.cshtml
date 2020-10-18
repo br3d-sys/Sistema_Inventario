@@ -49,7 +49,7 @@
 
                     <input class="form-control" type="hidden" name="id" id="id" value="@Model.Obj_bie.Id_bienes">
 
-                    <div class="form-group col-sm-4">
+                    <div class="form-group col-sm-3">
                         <label for="nombre">Nombre</label>
                         <input class="form-control" type="text" name="nombre" id="nombre" placeholder="Ingrese su Nombre" value="@Model.Obj_bie.Nombre">
                         <span class="badge badge-warning sp" id="sp_nombre"></span>
@@ -73,9 +73,14 @@
                         </select>
                         <span class="badge badge-warning sp" id="sp_categoria"></span>
                     </div>
-                    <div class="form-group col-sm-5">
+                    <div class="form-group col-sm-3">
+                        <label for="serie">Serie</label>
+                        <input class="form-control" type="text" name="serie" id="serie" placeholder="Ingrese la Serie">
+                        <span class="badge badge-warning sp" id="sp_serie"></span>
+                    </div>
+                    <div class="form-group col-sm-3">
                         <label for="descripcion">Descripcion</label>
-                        <input class="form-control" type="text" name="descripcion" id="descripcion" placeholder="Ingrese la Descripcion" value="@Model.Obj_bie.Descripcion">
+                        <input class="form-control" type="text" name="descripcion" id="descripcion" placeholder="Ingrese la Descripcion">
                         <span class="badge badge-warning sp" id="sp_descripcion"></span>
                     </div>
                 </div>
@@ -188,6 +193,7 @@
             var id = document.getElementById("id").value;
             var id_categoria = document.getElementById("id_categoria").value;
             var nombre = document.getElementById("nombre").value;
+            var serie = document.getElementById("serie").value;
             var descripcion = document.getElementById("descripcion").value;
             var codigo = document.getElementById("codigo").value;
             var precio = document.getElementById("precio").value;
@@ -200,7 +206,7 @@
             var ancho = document.getElementById("ancho").value;
             var profundidad = document.getElementById("profundidad").value;
 
-            var param = "id_categoria=" + id_categoria + "&nombre=" + nombre + "&descripcion=" + descripcion +
+            var param = "id_categoria=" + id_categoria + "&nombre=" + nombre + "&serie=" + serie + "&descripcion=" + descripcion +
                 "&codigo=" + codigo + "&precio=" + precio + "&estado=" + estado + "&fecha_ing=" + fecha_ing +
                 "&marca=" + marca + "&color=" + color + "&modelo=" + modelo + "&alto=" + alto + "&ancho=" + ancho +
                 "&profundidad=" + profundidad + "&id=" + id;
