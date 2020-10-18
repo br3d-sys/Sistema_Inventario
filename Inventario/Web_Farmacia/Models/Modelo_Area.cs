@@ -19,8 +19,8 @@ namespace Web_Farmacia.Models
         }
         public Boolean guardar(Area are)
         {
-            try
-            {
+            //try
+            //{
                 using (con = Conexion.conectar())
                 {
                     using (cmd = new MySqlCommand())
@@ -44,11 +44,11 @@ namespace Web_Farmacia.Models
                         }
                     }
                 }
-            }
-            catch (Exception ex)
-            {
-                return false;
-            }
+            //}
+            //catch (Exception ex)
+            //{
+            //    return false;
+            //}
         }
 
         public List<Area> listar()
@@ -74,6 +74,7 @@ namespace Web_Farmacia.Models
                             {
                                 Id_area = rd.GetInt32("id_area"),
                                 Id_gerencia = rd.GetInt32("id_gerencia"),
+                                Gerencia = rd.GetString("gerencia"),
                                 Nombre = rd.GetString("nombre"),
                                 Ubicacion = rd.GetString("ubicacion"),
                                 Descripcion = rd.GetString("descripcion")
@@ -95,8 +96,8 @@ namespace Web_Farmacia.Models
 
         public Boolean actualizar(Area are)
         {
-            try
-            {
+            //try
+            //{
                 using (con = Conexion.conectar())
                 {
                     using (cmd = new MySqlCommand())
@@ -123,18 +124,18 @@ namespace Web_Farmacia.Models
                     }
 
                 }
-            }
-            catch (Exception)
-            {
+            //}
+            //catch (Exception)
+            //{
 
-                return false;
-            }
+            //    return false;
+            //}
 
         }
         public Boolean eliminar(int id)
         {
-            try
-            {
+            //try
+            //{
                 using (con = Conexion.conectar())
                 {
                     using (cmd = new MySqlCommand())
@@ -155,11 +156,11 @@ namespace Web_Farmacia.Models
                         }
                     }
                 }
-            }
-            catch (Exception)
-            {
-                return false;
-            }
+            //}
+            //catch (Exception)
+            //{
+            //    return false;
+            //}
         }
 
         public Area obtener(int? id)
@@ -186,6 +187,7 @@ namespace Web_Farmacia.Models
                     {
                         are.Id_area = rd.GetInt32("id_area");
                         are.Id_gerencia = rd.GetInt32("id_gerencia");
+                        are.Gerencia = rd.GetString("gerencia");
                         are.Nombre = rd.GetString("nombre");
                         are.Ubicacion = rd.GetString("ubicacion");
                         are.Descripcion = rd.GetString("descripcion");
@@ -232,6 +234,7 @@ namespace Web_Farmacia.Models
                         {
                             Id_area = rd.GetInt32("id_area"),
                             Id_gerencia = rd.GetInt32("id_gerencia"),
+                            Gerencia = rd.GetString("gerencia"),
                             Nombre = rd.GetString("nombre"),
                             Ubicacion = rd.GetString("ubicacion"),
                             Descripcion = rd.GetString("descripcion")

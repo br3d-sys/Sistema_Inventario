@@ -51,8 +51,8 @@ namespace Web_Farmacia.Models
 
         public List<Inventario> listar()
         {
-            try
-            {
+            //try
+            //{
                 MySqlDataReader rd;
                 List<Inventario> lista = new List<Inventario>();
 
@@ -83,11 +83,11 @@ namespace Web_Farmacia.Models
                 }
 
                 return lista;
-            }
-            catch (Exception)
-            {
-                return null;
-            }
+            //}
+            //catch (Exception)
+            //{
+            //    return null;
+            //}
         }
 
         public Boolean actualizar(Inventario inven)
@@ -103,6 +103,7 @@ namespace Web_Farmacia.Models
                         cmd.CommandType = System.Data.CommandType.StoredProcedure;
                         cmd.Connection = con;
 
+                        cmd.Parameters.AddWithValue("_id_inventario", inven.Id_inventario);
                         cmd.Parameters.AddWithValue("_nombre", inven.Nombre);
                         cmd.Parameters.AddWithValue("_fecha_ini", inven.Fecha_ini);
                         cmd.Parameters.AddWithValue("_fecha_fin", inven.Fecha_fin);

@@ -8,12 +8,12 @@
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h1>Lista de Categorias</h1>
+                <h1>Lista de Inventario</h1>
             </div>
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
                     <li class="breadcrumb-item"><a href="#">Home</a></li>
-                    <li class="breadcrumb-item active">Listar Categorias</li>
+                    <li class="breadcrumb-item active">Listar Inventario</li>
                 </ol>
             </div>
         </div>
@@ -24,7 +24,7 @@
     <!-- Default box -->
     <div class="card">
         <div class="card-header">
-            <h3 class="card-title">Categorias</h3>
+            <h3 class="card-title">Inventario</h3>
             <div class="card-tools">
                 <button type="button" class="btn btn-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse">
                     <i class="fa fa-minus"></i>
@@ -90,7 +90,7 @@
                                         <td>@inventario.Fecha_ini</td>
                                         <td>@inventario.Fecha_fin</td>
                                         <td class="text-center">
-                                            <a href="/Categoria/Modificar_Categoria?id=@inventario.Id_inventario" class="btn btn-primary" id="actualizar"><i class="fa fa-edit"></i></a>
+                                            <a href="/Inventario/Modificar_Inventario?id=@inventario.Id_inventario" class="btn btn-primary" id="actualizar"><i class="fa fa-edit"></i></a>
                                             <button onclick="eliminar('@inventario.Id_inventario')" class="btn btn-danger" id="Eliminar"><i class="fa fa-trash"></i></button>
 
                                         </td>
@@ -164,7 +164,7 @@
 
 
         document.getElementById("mod-acept").addEventListener("click", function () {
-            location.replace("/Categoria/eliminar?id=" + f_id);
+            location.replace("/Inventario/eliminar?id=" + f_id);
             $("#mod").modal("hide");
         });
 

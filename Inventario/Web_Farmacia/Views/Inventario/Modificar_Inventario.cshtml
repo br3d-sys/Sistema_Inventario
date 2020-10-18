@@ -104,7 +104,7 @@
 
             document.getElementById("modificar").addEventListener("submit", function (e) {
 
-            var url = "@Url.Action("Modificar_Usuario", "Usuario")"
+            var url = "@Url.Action("Modificar_Inventario", "Inventario")"
 
             var id = document.getElementById("id").value;
             var nombre = document.getElementById("nombre").value;
@@ -144,7 +144,7 @@
 
         document.getElementById("mod-acept").addEventListener("click", function () {
             $("#mod").modal("hide");
-            location.replace("@Url.Action("Consultar_Usuario", "Usuario")");
+            location.replace("@Url.Action("Consultar_Inventario", "Inventario")");
         })
 
         function limpiar_spam() {

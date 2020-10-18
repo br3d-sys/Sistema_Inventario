@@ -41,7 +41,7 @@
             <form method="post" enctype="multipart/form-data" id="registrar">
 
                 <div class="d-flex mb-4">
-                    <a href="/Gerencia/Consultar_Gerencia" class="btn btn-secondary ml-auto"><i class="fa fa-caret-left"></i> Listar Inventario</a>
+                    <a href="/Inventario/Consultar_Inventario" class="btn btn-secondary ml-auto"><i class="fa fa-caret-left"></i> Listar Inventario</a>
                 </div>
 
                 <div class="form-row">
@@ -105,7 +105,7 @@
 
            document.getElementById("registrar").addEventListener("submit", function (e) {
 
-            var url = "@Url.Action("Registrar_Inventerio", "Inventario")";
+            var url = "@Url.Action("Registrar_Inventario", "Inventario")";
                var nombre = document.getElementById("nombre").value;
                var fecha_ini = document.getElementById("fecha_ini").value;
                var fecha_fin = document.getElementById("fecha_fin").value;

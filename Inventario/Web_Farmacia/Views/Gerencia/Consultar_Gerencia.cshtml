@@ -86,7 +86,7 @@
                                         <td>@gerencia.Nombre</td>
                                         <td>@gerencia.Descripcion</td>
                                         <td class="text-center">
-                                            <a href="/Categoria/Modificar_Categoria?id=@gerencia.Id_gerencia" class="btn btn-primary" id="actualizar"><i class="fa fa-edit"></i></a>
+                                            <a href="/Gerencia/Modificar_Gerencia?id=@gerencia.Id_gerencia" class="btn btn-primary" id="actualizar"><i class="fa fa-edit"></i></a>
                                             <button onclick="eliminar('@gerencia.Id_gerencia')" class="btn btn-danger" id="Eliminar"><i class="fa fa-trash"></i></button>
 
                                         </td>
@@ -158,7 +158,7 @@
 
 
         document.getElementById("mod-acept").addEventListener("click", function () {
-            location.replace("/Categoria/eliminar?id=" + f_id);
+            location.replace("/Gerencia/eliminar?id=" + f_id);
             $("#mod").modal("hide");
         });
 

@@ -19,8 +19,8 @@ namespace Web_Farmacia.Models
         }
         public Boolean guardar(Gerencia gere)
         {
-            try
-            {
+            //try
+            //{
                 using (con = Conexion.conectar())
                 {
                     using (cmd = new MySqlCommand())
@@ -42,17 +42,17 @@ namespace Web_Farmacia.Models
                         }
                     }
                 }
-            }
-            catch (Exception ex)
-            {
-                return false;
-            }
+            //}
+            //catch (Exception ex)
+            //{
+            //    return false;
+            //}
         }
 
         public List<Gerencia> listar()
         {
-            try
-            {
+            //try
+            //{
                 MySqlDataReader rd;
                 List<Gerencia> lista = new List<Gerencia>();
 
@@ -82,17 +82,17 @@ namespace Web_Farmacia.Models
                 }
 
                 return lista;
-            }
-            catch (Exception)
-            {
-                return null;
-            }
+            //}
+            //catch (Exception)
+            //{
+            //    return null;
+            //}
         }
 
         public Boolean actualizar(Gerencia are)
         {
-            try
-            {
+            //try
+            //{
                 using (con = Conexion.conectar())
                 {
                     using (cmd = new MySqlCommand())
@@ -117,18 +117,18 @@ namespace Web_Farmacia.Models
                     }
 
                 }
-            }
-            catch (Exception)
-            {
+            //}
+            //catch (Exception)
+            //{
 
-                return false;
-            }
+            //    return false;
+            //}
 
         }
         public Boolean eliminar(int id)
         {
-            try
-            {
+            //try
+            //{
                 using (con = Conexion.conectar())
                 {
                     using (cmd = new MySqlCommand())
@@ -149,11 +149,11 @@ namespace Web_Farmacia.Models
                         }
                     }
                 }
-            }
-            catch (Exception)
-            {
-                return false;
-            }
+            //}
+            //catch (Exception)
+            //{
+            //    return false;
+            //}
         }
 
         public Gerencia obtener(int? id)
