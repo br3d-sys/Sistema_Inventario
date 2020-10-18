@@ -347,7 +347,7 @@
     <Compile Include="Models\Modelo_Asignacion.cs" />
     <Compile Include="Models\Modelo_Bienes.cs" />
     <Compile Include="Models\Modelo_Encontrado.cs" />
-    <Compile Include="Models\Modelo_Invetario.cs" />
+    <Compile Include="Models\Modelo_Inventario.cs" />
     <Compile Include="Models\Modelo_Personal.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

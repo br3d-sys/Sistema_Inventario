@@ -8,7 +8,7 @@ namespace Web_Farmacia.Clases
     public class Area
     {
         private int id_area;
-        private int id_categoria;
+        private int id_gerencia;
         private string nombre;
         private string gerencia;
         private string ubicacion;
@@ -28,16 +28,16 @@ namespace Web_Farmacia.Clases
             }
         }
 
-        public int Id_categoria
+        public int Id_gerencia
         {
             get
             {
-                return id_categoria;
+                return id_gerencia;
             }
 
             set
             {
-                id_categoria = value;
+                id_gerencia = value;
             }
         }
 

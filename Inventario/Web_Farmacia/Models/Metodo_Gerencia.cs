@@ -98,7 +98,7 @@ namespace Web_Farmacia.Models
                     using (cmd = new MySqlCommand())
                     {
 
-                        cmd.CommandText = "SP_M_Tabla_Gerencia";
+                        cmd.CommandText = "SP_U_Tabla_Gerencia";
                         cmd.CommandType = System.Data.CommandType.StoredProcedure;
                         cmd.Connection = con;
 
@@ -133,7 +133,7 @@ namespace Web_Farmacia.Models
                 {
                     using (cmd = new MySqlCommand())
                     {
-                        cmd.CommandText = "SP_E_Tabla_Gerencia";
+                        cmd.CommandText = "SP_D_Tabla_Gerencia";
                         cmd.CommandType = System.Data.CommandType.StoredProcedure;
                         cmd.Connection = con;
 
@@ -154,6 +154,89 @@ namespace Web_Farmacia.Models
             {
                 return false;
             }
+        }
+
+        public Gerencia obtener(int? id)
+        {
+            //try
+            //{
+            MySqlDataReader rd;
+            Gerencia ger = new Gerencia();
+
+            using (con = Conexion.conectar())
+            {
+                using (cmd = new MySqlCommand())
+                {
+                    cmd.CommandText = "SP_O_Tabla_Gerencia";
+                    //cmd.CommandText = string.Format("Select * from tbl_categoria where id_categoria='{0}'", id);
+                    cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                    cmd.Connection = con;
+
+                    cmd.Parameters.AddWithValue("_id_gerencia", id);
+
+                    rd = cmd.ExecuteReader();
+
+                    while (rd.Read())
+                    {
+                        ger.Id_gerencia = rd.GetInt32("id_gerencia");
+                        ger.Nombre = rd.GetString("nombre");
+                        ger.Descripcion = rd.GetString("descripcion");
+                        
+                    }
+
+                    rd.Close();
+
+                }
+            }
+
+            return ger;
+            //}
+            //catch (Exception)
+            //{
+            //    return null;
+            //}
+
+        }
+
+        public List<Gerencia> buscar(string nombre)
+        {
+            //try
+            //{
+
+            MySqlDataReader rd;
+            List<Gerencia> lista = new List<Gerencia>();
+
+            using (con = Conexion.conectar())
+            {
+                using (cmd = new MySqlCommand())
+                {
+                    cmd.CommandText = "SP_B_Tabla_Gerencia";
+                    cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                    cmd.Connection = con;
+
+                    cmd.Parameters.AddWithValue("_nombre", nombre);
+
+                    rd = cmd.ExecuteReader();
+
+                    while (rd.Read())
+                    {
+                        lista.Add(new Gerencia
+                        {
+                            Id_gerencia = rd.GetInt32("id_gerencia"),
+                            Nombre = rd.GetString("nombre"),
+                            Descripcion = rd.GetString("descripcion")
+                            
+                        });
+                    }
+                    rd.Close();
+                }
+            }
+            return lista;
+            //}
+            //catch (Exception)
+            //{
+            //    return null;
+            //}
         }
 
     }

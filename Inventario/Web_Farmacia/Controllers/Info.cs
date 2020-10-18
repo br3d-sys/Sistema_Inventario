@@ -20,7 +20,11 @@ namespace Web_Farmacia.Controllers
         private Bienes obj_bie;
         private List<Categoria> cat;
         private List<Gerencia> ger;
+        private Gerencia obj_ger;
         private List<Area> are;
+        private Area obj_are;
+        private List<Inventario> inv;
+        private Inventario obj_inv;
 
         public List<Usuario> Usu
         {
@@ -118,6 +122,18 @@ namespace Web_Farmacia.Controllers
             }
         }
 
+        public Gerencia Obj_ger
+        {
+            get
+            {
+                return obj_ger;
+            }
+            set
+            {
+                obj_ger = value;
+            }
+        }
+
         public List<Area> Are
         {
             get
@@ -130,6 +146,17 @@ namespace Web_Farmacia.Controllers
             }
         }
 
+        public Area Obj_are
+        {
+            get
+            {
+                return obj_are;
+            }
+            set
+            {
+                obj_are = value;
+            }
+        }
 
         public Categoria Obj_cat
         {
@@ -140,6 +167,30 @@ namespace Web_Farmacia.Controllers
             set
             {
                 obj_cat = value;
+            }
+        }
+
+        public List<Inventario> Inv
+        {
+            get
+            {
+                return inv;
+            }
+            set
+            {
+                inv = value;
+            }
+        }
+
+        public Inventario Obj_inv
+        {
+            get
+            {
+                return obj_inv;
+            }
+            set
+            {
+                obj_inv = value;
             }
         }
     }
