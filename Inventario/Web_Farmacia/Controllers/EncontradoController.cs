@@ -84,15 +84,12 @@ namespace Web_Farmacia.Controllers
                 Info datos = new Info();
                 datos.Obj_enc = v_enc;
 
-                WebImage im =new WebImage(v_enc.Imagen);
+                using (MemoryStream ms = new MemoryStream())
+                {
+                    v_enc.Imagen.Save(ms, ImageFormat.Jpeg);
+                    ms.Position = 0;
+                }
 
-                //using(MemoryStream ms = new MemoryStream())
-                //{
-                //    v_enc.Imagen.Save(ms, ImageFormat.Jpeg);
-                //    ms.WriteTo(Response.OutputStream);
-                //}
-
-                
 
                 return View(datos);
             }
