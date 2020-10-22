@@ -1,0 +1,387 @@
+﻿
+@{
+    ViewBag.Title = "Registrar_Encontrado";
+    Layout = "~/Views/Main.cshtml";
+}
+
+
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>Registrar Encontrado</h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="#">Home</a></li>
+                    <li class="breadcrumb-item active">Registrar Encontrado</li>
+                </ol>
+            </div>
+        </div>
+    </div><!-- /.container-fluid -->
+</section>
+
+@model Web_Farmacia.Controllers.Info
+<!-- Main content -->
+<section class="content">
+    <!-- Default box -->
+    <div class="card">
+        <div class="card-header">
+            <h3 class="card-title">Registrar</h3>
+            <div class="card-tools">
+                <button type="button" class="btn btn-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse">
+                    <i class="fa fa-minus"></i>
+                </button>
+                <button type="button" class="btn btn-tool" data-widget="remove" data-toggle="tooltip" title="Remove">
+                    <i class="fa fa-times"></i>
+                </button>
+            </div>
+        </div>
+        <div class="card-body">
+
+            <form method="post" enctype="multipart/form-data" id="registrar">
+                <div class="form-row d-flex justify-content-between">
+
+                    <div class="col-auto d-flex justify-content-between">
+                        <h4 class="col-auto pt-1 mr-2">Buscar Bien</h4>
+                        <div class="col-auto">
+                            <button type="button" class="btn btn-secondary" id="btn_buscar"><i class="fas fa-search"></i></button>
+                        </div>
+                    </div>
+                    <div class="d-flex mb-4 form-group">
+                        <a href="/Encontrado/Consultar_Encontrado" class="btn btn-secondary ml-auto"><i class="fa fa-caret-left"></i> Lista Encontrados</a>
+                    </div>
+                </div>
+
+                <div class="form-row">
+
+                    <input class="form-control" type="hidden" name="id_bienes" id="id_bienes">
+
+                    <div class="form-group col-sm-5">
+                        <label for="nombre">Nombre</label>
+                        <input class="form-control" type="text" name="nombre" id="nombre" placeholder="Nombre" disabled>
+                    </div>
+                    <div class="form-group col-sm-3">
+                        <label for="id_categoria">Categoria</label>
+                        <input class="form-control" type="text" name="categoria" id="categoria" placeholder="Categoria" disabled>
+                    </div>
+                    <div class="form-group col-sm-4">
+                        <label for="serie">Serie</label>
+                        <input class="form-control" type="text" name="serie" id="serie" placeholder="Serie" disabled>
+                    </div>
+
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-sm-3">
+                        <label for="codigo">Codigo</label>
+                        <input class="form-control" type="text" name="codigo" id="codigo" placeholder="Ingrese el Codigo" disabled />
+                    </div>
+                    <div class="form-group col-sm-3">
+                        <label for="estado">Estado</label>
+                        <input class="form-control" type="text" name="estado" id="estado" placeholder="Estado" disabled>
+                    </div>
+                    <div class="form-group col-sm-3">
+                        <label for="marca">Marca</label>
+                        <input class="form-control" type="text" name="marca" id="marca" placeholder="Ingrese la Marca" disabled>
+                    </div>
+                    <div class="form-group col-sm-3">
+                        <label for="modelo">Modelo</label>
+                        <input class="form-control" type="text" name="modelo" id="modelo" placeholder="Ingrese el Modelo" disabled>
+                    </div>
+                </div>
+                <span class="badge badge-warning sp text-center" id="sp_id_bienes"></span>
+                <hr />
+                <div class="form-row">
+                    <div class="form-group col-sm-3">
+                        <label for="estado">Detalle de Ubicación</label>
+                        <select class="form-control" name="estado" id="estado">
+                            <option value="Encontrado">Encontrado</option>
+                            <option value="Recuperado">Recuperado</option>
+                            <option value="Otros">Otros</option>
+                        </select>
+                        <span class="badge badge-warning sp" id="sp_detalle"></span>
+                    </div>
+                    <div class="form-group col-sm-3">
+                        <label for="id_inventario">Inventario</label>
+                        <select class="form-control" name="id_inventario" id="id_inventario">
+                            @foreach (var inv in Model.Inv)
+                            {
+                                <option value="@inv.Id_inventario">@inv.Nombre</option>
+                            }
+                        </select>
+                        <span class="badge badge-warning sp" id="sp_id_inventario"></span>
+                    </div>
+                    <div class="form-group col-sm-3">
+                        <label for="fecha">Fecha</label>
+                        <input class="form-control" type="date" name="fecha" id="fecha" placeholder="Ingrese la Fecha">
+                        <span class="badge badge-warning sp" id="sp_fecha"></span>
+                    </div>
+                    <div class="form-group col-sm-3">
+                        <label for="imagen">Adjuntar Imagen</label>
+                        <input class="form-control" type="file" name="imagen" id="imagen" placeholder="Seleccione la imagen">
+                        <span class="badge badge-warning sp" id="sp_imagen"></span>
+                    </div>
+                </div>
+
+
+                <div class="form-row d-flex justify-content-between">
+                    <div class="form-group col-auto">
+                        <button type="submit" class="btn btn-primary">Guardar</button>
+                    </div>
+                </div>
+
+            </form>
+        </div>
+    </div>
+    <!-- /.card -->
+</section>
+<!-- /.content -->
+
+<div class="modal fade" id="mod" role="dialog">
+
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Información</h4>
+            </div>
+            <div class="modal-body">
+                <p id="content">
+                </p>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-primary" id="mod-acept"> Aceptar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="mod_bienes" role="dialog">
+
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Bienes</h4>
+            </div>
+            <div class="modal-body">
+
+
+
+
+                <form action="/Usuario/Consultar_Usuario" method="post" class="" id="buscar">
+
+                    <div class="form-row">
+                        <div class="form-group col-sm-6">
+                            <label for="nombre">Nombre de Bien</label>
+                            <input class="form-control" type="text" name="nombre" id="nombre" placeholder="Ingrese su Nombre">
+                        </div>
+                        <div class="form-group col-sm-3">
+                            <label for="codigo">Codigo</label>
+                            <input class="form-control" type="text" name="codigo" id="codigo" placeholder="Codigo">
+                        </div>
+                        
+                        <div class="col-sm-2 align-self-center align-self-end text-center">
+                            <button type="submit" class="btn btn-primary pr-4 pl-4">Buscar</button>
+                        </div>
+                    </div>
+                </form>
+
+                <div class="row">
+                    <div class="col-12 table-responsive">
+                        <table class="table table-striped" id="tabla_bienes">
+                            <thead>
+                                <tr>
+                                    <th>Nombre</th>
+                                    <th>Codigo</th>
+                                    <th>Categoria</th>
+                                    <th>Opc.</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- /.col -->
+                </div>
+
+
+
+
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-primary" id="mod-acept"> Aceptar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+
+        var array_bienes;
+
+        document.getElementById("registrar").addEventListener("submit", function (e) {
+
+            var url = "@Url.Action("Registrar_Encontrado","Encontrado")";
+
+
+            //var id_bienes = document.getElementById("id_bienes").value;
+            //var id_inventario = document.getElementById("id_inventario").value;
+            //var fecha = document.getElementById("fecha").value;
+            //var estado = document.getElementById("estado").value;
+            //var imagen = document.getElementById("imagen").value;
+
+
+            //var param = "id_bienes=" + id_bienes + "&id_inventario=" + id_inventario + "&fecha=" + fecha +
+            //    "&estado=" + estado + "&imagen=" + imagen;
+
+            param = new FormData(document.getElementById("registrar"));
+
+            var ajax = new XMLHttpRequest();
+
+            ajax.onreadystatechange = function () {
+                if (ajax.readyState == 4) {
+
+                    var response = JSON.parse(ajax.responseText);
+                    if (response.success) {
+                        console.log(response.message);
+                        document.getElementById("content").innerHTML = response.message;
+                        $("#mod").modal({ backdrop: 'static' });
+                        limpiar_spam();
+                    } else {
+                        console.log(response);
+                        limpiar_spam();
+                        for (var prop in response.datos) {
+                            //console.log("propiedad " + prop + " valor " + response.datos[prop]);
+                            document.getElementById(prop).innerHTML = response.datos[prop]
+                        }
+                    }
+                }
+            }
+
+            ajax.open("POST", url, true);
+            //ajax.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+            ajax.send(param);
+
+            e.preventDefault();
+        });
+
+        document.getElementById("btn_buscar").addEventListener("click", function () {
+
+            var tabla = document.getElementById("tabla_bienes");
+            var body_tabla = tabla.getElementsByTagName("tbody")[0];
+            body_tabla.innerHTML = "";
+
+
+            ////////////////////////////////
+
+            var url = "@Url.Action("Consultar_Bienes","Encontrado")";
+
+            var ajax = new XMLHttpRequest();
+
+            ajax.onreadystatechange = function () {
+                if (ajax.readyState == 4) {
+
+                    var response = JSON.parse(ajax.responseText);
+                    if (response.success) {
+                        console.log(response);
+                        $("#mod_bienes").modal("show");
+                        array_bienes = "";
+                        array_bienes = response.datos;
+
+                        for (var i = 0; i < response.datos.length; i++) {
+                            //console.log(response.datos[i].Nombre);
+                            var row = body_tabla.insertRow(i);
+                            var nombre = row.insertCell(0);
+                            var codigo = row.insertCell(1);
+                            var categoria = row.insertCell(2);
+                            var opciones = row.insertCell(3);
+
+                            var objeto = response.datos[i];
+
+
+                            nombre.innerHTML = objeto.Nombre;
+                            codigo.innerHTML = objeto.Codigo;
+                            categoria.innerHTML = objeto.Categoria;
+
+                            var boton = document.createElement("button")
+
+                            boton.type = "button";
+                            boton.className = "btn btn-secondary";
+                            boton.innerHTML = "<i class=\"fa fa-plus\">";
+
+                            boton.onclick = function () {
+                                document.getElementById("nombre").value = objeto.Nombre;
+                                document.getElementById("categoria").value = objeto.Categoria;
+                                document.getElementById("serie").value = objeto.Serie;
+                                document.getElementById("codigo").value = objeto.Codigo;
+                                document.getElementById("estado").value = objeto.Estado;
+                                document.getElementById("marca").value = objeto.Marca;
+                                document.getElementById("modelo").value = objeto.Modelo;
+                                document.getElementById("id_bienes").value = objeto.Id_bienes;
+                            };
+                            //    function (dat) {
+                            //    //document.getElementById("nombre").value = "123";
+                            //    console.log(response.datos[i].Nombre);
+                            //};
+
+
+
+                            opciones.appendChild(boton);
+
+                            body_tabla.appendChild(row);
+
+                        }
+
+
+                        //console.log(response.message);
+                        //document.getElementById("content").innerHTML = response.message;
+                        //$("#mod").modal({ backdrop: 'static' });
+                        //limpiar_spam();
+                    } else {
+                        //console.log(response);
+                        //limpiar_spam();
+                        //for (var prop in response.datos) {
+                        //    //console.log("propiedad " + prop + " valor " + response.datos[prop]);
+                        //    document.getElementById(prop).innerHTML = response.datos[prop]
+                        //}
+
+                        document.getElementById("sp_id_bienes").innerHTML = "Error: No se Cargó el Bien";
+                    }
+                }
+            }
+
+            ajax.open("POST", url, true);
+
+            ajax.send();
+
+        });
+
+        document.getElementById("mod-acept").addEventListener("click", function () {
+            $("#mod").modal("hide");
+
+            document.getElementById("id_bienes").value = "";
+            document.getElementById("id_inventario").value = "";
+            document.getElementById("fecha").value = "";
+            document.getElementById("estado").value = "";
+            document.getElementById("imagen").value = "";
+
+        });
+
+        function limpiar_spam() {
+            var elementos = document.getElementsByClassName("sp");
+            for (i = 0; i < elementos.length ; i++) {
+                elementos.item(i).innerHTML = "";
+            }
+        }
+
+        function eliminar() {
+            alert("hola a todos");
+        }
+
+
+    })
+
+</script>
+

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@id/nav_consultar_asignacion">
+
+    <fragment
+    android:id="@+id/nav_consultar_asignacion"
+    android:name="com.example.proyecto_inventario.ui.Consultar_Asignacion.Consultar_Asignacion"
+    android:label="@string/menu_consultar_asignacion"
+    tools:layout="@layout/fragment_consultar__asignacion" >
+        <action
+            android:id="@+id/action_lista_consulta"
+            app:destination="@id/nav_lista_consulta" />
+    </fragment>
+    <fragment
+        android:id="@+id/nav_lista_consulta"
+        android:name="com.example.proyecto_inventario.ui.Consultar_Asignacion.Lista_Consulta"
+        android:label="@string/menu_lista_consulta"
+        tools:layout="@layout/fragment_lista__consulta" >
+        <action
+            android:id="@+id/action_descripcion_bien"
+            app:destination="@id/nav_descripcion_bien" />
+    </fragment>
+    <fragment
+        android:id="@+id/nav_descripcion_bien"
+        android:name="com.example.proyecto_inventario.ui.Consultar_Asignacion.Descripcion_Bien"
+        android:label="@string/menu_descripcion_bien"
+        tools:layout="@layout/fragment_descripcion__bien" >
+        <action
+            android:id="@+id/action_actualizar_estado"
+            app:destination="@id/nav_actualizar_estado" />
+    </fragment>
+    <fragment
+        android:id="@+id/nav_actualizar_estado"
+        android:name="com.example.proyecto_inventario.ui.Consultar_Asignacion.Actualizar_Estado"
+        android:label="@string/menu_actualizar_estado"
+        tools:layout="@layout/fragment_actualizar__estado" />
+
+
+</navigation>

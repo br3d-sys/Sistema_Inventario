@@ -1,7 +1,10 @@
-﻿using System;
+﻿using iTextSharp.text;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Drawing;
+using System.Runtime.CompilerServices;
 
 namespace Web_Farmacia.Clases
 {
@@ -9,9 +12,13 @@ namespace Web_Farmacia.Clases
     {
         private int id_encontrado;
         private int id_bienes;
+        private string bien;
         private int id_inventario;
+        private string inventario;
         private DateTime fecha;
+        private string codigo;
         private string estado;
+        private System.Drawing.Image imagen;
         private int disponibilidad;
 
         public int Id_encontrado
@@ -40,6 +47,19 @@ namespace Web_Farmacia.Clases
             }
         }
 
+        public string Bien
+        {
+            get
+            {
+                return bien;
+            }
+
+            set
+            {
+                bien = value;
+            }
+        }
+
         public int Id_inventario
         {
             get
@@ -50,6 +70,19 @@ namespace Web_Farmacia.Clases
             set
             {
                 id_inventario = value;
+            }
+        }
+
+        public string Inventario
+        {
+            get
+            {
+                return inventario;
+            }
+
+            set
+            {
+                inventario = value;
             }
         }
 
@@ -76,6 +109,32 @@ namespace Web_Farmacia.Clases
             set
             {
                 estado = value;
+            }
+        }
+
+        public string Codigo
+        {
+            get
+            {
+                return codigo;
+            }
+
+            set
+            {
+                codigo = value;
+            }
+        }
+
+        public System.Drawing.Image Imagen
+        {
+            get
+            {
+                return imagen;
+            }
+
+            set
+            {
+                imagen = value;
             }
         }
 

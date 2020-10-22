@@ -25,6 +25,8 @@ namespace Web_Farmacia.Controllers
         private Area obj_are;
         private List<Inventario> inv;
         private Inventario obj_inv;
+        private List<Encontrado> enc;
+        private Encontrado obj_enc;
 
         public List<Usuario> Usu
         {
@@ -191,6 +193,30 @@ namespace Web_Farmacia.Controllers
             set
             {
                 obj_inv = value;
+            }
+        }
+
+        public List<Encontrado> Enc
+        {
+            get
+            {
+                return enc;
+            }
+            set
+            {
+                enc = value;
+            }
+        }
+
+        public Encontrado Obj_enc
+        {
+            get
+            {
+                return obj_enc;
+            }
+            set
+            {
+                obj_enc = value;
             }
         }
     }

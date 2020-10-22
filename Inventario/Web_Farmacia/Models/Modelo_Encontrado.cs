@@ -1,5 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
+using System.Drawing.Imaging;
+using System.IO;
 using System.Linq;
 using System.Web;
 using MySql.Data.MySqlClient;
@@ -33,6 +36,14 @@ namespace Web_Farmacia.Models
                     cmd.Parameters.AddWithValue("_id_inventario", enc.Id_inventario);
                     cmd.Parameters.AddWithValue("_fecha", enc.Fecha);
                     cmd.Parameters.AddWithValue("_estado", enc.Estado);
+
+                    using(MemoryStream ms = new MemoryStream())
+                    {
+                        enc.Imagen.Save(ms, ImageFormat.Jpeg);
+                        byte[] img_byte = ms.ToArray();
+                        cmd.Parameters.AddWithValue("_imagen", img_byte);
+
+                    }
 
                     if (cmd.ExecuteNonQuery() > 0)
                     {
@@ -77,8 +88,11 @@ namespace Web_Farmacia.Models
                             Id_bienes = rd.GetInt32("id_bienes"),
                             Id_inventario = rd.GetInt32("id_inventario"),
                             Fecha = rd.GetDateTime("fecha"),
-                            Estado = rd.GetString("estado")
-                           
+                            Estado = rd.GetString("estado"),
+                            Bien = rd.GetString("bien"),
+                            Inventario = rd.GetString("inventario"),
+                            Codigo = rd.GetString("codigo")
+
                         });
                     }
 
@@ -113,7 +127,15 @@ namespace Web_Farmacia.Models
                     cmd.Parameters.AddWithValue("_id_inventario", enc.Id_inventario);
                     cmd.Parameters.AddWithValue("_fecha", enc.Fecha);
                     cmd.Parameters.AddWithValue("_estado", enc.Estado);
-                   
+
+                    using (MemoryStream ms = new MemoryStream())
+                    {
+                        enc.Imagen.Save(ms, ImageFormat.Jpeg);
+                        byte[] img_byte = ms.ToArray();
+                        cmd.Parameters.AddWithValue("_imagen", img_byte);
+
+                    }
+
                     if (cmd.ExecuteNonQuery() > 0)
                     {
                         return true;
@@ -187,12 +209,24 @@ namespace Web_Farmacia.Models
 
                     while (rd.Read())
                     {
+
+                        byte[] arr_byte =(byte[]) rd.GetValue(8);
+
+                        using(MemoryStream ms = new MemoryStream(arr_byte))
+                        {
+                            enc.Imagen = Image.FromStream(ms);
+                        }
+
                         enc.Id_encontrado = rd.GetInt32("id_encontrado");
                         enc.Id_bienes = rd.GetInt32("id_bienes");
                         enc.Id_inventario = rd.GetInt32("id_inventario");
                         enc.Fecha = rd.GetDateTime("fecha");
                         enc.Estado = rd.GetString("estado");
-                        
+                        enc.Bien = rd.GetString("bien");
+                        enc.Inventario = rd.GetString("inventario");
+                        enc.Codigo = rd.GetString("codigo");
+
+
                     }
 
                     rd.Close();

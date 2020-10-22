@@ -1,0 +1,20 @@
+<resources>
+    <string name="app_name">Proyecto_Inventario</string>
+    <string name="title_activity_menu__principal">Menu_Principal</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="menu_home">Home</string>
+    <string name="menu_gallery">Gallery</string>
+    <string name="menu_slideshow">Slideshow</string>
+    <string name="menu_consultar_asignacion">Consultar</string>
+    <string name="menu_lista_consulta">Bienes Encontrados</string>
+    <string name="menu_descripcion_bien">Descripción</string>
+    <string name="menu_actualizar_estado">Actualizar Estado</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_margin="10sp"
+        android:background="@drawable/textbox"
+        >
+        <ImageView
+            android:layout_width="100sp"
+            android:layout_height="70sp"
+            android:src="@drawable/silla_reclinable"
+            android:background="@drawable/textbox"
+            android:padding="5sp"
+            android:layout_margin="10sp"
+            android:id="@+id/img_modelo">
+
+        </ImageView>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginTop="10sp"
+            android:layout_marginRight="10sp"
+            android:layout_marginBottom="10sp"
+            android:background="@drawable/textbox"
+            android:padding="5sp"
+            >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="Codigo:"
+                android:id="@+id/codigo_modelo"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="Nombre:"
+                android:id="@+id/nombre_modelo"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="Color:"
+                android:id="@+id/color_modelo"/>
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+</LinearLayout>
