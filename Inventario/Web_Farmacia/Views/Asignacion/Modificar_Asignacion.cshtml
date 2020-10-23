@@ -4,5 +4,270 @@
     Layout = "~/Views/Main.cshtml";
 }
 
-<h2>Modificar_Asignacion</h2>
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>Modificar Asignacion</h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="#">Asignacion</a></li>
+                    <li class="breadcrumb-item active">Modificar Asignacion</li>
+                </ol>
+            </div>
+        </div>
+    </div><!-- /.container-fluid -->
+</section>
+@*model Web_Farmacia.Controllers.Info*@
+<!-- Main content -->
+<section class="content">
+    <!-- Default box -->
+    <div class="card">
+        <div class="card-header">
+            <h3 class="card-title">Modificar</h3>
+            <div class="card-tools">
+                <button type="button" class="btn btn-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse">
+                    <i class="fa fa-minus"></i>
+                </button>
+                <button type="button" class="btn btn-tool" data-widget="remove" data-toggle="tooltip" title="Remove">
+                    <i class="fa fa-times"></i>
+                </button>
+            </div>
+        </div>
+        <div class="card-body">
+
+
+            <form method="post" enctype="multipart/form-data" id="registrar">
+
+
+                <div class="d-flex mb-4">
+                    <a href="/Asignacion/Modificar_Asigancion" class="btn btn-secondary ml-auto"><i class="fa fa-caret-left"></i> Lista de Asignaciones</a>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group col-sm-6">
+                        <label for="id_gerencia">Gerencia</label>
+                        <select class="form-control" name="id_gerencia" id="id_gerencia">
+                            foreach  (var ger in Model.Ger)
+                            {
+                            <option value="ger.Id_gerencia">are.Gerencia</option>
+                            }
+                        </select>
+                        <span class="badge badge-warning sp" id="sp_gerencia"></span>
+                    </div>
+                    <div class="form-group col-sm-6">
+                        <label for="id_area">Area</label>
+                        <select class="form-control" name="id_area" id="id_area">
+                            foreach (var are in Model.Are)
+                            {
+                            <option value="are.Id_area">are.Area</option>
+                            }
+                        </select>
+                        <span class="badge badge-warning sp" id="sp_area"></span>
+                    </div>
+                </div>
+                <div class="col-auto d-flex justify-content-between">
+                    <h4 class="col-auto pt-1 mr-2">Buscar Personal</h4>
+                    <div class="col-auto">
+                        <button type="button" class="btn btn-secondary" id="btn_buscar"><i class="fas fa-search"></i></button>
+                    </div>
+                </div>
+                <div class="form-row">
+
+                    <div class="form-group col-sm-4">
+                        <label for="nombre">Nombre</label>
+                        <input class="form-control" type="text" name="nombre" id="nombre" placeholder="Ingrese su Nombre">
+                        <span class="badge badge-warning sp" id="sp_nombre"></span>
+                    </div>
+
+                    <div class="form-group col-sm-4">
+                        <label for="t_documento">Tipo de Documento</label>
+                        <select class="form-control" name="t_documento" id="t_documento">
+                            <option value="DNI">DNI</option>
+                            <option value="LE">LE</option>
+                            <option value="RUC">RUC</option>
+                        </select>
+                        <span class="badge badge-warning sp" id="sp_t_documento"></span>
+                    </div>
+                    <div class="form-group col-sm-4">
+                        <label for="n_documento">Numero de Documento</label>
+                        <input class="form-control" type="number" name="n_documento" id="n_documento" placeholder="" minlength="8" maxlength="10">
+                        <span class="badge badge-warning sp" id="sp_n_documento"></span>
+                    </div>
+
+                </div>
+                <div class="form-row">
+
+                    <div class="form-group col-sm-3">
+                        <label for="cargo">Cargo</label>
+                        <input class="form-control" type="text" name="cargo" id="cargo" placeholder="">
+                        <span class="badge badge-warning sp" id="sp_cargo"></span>
+                    </div>
+
+                    <div class="form-group col-sm-3">
+                        <label for="celular">Celular</label>
+                        <input class="form-control" type="number" name="celular" id="celular" placeholder="" min="9" maxlength="9">
+                        <span class="badge badge-warning sp" id="sp_celular"></span>
+                    </div>
+                    <div class="form-group col-sm-4">
+                        <label for="direccion">Direccion</label>
+                        <input class="form-control" type="text" name="direccion" id="direccion" placeholder="">
+                        <span class="badge badge-warning sp" id="sp_direccion"></span>
+                    </div>
+
+                    <div class="form-group col-sm-2">
+                        <label for="edad">Edad</label>
+                        <input class="form-control" type="number" name="edad" id="edad" placeholder="Edad" maxlength="2">
+                        <span class="badge badge-warning sp" id="sp_edad"></span>
+                    </div>
+
+                </div>
+                <div class="col-auto d-flex justify-content-between">
+                    <h4 class="col-auto pt-1 mr-2">Buscar Bien</h4>
+                    <div class="col-auto">
+                        <button type="button" class="btn btn-secondary" id="btn_buscar"><i class="fas fa-search"></i></button>
+                    </div>
+                </div>
+
+                <div class="form-row">
+
+                    <div class="form-group col-sm-3">
+                        <label for="direccion">Nombre</label>
+                        <input class="form-control" type="text" name="nombre" id="nombre" placeholder="">
+                        <span class="badge badge-warning sp" id="sp_nombre"></span>
+                    </div>
+                    <div class="form-group col-sm-3">
+                        <label for="correo">Categoria</label>
+                        <input class="form-control" type="text" name="categoria" id="categoria" placeholder="">
+                        <span class="badge badge-warning sp" id="sp_categoria"></span>
+                    </div>
+                    <div class="form-group col-sm-3">
+                        <label for="correo">Codigo</label>
+                        <input class="form-control" type="text" name="codigo" id="codigo" placeholder="">
+                        <span class="badge badge-warning sp" id="sp_codigo"></span>
+                    </div>
+                    <div class="form-group col-sm-3">
+                        <label for="estado">Estado</label>
+                        <input class="form-control" type="text" name="Estado" id="estado" placeholder="">
+                        <span class="badge badge-warning sp" id="sp_estado"></span>
+                    </div>
+
+                </div>
+
+                <div class="form-row d-flex justify-content-lg-end">
+                    <div class="form-group col-auto">
+                        <button type="submit" class="btn btn-primary">Guardar</button>
+                    </div>
+                    <div class="form-group col-auto">
+                        <button type="submit" class="btn btn-secondary">Limpiar</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <!-- /.card -->
+</section>
+<!-- /.content -->
+
+<div class="modal fade" id="mod" role="dialog">
+
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Información</h4>
+            </div>
+            <div class="modal-body">
+                <p id="content"></p>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-primary" id="mod-acept"> Aceptar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+
+    document.addEventListener("DOMContentLoaded",function(){
+
+           document.getElementById("registrar").addEventListener("submit", function (e) {
+
+            var url = "@Url.Action("Registrar_Personal","Personal")";
+
+               var id_area = document.getElementById("id_area").value;
+               var nombre = document.getElementById("nombre").value;
+               var cargo = document.getElementById("cargo").value;
+               var t_documento = document.getElementById("t_documento").value;
+               var n_documento = document.getElementById("n_documento").value;
+               var edad = document.getElementById("edad").value;
+               var sexo = document.getElementById("sexo").value;
+               var est_civil = document.getElementById("est_civil").value;
+               var celular = document.getElementById("celular").value;
+               var direccion = document.getElementById("direccion").value;
+               var correo = document.getElementById("correo").value;
+
+               var param = "id_area=" + id_area + "&nombre=" + nombre + "&cargo=" + cargo + "&t_documento=" + t_documento +
+                   "&n_documento=" + n_documento + "&edad=" + edad + "&sexo=" + sexo + "&est_civil=" + est_civil +
+                   "&celular=" + celular + "&direccion=" + direccion + "&correo=" + correo
+
+                var ajax = new XMLHttpRequest();
+
+                ajax.onreadystatechange = function () {
+                    if (ajax.readyState == 4) {
+
+                        var response = JSON.parse(ajax.responseText);
+                        if (response.success) {
+                            console.log(response.message);
+
+                            document.getElementById("content").innerHTML = response.message;
+                            $("#mod").modal({ backdrop: 'static' });
+                            limpiar_spam();
+                        } else {
+                            console.log(response);
+                            limpiar_spam();
+                            for (var prop in response.datos) {
+                                //console.log("propiedad " + prop + " valor " + response.datos[prop]);
+                                document.getElementById(prop).innerHTML = response.datos[prop]
+                            }
+                        }
+                    }
+                }
+
+                ajax.open("POST", url, true);
+                ajax.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+                ajax.send(param);
+
+                e.preventDefault();
+        })
+
+        document.getElementById("mod-acept").addEventListener("click", function () {
+            $("#mod").modal("hide");
+
+           id_area = document.getElementById("id_area").value="";
+           nombre = document.getElementById("nombre").value="";
+           cargo = document.getElementById("cargo").value="";
+           t_documento = document.getElementById("t_documento").value="";
+           n_documento = document.getElementById("n_documento").value="";
+           edad = document.getElementById("edad").value="";
+           sexo = document.getElementById("sexo").value="";
+           est_civil = document.getElementById("est_civil").value="";
+           celular = document.getElementById("celular").value="";
+           direccion = document.getElementById("direccion").value="";
+           correo = document.getElementById("correo").value="";
+
+        })
+
+        function limpiar_spam() {
+            var elementos = document.getElementsByClassName("sp");
+            for (i = 0; i < elementos.length ; i++) {
+                elementos.item(i).innerHTML = "";
+            }
+        }
+
+    })
+
+</script>
+
 
