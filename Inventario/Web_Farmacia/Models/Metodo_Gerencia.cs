@@ -104,8 +104,9 @@ namespace Web_Farmacia.Models
 
                         cmd.Parameters.AddWithValue("_nombre", are.Nombre);
                         cmd.Parameters.AddWithValue("_descripcion", are.Descripcion);
+                        cmd.Parameters.AddWithValue("_id_gerencia", are.Id_gerencia);
 
-                        if (cmd.ExecuteNonQuery() > 0)
+                    if (cmd.ExecuteNonQuery() > 0)
                         {
                             return true;
                         }

@@ -18,9 +18,9 @@ namespace Web_Farmacia.Clases
         private DateTime fecha;
         private string codigo;
         private string estado;
-        private System.Drawing.Image imagen;
+        private byte[] imagen_byte;
         private int disponibilidad;
-
+         
         public int Id_encontrado
         {
             get
@@ -125,16 +125,16 @@ namespace Web_Farmacia.Clases
             }
         }
 
-        public System.Drawing.Image Imagen
+        public byte[] Imagen_byte
         {
             get
             {
-                return imagen;
+                return imagen_byte;
             }
 
             set
             {
-                imagen = value;
+                imagen_byte = value;
             }
         }
 

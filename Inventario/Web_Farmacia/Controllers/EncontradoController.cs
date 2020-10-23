@@ -16,7 +16,8 @@ namespace Web_Farmacia.Controllers
     public class EncontradoController : Controller
     {
         Encontrado v_enc = new Encontrado();
-
+        byte[] arr;
+        int id;
         // GET: Usuario
         public ActionResult Index()
         {
@@ -75,21 +76,34 @@ namespace Web_Farmacia.Controllers
 
         public ActionResult Ver_Encontrado(int? id)
         {
+            
             Modelo_Encontrado me = new Modelo_Encontrado();
+            Modelo_Bienes mb = new Modelo_Bienes();
+            Bienes bie;
 
             if (id != null)
             {
-                v_enc = me.obtener(id);
 
+
+
+                v_enc = me.obtener(id);
+                bie = mb.obtener(v_enc.Id_bienes);
                 Info datos = new Info();
                 datos.Obj_enc = v_enc;
+                datos.Obj_bie = bie;
+                ////arr = v_enc.arr_byte;
+                //Image imagen;
 
-                using (MemoryStream ms = new MemoryStream())
-                {
-                    v_enc.Imagen.Save(ms, ImageFormat.Jpeg);
-                    ms.Position = 0;
-                }
+                //MemoryStream ms = new MemoryStream(v_enc.arr_byte);
 
+                //    imagen = Image.FromStream(ms);
+
+                //ms = new MemoryStream();
+                //imagen.Save(ms, ImageFormat.Jpeg);
+                //ms.Position = 0;
+
+
+                //return File(ms,"image/jpg");
 
                 return View(datos);
             }
@@ -98,7 +112,6 @@ namespace Web_Farmacia.Controllers
                 return RedirectToAction("Consultar_Encontrado");
             }
 
-            //return View();
         }
         [HttpPost]
         public ActionResult Modificar_Encontrado(int id, int id_bienes, int id_inventario, DateTime fecha, string estado, HttpPostedFileBase imagen)
@@ -136,12 +149,21 @@ namespace Web_Farmacia.Controllers
 
                     Image img = cambiar_tamaño(imagen);
 
+                    using(MemoryStream ms = new MemoryStream())
+                    {
+
+                        img.Save(ms, ImageFormat.Jpeg);
+                        byte[] arr = ms.ToArray();
+
                     enc.Id_encontrado = id;
                     enc.Id_bienes = id_bienes == 0 ? 0 : id_bienes;
                     enc.Id_inventario = id_inventario == 0 ? 0 : id_inventario;
                     enc.Fecha = fecha == null ? DateTime.Now : fecha;
                     enc.Estado = estado == null ? "" : estado;
-                    enc.Imagen = img == null ? null : img;
+                    enc.Imagen_byte = arr == null ? null : arr;
+                    }
+
+                    
 
                     if (me.actualizar(enc))
                     {
@@ -213,11 +235,18 @@ namespace Web_Farmacia.Controllers
 
                 Image img = cambiar_tamaño(imagen);
 
+                using (MemoryStream ms = new MemoryStream())
+                {
+                    img.Save(ms, ImageFormat.Jpeg);
+                    byte[] img_byte = ms.ToArray();
+
                 enc.Id_bienes = id_bienes == 0 ? 0 : id_bienes;
                 enc.Id_inventario = id_inventario == 0 ? 0 : id_inventario;
                 enc.Fecha = fecha == null ? DateTime.Now : fecha;
                 enc.Estado = estado == null ? "" : estado;
-                enc.Imagen = img == null ? null : img;
+                enc.Imagen_byte = img_byte == null ? null : img_byte;
+
+                }
 
                 if (me.guardar(enc))
                 {
@@ -300,6 +329,25 @@ namespace Web_Farmacia.Controllers
             }
         }
 
+        public ActionResult ver_imagen(int id)
+        {
+            Modelo_Encontrado me = new Modelo_Encontrado();
+            Encontrado enc;
+
+            enc = me.obtener(id);
+
+            arr = enc.Imagen_byte;
+
+            Image imagen;
+            MemoryStream ms = new MemoryStream(arr);
+            imagen = Image.FromStream(ms);
+
+            ms = new MemoryStream();
+            imagen.Save(ms, ImageFormat.Jpeg);
+            ms.Position = 0;
+
+            return File(ms,"image/jpg");
+        }
 
     }
 }

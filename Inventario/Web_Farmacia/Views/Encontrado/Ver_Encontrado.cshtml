@@ -51,17 +51,17 @@
 
                         <div class="form-group col-sm-5">
                             <label for="nombre">Nombre</label>
-                            <input class="form-control" type="text" name="nombre" id="nombre" placeholder="Nombre" disabled value="@Model.Obj_enc.Bien">
+                            <input class="form-control" type="text" name="nombre" id="nombre" placeholder="Nombre" disabled value="@Model.Obj_bie.Nombre">
                             <span class="badge badge-warning sp" id="sp_nombre"></span>
                         </div>
                         <div class="form-group col-sm-3">
                             <label for="id_categoria">Categoria</label>
-                            <input class="form-control" type="text" name="categoria" id="categoria" placeholder="Categoria" disabled>
+                            <input class="form-control" type="text" name="categoria" id="categoria" placeholder="Categoria" disabled value="@Model.Obj_bie.Categoria">
                             <span class="badge badge-warning sp" id="sp_categoria"></span>
                         </div>
                         <div class="form-group col-sm-4">
                             <label for="serie">Serie</label>
-                            <input class="form-control" type="text" name="serie" id="serie" placeholder="Serie" disabled>
+                            <input class="form-control" type="text" name="serie" id="serie" placeholder="Serie" disabled value="@Model.Obj_bie.Serie">
                             <span class="badge badge-warning sp" id="sp_serie"></span>
                         </div>
 
@@ -69,22 +69,22 @@
                     <div class="form-row">
                         <div class="form-group col-sm-3">
                             <label for="codigo">Codigo</label>
-                            <input class="form-control" type="text" name="codigo" id="codigo" placeholder="Ingrese el Codigo" disabled />
+                            <input class="form-control" type="text" name="codigo" id="codigo" placeholder="Ingrese el Codigo" disabled value="@Model.Obj_bie.Codigo"/>
                             <span class="badge badge-warning sp" id="sp_codigo"></span>
                         </div>
                         <div class="form-group col-sm-3">
                             <label for="estado">Estado</label>
-                            <input class="form-control" type="text" name="estado" id="estado" placeholder="Estado" disabled>
+                            <input class="form-control" type="text" name="estado" id="estado" placeholder="Estado" disabled value="@Model.Obj_bie.Estado">
                             <span class="badge badge-warning sp" id="sp_estado"></span>
                         </div>
                         <div class="form-group col-sm-3">
                             <label for="marca">Marca</label>
-                            <input class="form-control" type="text" name="marca" id="marca" placeholder="Ingrese la Marca" disabled>
+                            <input class="form-control" type="text" name="marca" id="marca" placeholder="Ingrese la Marca" disabled value="@Model.Obj_bie.Marca">
                             <span class="badge badge-warning sp" id="sp_marca"></span>
                         </div>
                         <div class="form-group col-sm-3">
                             <label for="modelo">Modelo</label>
-                            <input class="form-control" type="text" name="modelo" id="modelo" placeholder="Ingrese el Modelo" disabled>
+                            <input class="form-control" type="text" name="modelo" id="modelo" placeholder="Ingrese el Modelo" disabled value="@Model.Obj_bie.Modelo">
                             <span class="badge badge-warning sp" id="sp_modelo"></span>
                         </div>
                     </div>
@@ -92,34 +92,26 @@
                     <div class="form-row">
                         <div class="form-group col-sm-3">
                             <label for="estado">Detalle de Ubicación</label>
-                            <select class="form-control" name="detalle" id="detalle">
-                                <option value="Encontrado">Encontrado</option>
-                                <option value="Recuperado">Recuperado</option>
-                                <option value="Otros">Otros</option>
-                            </select>
+                            <input class="form-control" type="text" name="estado" id="estado" placeholder="Ingrese el Detalle" disabled value="@Model.Obj_enc.Estado">
                             <span class="badge badge-warning sp" id="sp_detalle"></span>
                         </div>
                         <div class="form-group col-sm-3">
                             <label for="inventario">Inventario</label>
-                            <select class="form-control" name="inventario" id="inventario">
-                                <option value="1">2018-1</option>
-                                <option value="2">2018-2</option>
-                                <option value="3">Otros</option>
-                            </select>
+                            <input class="form-control" type="text" name="inventario" id="inventario" placeholder="Ingrese el Inventario" disabled value="@Model.Obj_enc.Inventario">
                             <span class="badge badge-warning sp" id="sp_inventario"></span>
                         </div>
                         <div class="form-group col-sm-3">
                             <label for="fecha">Fecha</label>
-                            <input class="form-control" type="date" name="fecha" id="fecha" placeholder="Ingrese la Fecha">
+                            <input class="form-control" type="date" name="fecha" id="fecha" placeholder="Ingrese la Fecha" disabled value="@Model.Obj_enc.Fecha">
                             <span class="badge badge-warning sp" id="sp_fecha"></span>
                         </div>
                         <div class="form-group col-sm-3">
                             <label for="imagen">Adjuntar Imagen</label>
-                            <input class="form-control" type="file" name="imagen" id="imagen" placeholder="Seleccione la imagen">
+                            <input class="form-control" type="file" name="imagen" id="imagen" placeholder="Seleccione la imagen" disabled>
                             <span class="badge badge-warning sp" id="sp_imagen"></span>
                         </div>
                     </div>
-                    <img src="@Model.Obj_enc.Imagen" alt="Alternate Text" />
+                    <img src="@Url.Action("ver_imagen","Encontrado", new {id = Model.Obj_enc.Id_encontrado})" alt="Alternate Text" />
 
 
                     <div class="form-row d-flex justify-content-between">

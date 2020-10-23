@@ -111,8 +111,9 @@ namespace Web_Farmacia.Models
                         cmd.Parameters.AddWithValue("_nombre", are.Nombre);
                         cmd.Parameters.AddWithValue("_ubicacion", are.Ubicacion);
                         cmd.Parameters.AddWithValue("_descripcion", are.Descripcion);
+                        cmd.Parameters.AddWithValue("_id_area", are.Id_area);
 
-                        if (cmd.ExecuteNonQuery() > 0)
+                    if (cmd.ExecuteNonQuery() > 0)
                         {
                             return true;
                         }

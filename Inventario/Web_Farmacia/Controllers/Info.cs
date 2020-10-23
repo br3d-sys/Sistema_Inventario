@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 using Web_Farmacia.Clases;
 
 namespace Web_Farmacia.Controllers
@@ -11,7 +13,7 @@ namespace Web_Farmacia.Controllers
 
        
         private Categoria obj_cat;
-        public string val;
+        public FileStreamResult val;
         private List<Usuario> usu;
         private Usuario obj_usu;
         private List<Personal> per;
@@ -27,6 +29,7 @@ namespace Web_Farmacia.Controllers
         private Inventario obj_inv;
         private List<Encontrado> enc;
         private Encontrado obj_enc;
+
 
         public List<Usuario> Usu
         {
