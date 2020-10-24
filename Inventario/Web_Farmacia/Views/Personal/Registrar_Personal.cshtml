@@ -20,7 +20,7 @@
         </div>
     </div><!-- /.container-fluid -->
 </section>
-model Web_Farmacia.Controllers.Info
+@model Web_Farmacia.Controllers.Info
 <!-- Main content -->
 <section class="content">
     <!-- Default box -->
@@ -54,7 +54,7 @@ model Web_Farmacia.Controllers.Info
                     <div class="form-group col-sm-3">
                         <label for="id_gerencia">Gerencia</label>
                         <select class="form-control" name="id_gerencia" id="id_gerencia">
-                            foreach  (var ger in Model.Ger)
+                            @foreach  (var ger in Model.Ger)
                             {
                                 <option value="ger.Id_gerencia">ger.Nombre</option>
                             }
@@ -64,7 +64,7 @@ model Web_Farmacia.Controllers.Info
                     <div class="form-group col-sm-3">
                         <label for="id_area">Area</label>
                         <select class="form-control" name="id_area" id="id_area">
-                           foreach (var are in Model.Are)
+                           @foreach (var are in Model.Are)
                             {
                                 <option value="are.Id_area">are.Nombre</option>
                             }

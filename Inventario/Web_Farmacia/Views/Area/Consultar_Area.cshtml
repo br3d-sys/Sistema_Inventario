@@ -56,8 +56,10 @@
                     <div class="form-group col-sm-4">
                         <label for="id_gerencia">Gerencia</label>
                         <select class="form-control" name="id_gerencia" id="id_gerencia">
-                            <option value="1">Gerencia de Administración</option>
-                            <option value="2">Gerencia de Desarrollo Social</option>
+                            @foreach (var gerencia in Model.Ger)
+                            {
+                                <option value="@gerencia.Id_gerencia">@gerencia.Nombre</option>
+                            }
                         </select>
                     </div>
                     <div class="col-sm-2 align-self-center align-self-end text-center">

@@ -21,14 +21,18 @@ namespace Web_Farmacia.Controllers
         public ActionResult Consultar_Area()
         {
             List<Area> are;
+            List<Gerencia> ger;
             Modelo_Area ma = new Modelo_Area();
+            Metodo_Gerencia mg = new Metodo_Gerencia();
 
             Info datos = new Info();
             are = ma.listar();
+            ger = mg.listar();
 
             ViewBag.eliminar = TempData["Eliminar"];
 
             datos.Are = are;
+            datos.Ger = ger;
 
             return View(datos);
 
@@ -37,16 +41,19 @@ namespace Web_Farmacia.Controllers
         [HttpPost]
         public ActionResult Consultar_Area(string nombre, int id_gerencia)
         {
-
+            List<Gerencia> ger;
             List<Area> are;
             Modelo_Area ma = new Modelo_Area();
+            Metodo_Gerencia mg = new Metodo_Gerencia();
 
             Info datos = new Info();
             are = ma.buscar(nombre, id_gerencia);
+            ger = mg.listar();
 
             ViewBag.eliminar = TempData["Eliminar"];
 
             datos.Are = are;
+            datos.Ger = ger;
 
             return View(datos);
         }
