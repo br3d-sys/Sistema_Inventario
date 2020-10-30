@@ -409,7 +409,7 @@
     <Content Include="Views\Area\Modificar_Area.cshtml" />
     <Content Include="Views\Asignacion\Consultar_Asignacion.cshtml" />
     <Content Include="Views\Area\Registrar_Area.cshtml" />
-    <Content Include="Views\Asignacion\Modificar_Asignacion.cshtml" />
+    <Content Include="Views\Asignacion\Ver_Asignacion.cshtml" />
     <Content Include="Views\Asignacion\Registrar_Asignacion.cshtml" />
     <Content Include="Views\Categoria\Consultar_Categoria.cshtml" />
     <Content Include="Views\Categoria\Modificar_Categoria.cshtml" />

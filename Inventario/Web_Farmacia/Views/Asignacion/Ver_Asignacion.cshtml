@@ -1,0 +1,149 @@
+﻿
+@{
+    ViewBag.Title = "Ver_Asignacion";
+    Layout = "~/Views/Main.cshtml";
+}
+
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>Visualizar Asignacion</h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="#">Asignacion</a></li>
+                    <li class="breadcrumb-item active">Visualizar Asignacion</li>
+                </ol>
+            </div>
+        </div>
+    </div><!-- /.container-fluid -->
+</section>
+@model Web_Farmacia.Controllers.Info
+<!-- Main content -->
+<section class="content">
+    <!-- Default box -->
+    <div class="card">
+        <div class="card-header">
+            <h3 class="card-title">Asignación</h3>
+            <div class="card-tools">
+                <button type="button" class="btn btn-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse">
+                    <i class="fa fa-minus"></i>
+                </button>
+                <button type="button" class="btn btn-tool" data-widget="remove" data-toggle="tooltip" title="Remove">
+                    <i class="fa fa-times"></i>
+                </button>
+            </div>
+        </div>
+        <div class="card-body">
+
+
+            <form method="post" enctype="multipart/form-data" id="registrar">
+
+
+                <div class="d-flex mb-4">
+                    <a href="@Url.Action("Consultar_Asignacion", "Asignacion")"  class="btn btn-secondary ml-auto"><i class="fa fa-caret-left"></i> Lista de Asignaciones</a>
+                </div>
+
+                <div class="form-row">
+
+                    <input class="form-control" type="hidden" name="id" id="id" value="">
+
+                    <div class="form-group col-sm-6">
+                        <label for="gerencia">Gerencia</label>
+                        <input class="form-control" type="text" name="gerencia" id="gerencia" placeholder="Gerencia" value="@Model.Obj_asi.Gerencia" disabled>
+                    </div>
+                    <div class="form-group col-sm-6">
+                        <label for="area">Area</label>
+                        <input class="form-control" type="text" name="area" id="area" placeholder="Area" value="@Model.Obj_asi.Area" disabled>
+                    </div>
+                </div>
+                <hr />
+                <div class="form-row">
+                    <div class="col-auto">
+                        <h4 class="col-auto pt-1 mr-2">Personal</h4>
+                    </div>
+                </div>
+                <div class="form-row">
+
+                    <div class="form-group col-sm-4">
+                        <label for="nombre">Nombre</label>
+                        <input class="form-control" type="text" name="nombre" id="nombre" placeholder="Nombre" value="@Model.Obj_per.Nombre" disabled>
+                    </div>
+
+                    <div class="form-group col-sm-4">
+                        <label for="t_documento">Tipo de Documento</label>
+                        <input class="form-control" type="text" name="t_documento" id="t_documento" value="@Model.Obj_per.T_documento" disabled>
+                    </div>
+                    <div class="form-group col-sm-4">
+                        <label for="n_documento">Numero de Documento</label>
+                        <input class="form-control" type="number" name="n_documento" id="n_documento" value="@Model.Obj_per.N_documento" disabled>
+                    </div>
+
+                </div>
+                <div class="form-row">
+
+                    <div class="form-group col-sm-3">
+                        <label for="cargo">Cargo</label>
+                        <input class="form-control" type="text" name="cargo" id="cargo" value="@Model.Obj_per.Cargo" disabled>
+                    </div>
+
+                    <div class="form-group col-sm-3">
+                        <label for="celular">Celular</label>
+                        <input class="form-control" type="text" name="celular" id="celular" value="@Model.Obj_per.Celular" disabled>
+                    </div>
+                    <div class="form-group col-sm-4">
+                        <label for="direccion">Direccion</label>
+                        <input class="form-control" type="text" name="direccion" id="direccion" value="@Model.Obj_per.Direccion" disabled>
+                    </div>
+
+                    <div class="form-group col-sm-2">
+                        <label for="edad">Edad</label>
+                        <input class="form-control" type="text" name="edad" id="edad" value="@Model.Obj_per.Edad" disabled>
+                    </div>
+
+                </div>
+                <hr />
+                <div class="form-row">
+                    <div class="col-auto">
+                        <h4 class="col-auto pt-1 mr-2">Bien</h4>
+                    </div>
+                </div>
+                <div class="form-row">
+
+                    <div class="form-group col-sm-3">
+                        <label for="direccion">Nombre</label>
+                        <input class="form-control" type="text" name="nombre" id="nombre" value="@Model.Obj_bie.Nombre" disabled>
+                    </div>
+                    <div class="form-group col-sm-3">
+                        <label for="categoria">Categoria</label>
+                        <input class="form-control" type="text" name="categoria" id="categoria" value="@Model.Obj_bie.Categoria" disabled>
+                    </div>
+                    <div class="form-group col-sm-3">
+                        <label for="correo">Codigo</label>
+                        <input class="form-control" type="text" name="codigo" id="codigo" value="@Model.Obj_bie.Codigo" disabled>
+                    </div>
+                    <div class="form-group col-sm-3">
+                        <label for="estado">Estado</label>
+                        <input class="form-control" type="text" name="estado" id="estado" value="@Model.Obj_bie.Estado" disabled>
+                    </div>
+
+                </div>
+            </form>
+        </div>
+    </div>
+    <!-- /.card -->
+</section>
+<!-- /.content -->
+
+
+<script>
+
+    document.addEventListener("DOMContentLoaded", function () {
+
+    });
+
+</script>
+
+

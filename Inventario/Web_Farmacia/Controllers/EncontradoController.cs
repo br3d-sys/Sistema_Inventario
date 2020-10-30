@@ -11,6 +11,7 @@ using System.Web.Mvc;
 using Web_Farmacia.Clases;
 using Web_Farmacia.Models;
 
+
 namespace Web_Farmacia.Controllers
 {
     public class EncontradoController : Controller
@@ -268,6 +269,92 @@ namespace Web_Farmacia.Controllers
         }
 
         [HttpPost]
+        public ActionResult Registrar_Encontrado_Baja(int id_bien, int id_inventario, DateTime ? mod_fecha, string mod_estado,string mod_descripcion,
+            HttpPostedFileBase mod_imagen,  string tipo_documento,string num_documento, HttpPostedFileBase adj_doc)
+        {
+            Encontrado enc = new Encontrado();
+            Modelo_Encontrado me = new Modelo_Encontrado();
+
+            string message;
+            SortedList<string, string> error = new SortedList<string, string>();
+
+            if (id_bien == 0)
+            {
+                error.Add("sp_id_bien", "Seleccione el Bien");
+            }
+
+            if (id_inventario == 0)
+            {
+                error.Add("sp_id_inventario", "Seleccione el inventario");
+            }
+            if (mod_fecha == null)
+            {
+                error.Add("sp_mod_fecha", "Seleccione la Fecha");
+            }
+            if (String.IsNullOrEmpty(mod_estado))
+            {
+                error.Add("sp_mod_estado", "Seleccione el Estado");
+            }
+            if (String.IsNullOrEmpty(mod_descripcion))
+            {
+                error.Add("sp_mod_descripcion", "Describa el estado de bien");
+            }
+            if (mod_imagen == null)
+            {
+                error.Add("sp_mod_imagen", "Ingrese una fotografia actual del bien");
+            }
+            if (String.IsNullOrEmpty(tipo_documento))
+            {
+                error.Add("sp_tipo_documento", "Seleccione el Tipo de documento");
+            }
+            if (String.IsNullOrEmpty(num_documento))
+            {
+                error.Add("sp_num_documento", "Ingrese el numero del documento");
+            }
+
+            if (error.Count == 0)
+            {
+
+                Image img = cambiar_tamaño(mod_imagen);
+
+                using (MemoryStream ms = new MemoryStream())
+                {
+                    img.Save(ms, ImageFormat.Jpeg);
+                    byte[] img_byte = ms.ToArray();
+
+                    enc.Id_bienes = id_bien == 0 ? 0 : id_bien;
+                    enc.Id_inventario = id_inventario == 0 ? 0 : id_inventario;
+                    enc.Fecha = mod_fecha == null ? DateTime.Now : mod_fecha.Value;
+                    enc.Estado = mod_estado == null ? "" : mod_estado;
+                    enc.Detalle_estado = mod_descripcion == null ? "" : mod_descripcion;
+                    enc.T_documento = tipo_documento == null ? "" : tipo_documento;
+                    enc.N_documento = num_documento == null ? "" : num_documento;
+                    enc.Archivo = adj_doc == null ? "": adj_doc.FileName;
+                    enc.Imagen_byte = img_byte == null ? null : img_byte;
+
+                }
+
+                if (me.guardar(enc))
+                {
+                    guardar_archivo(adj_doc);
+                    message = "Se guardaron los datos correctamente";
+                }
+                else
+                {
+                    message = "No se Guardaron lo datos";
+                }
+
+                return Json(new { message = message, success = true });
+            }
+            else
+            {
+                message = "Ingrese los datos necesarios";
+                return Json(new { message = message, success = false, datos = error });
+            }
+
+        }
+
+        [HttpPost]
         public ActionResult Consultar_Bienes()
         {
 
@@ -347,6 +434,23 @@ namespace Web_Farmacia.Controllers
             ms.Position = 0;
 
             return File(ms,"image/jpg");
+        }
+
+        private bool guardar_archivo(HttpPostedFileBase file)
+        {
+            string ruta = Server.MapPath("~/Content/Imagenes");
+
+            string archivo = String.Format("{0}\\{1}", ruta, file.FileName);
+
+            if (System.IO.File.Exists(archivo))
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+
         }
 
     }

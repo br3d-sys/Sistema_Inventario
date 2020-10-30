@@ -20,7 +20,7 @@
         </div>
     </div><!-- /.container-fluid -->
 </section>
- @*model Web_Farmacia.Controllers.Info*@
+@model Web_Farmacia.Controllers.Info
 <!-- Main content -->
 <section class="content">
     <!-- Default box -->
@@ -43,58 +43,65 @@
 
 
                 <div class="d-flex mb-4">
-                    <a href="/Asignacion/Consultar_Asigancion" class="btn btn-secondary ml-auto"><i class="fa fa-caret-left"></i> Lista de Asignaciones</a>
+                    <a href="@Url.Action("Consultar_Asignacion", "Asignacion")" class="btn btn-secondary ml-auto"><i class="fa fa-caret-left"></i> Lista de Asignaciones</a>
                 </div>
 
                 <div class="form-row">
-                    <div class="form-group col-sm-6">
-                        <label for="id_gerencia">Gerencia</label>
-                        <select class="form-control" name="id_gerencia" id="id_gerencia">
-                            foreach  (var ger in Model.Ger)
-                            {
-                            <option value="ger.Id_gerencia">are.Gerencia</option>
-                            }
-                        </select>
-                        <span class="badge badge-warning sp" id="sp_gerencia"></span>
-                    </div>
-                    <div class="form-group col-sm-6">
-                        <label for="id_area">Area</label>
-                        <select class="form-control" name="id_area" id="id_area">
-                            foreach (var are in Model.Are)
-                            {
-                            <option value="are.Id_area">are.Area</option>
-                            }
-                        </select>
-                        <span class="badge badge-warning sp" id="sp_area"></span>
-                    </div>
-                </div>
-                <div class="col-auto d-flex justify-content-between">
-                    <h4 class="col-auto pt-1 mr-2">Buscar Personal</h4>
-                    <div class="col-auto">
-                        <button type="button" class="btn btn-secondary" id="btn_buscar"><i class="fas fa-search"></i></button>
-                    </div>
-                </div>
-                <div class="form-row">
+
+                    <input class="form-control" type="hidden" name="id_usuario" id="id_usuario" value="1">
 
                     <div class="form-group col-sm-4">
-                        <label for="nombre">Nombre</label>
-                        <input class="form-control" type="text" name="nombre" id="nombre" placeholder="Ingrese su Nombre">
-                        <span class="badge badge-warning sp" id="sp_nombre"></span>
+                        <label for="id_gerencia">Gerencia</label>
+                        <select class="form-control" name="id_gerencia" id="id_gerencia">
+                            @foreach (var ger in Model.Ger)
+                            {
+                                <option value="@ger.Id_gerencia">@ger.Nombre</option>
+                            }
+                        </select>
+                        <span class="badge badge-warning sp" id="sp_id_gerencia"></span>
+                    </div>
+                    <div class="form-group col-sm-4">
+                        <label for="id_area">Area</label>
+                        <select class="form-control" name="id_area" id="id_area">
+                            @foreach (var are in Model.Are)
+                            {
+                                <option value="@are.Id_area">@are.Nombre</option>
+                            }
+                        </select>
+                        <span class="badge badge-warning sp" id="sp_id_area"></span>
+                    </div>
+                    <div class="form-group col-sm-4">
+                        <label for="fecha">Fecha</label>
+                        <input type="date" id="fecha" name="fecha" class="form-control" value="@DateTime.Now.Year-@DateTime.Now.Month-@DateTime.Now.Day" />
+                        <span class="badge badge-warning sp" id="sp_fecha"></span>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="col-auto d-flex justify-content-between">
+                        <h4 class="col-auto pt-1 mr-2">Buscar Personal</h4>
+                        <div class="col-auto">
+                            <button type="button" class="btn btn-secondary" id="btn_buscar_personal"><i class="fas fa-search"></i></button>
+                        </div>
+                    </div>
+                    <span class="badge badge-warning sp" id="sp_id_personal"></span>
+                </div>
+                
+                <div class="form-row">
+
+                    <input class="form-control" type="hidden" name="id_personal" id="id_personal">
+
+                    <div class="form-group col-sm-4">
+                        <label for="nombre_per">Nombre</label>
+                        <input class="form-control" type="text" name="nombre_per" id="nombre_per" placeholder="Ingrese su Nombre" disabled>
                     </div>
 
                     <div class="form-group col-sm-4">
                         <label for="t_documento">Tipo de Documento</label>
-                        <select class="form-control" name="t_documento" id="t_documento">
-                            <option value="DNI">DNI</option>
-                            <option value="LE">LE</option>
-                            <option value="RUC">RUC</option>
-                        </select>
-                        <span class="badge badge-warning sp" id="sp_t_documento"></span>
+                        <input class="form-control" type="text" name="t_documento" id="t_documento" placeholder="Tipo de Documento" disabled>
                     </div>
                     <div class="form-group col-sm-4">
                         <label for="n_documento">Numero de Documento</label>
-                        <input class="form-control" type="number" name="n_documento" id="n_documento" placeholder="" minlength="8" maxlength="10">
-                        <span class="badge badge-warning sp" id="sp_n_documento"></span>
+                        <input class="form-control" type="text" name="n_documento" id="n_documento" placeholder="Nro de Documento" minlength="8" maxlength="10" disabled>
                     </div>
 
                 </div>
@@ -102,56 +109,49 @@
 
                     <div class="form-group col-sm-3">
                         <label for="cargo">Cargo</label>
-                        <input class="form-control" type="text" name="cargo" id="cargo" placeholder="">
-                        <span class="badge badge-warning sp" id="sp_cargo"></span>
+                        <input class="form-control" type="text" name="cargo" id="cargo" placeholder="" disabled>
                     </div>
 
                     <div class="form-group col-sm-3">
                         <label for="celular">Celular</label>
-                        <input class="form-control" type="number" name="celular" id="celular" placeholder="" min="9" maxlength="9">
-                        <span class="badge badge-warning sp" id="sp_celular"></span>
+                        <input class="form-control" type="number" name="celular" id="celular" placeholder="" min="9" maxlength="9" disabled>
                     </div>
                     <div class="form-group col-sm-4">
                         <label for="direccion">Direccion</label>
-                        <input class="form-control" type="text" name="direccion" id="direccion" placeholder="">
-                        <span class="badge badge-warning sp" id="sp_direccion"></span>
-                    </div>
-
-                    <div class="form-group col-sm-2">
-                        <label for="edad">Edad</label>
-                        <input class="form-control" type="number" name="edad" id="edad" placeholder="Edad" maxlength="2">
-                        <span class="badge badge-warning sp" id="sp_edad"></span>
-                    </div>
-
-                </div>
-                <div class="col-auto d-flex justify-content-between">
-                    <h4 class="col-auto pt-1 mr-2">Buscar Bien</h4>
-                    <div class="col-auto">
-                        <button type="button" class="btn btn-secondary" id="btn_buscar"><i class="fas fa-search"></i></button>
+                        <input class="form-control" type="text" name="direccion" id="direccion" placeholder="" disabled>
                     </div>
                 </div>
+                <div class="form-row">
+                    <div class="col-auto d-flex justify-content-between">
+                        <h4 class="col-auto pt-1 mr-2">Buscar Bien</h4>
+                        <div class="col-auto">
+                            <button type="button" class="btn btn-secondary" id="btn_buscar_encontrado"><i class="fas fa-search"></i></button>
+                        </div>
+                    </div>
+                    <span class="badge badge-warning sp" id="sp_id_encontrado"></span>
+                </div>
+                
 
                 <div class="form-row">
 
+                    <input class="form-control" type="hidden" name="id_encontrado" id="id_encontrado">
+
+
                     <div class="form-group col-sm-3">
-                        <label for="direccion">Nombre</label>
-                        <input class="form-control" type="text" name="nombre" id="nombre" placeholder="">
-                        <span class="badge badge-warning sp" id="sp_nombre"></span>
+                        <label for="nombre_enc">Nombre</label>
+                        <input class="form-control" type="text" name="nombre_enc" id="nombre_enc" placeholder="" disabled>
                     </div>
                     <div class="form-group col-sm-3">
-                        <label for="correo">Categoria</label>
-                        <input class="form-control" type="text" name="categoria" id="categoria" placeholder="">
-                        <span class="badge badge-warning sp" id="sp_categoria"></span>
+                        <label for="categoria">Categoria</label>
+                        <input class="form-control" type="text" name="categoria" id="categoria" placeholder="" disabled>
                     </div>
                     <div class="form-group col-sm-3">
-                        <label for="correo">Codigo</label>
-                        <input class="form-control" type="text" name="codigo" id="codigo" placeholder="">
-                        <span class="badge badge-warning sp" id="sp_codigo"></span>
+                        <label for="codigo">Codigo</label>
+                        <input class="form-control" type="text" name="codigo" id="codigo" placeholder="" disabled>
                     </div>
                     <div class="form-group col-sm-3">
                         <label for="estado">Estado</label>
-                        <input class="form-control" type="text" name="Estado" id="estado" placeholder="">
-                        <span class="badge badge-warning sp" id="sp_estado"></span>
+                        <input class="form-control" type="text" name="estado" id="estado" placeholder="" disabled>
                     </div>
 
                 </div>
@@ -188,29 +188,130 @@
     </div>
 </div>
 
+<div class="modal fade" id="mod_encontrado" role="dialog">
+
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Bienes</h4>
+            </div>
+            <div class="modal-body">
+
+                <form method="post" class="" id="buscar_encontrado">
+
+                    <div class="form-row">
+                        <div class="form-group col-sm-6">
+                            <label for="mod_nombre_enc">Nombre de Bien</label>
+                            <input class="form-control" type="text" name="mod_nombre_enc" id="mod_nombre_enc" placeholder="Ingrese su Nombre">
+                        </div>
+                        <div class="form-group col-sm-3">
+                            <label for="mod_codigo">Codigo</label>
+                            <input class="form-control" type="text" name="mod_codigo" id="mod_codigo" placeholder="Codigo">
+                        </div>
+
+                        <div class="col-sm-2 align-self-center align-self-end text-center">
+                            <button type="submit" class="btn btn-primary pr-4 pl-4">Buscar</button>
+                        </div>
+                    </div>
+                </form>
+
+                <div class="row">
+                    <div class="col-12 table-responsive">
+                        <table class="table table-striped" id="tabla_encontrado">
+                            <thead>
+                                <tr>
+                                    <th>Nombre</th>
+                                    <th>Codigo</th>
+                                    <th>Inventario</th>
+                                    <th>Opc.</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- /.col -->
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-primary" id="mod-acept"> Aceptar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="mod_personal" role="dialog">
+
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Personal</h4>
+            </div>
+            <div class="modal-body">
+                <form method="post" class="" id="buscar_personal">
+
+                    <div class="form-row">
+                        <div class="form-group col-sm-6">
+                            <label for="mod_nombre_per">Nombre</label>
+                            <input class="form-control" type="text" name="mod_nombre_per" id="mod_nombre_per" placeholder="Ingrese su Nombre">
+                        </div>
+                        <div class="form-group col-sm-3">
+                            <label for="mod_n_documento">Nro de Documento</label>
+                            <input class="form-control" type="text" name="mod_n_documento" id="mod_n_documento" placeholder="Codigo">
+                        </div>
+
+                        <div class="col-sm-2 align-self-center align-self-end text-center">
+                            <button type="submit" class="btn btn-primary pr-4 pl-4">Buscar</button>
+                        </div>
+                    </div>
+                </form>
+
+                <div class="row">
+                    <div class="col-12 table-responsive">
+                        <table class="table table-striped" id="tabla_personal">
+                            <thead>
+                                <tr>
+                                    <th>Nombre</th>
+                                    <th>Area</th>
+                                    <th>Nro Doc.</th>
+                                    <th>Opc.</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- /.col -->
+                </div>
+
+
+
+
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-primary" id="mod-acept"> Aceptar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 <script>
 
     document.addEventListener("DOMContentLoaded",function(){
 
            document.getElementById("registrar").addEventListener("submit", function (e) {
 
-            var url = "@Url.Action("Registrar_Personal","Personal")";
+            var url = "@Url.Action("Registrar_Asignacion","Asignacion")";
 
+               var id_usuario = document.getElementById("id_usuario").value;
+               var id_encontrado = document.getElementById("id_encontrado").value;
+               var id_personal = document.getElementById("id_personal").value;
                var id_area = document.getElementById("id_area").value;
-               var nombre = document.getElementById("nombre").value;
-               var cargo = document.getElementById("cargo").value;
-               var t_documento = document.getElementById("t_documento").value;
-               var n_documento = document.getElementById("n_documento").value;
-               var edad = document.getElementById("edad").value;
-               var sexo = document.getElementById("sexo").value;
-               var est_civil = document.getElementById("est_civil").value;
-               var celular = document.getElementById("celular").value;
-               var direccion = document.getElementById("direccion").value;
-               var correo = document.getElementById("correo").value;
+               var fecha = document.getElementById("fecha").value;
 
-               var param = "id_area=" + id_area + "&nombre=" + nombre + "&cargo=" + cargo + "&t_documento=" + t_documento +
-                   "&n_documento=" + n_documento + "&edad=" + edad + "&sexo=" + sexo + "&est_civil=" + est_civil +
-                   "&celular=" + celular + "&direccion=" + direccion + "&correo=" + correo
+               var param = "id_usuario=" + id_usuario + "&id_encontrado=" + id_encontrado +
+                   "&id_personal=" + id_personal + "&id_area=" + id_area +
+                   "&fecha=" + fecha;
 
                 var ajax = new XMLHttpRequest();
 
@@ -245,17 +346,11 @@
         document.getElementById("mod-acept").addEventListener("click", function () {
             $("#mod").modal("hide");
 
-           id_area = document.getElementById("id_area").value="";
-           nombre = document.getElementById("nombre").value="";
-           cargo = document.getElementById("cargo").value="";
-           t_documento = document.getElementById("t_documento").value="";
-           n_documento = document.getElementById("n_documento").value="";
-           edad = document.getElementById("edad").value="";
-           sexo = document.getElementById("sexo").value="";
-           est_civil = document.getElementById("est_civil").value="";
-           celular = document.getElementById("celular").value="";
-           direccion = document.getElementById("direccion").value="";
-           correo = document.getElementById("correo").value="";
+            document.getElementById("id_usuario").value = "";
+            document.getElementById("id_encontrado").value = "";
+            document.getElementById("id_personal").value = "";
+            document.getElementById("id_area").value = "";
+            document.getElementById("fecha").value = "";
 
         })
 
@@ -265,6 +360,187 @@
                 elementos.item(i).innerHTML = "";
             }
         }
+
+        /////////////////////////////////////////////////////////////////
+
+         document.getElementById("btn_buscar_encontrado").addEventListener("click", function () {
+
+            var tabla = document.getElementById("tabla_encontrado");
+            var body_tabla = tabla.getElementsByTagName("tbody")[0];
+            body_tabla.innerHTML = "";
+
+
+            ////////////////////////////////
+
+            var url = "@Url.Action("Consultar_Encontrado","Asignacion")";
+
+            var ajax = new XMLHttpRequest();
+
+            ajax.onreadystatechange = function () {
+                if (ajax.readyState == 4) {
+
+                    var response = JSON.parse(ajax.responseText);
+                    if (response.success) {
+                        console.log(response);
+                        $("#mod_encontrado").modal("show");
+                        array_bienes = "";
+                        array_bienes = response.datos;
+
+                        for (var i = 0; i < response.datos.length; i++) {
+                            //console.log(response.datos[i].Nombre);
+                            var row = body_tabla.insertRow(i);
+                            var bien = row.insertCell(0);
+                            var codigo = row.insertCell(1);
+                            var inventario = row.insertCell(2);
+                            var opciones = row.insertCell(3);
+
+                            var objeto = response.datos[i];
+
+
+                            bien.innerHTML = objeto.Bien;
+                            codigo.innerHTML = objeto.Codigo;
+                            inventario.innerHTML = objeto.Inventario;
+
+                            var boton = document.createElement("button")
+
+                            boton.type = "button";
+                            boton.className = "btn btn-secondary";
+                            boton.innerHTML = "<i class=\"fa fa-plus\">";
+
+                            boton.onclick = function () {
+                                document.getElementById("nombre_enc").value = objeto.Bien;
+                                document.getElementById("categoria").value = objeto.Categoria;
+                                document.getElementById("codigo").value = objeto.Codigo;
+                                document.getElementById("estado").value = objeto.Estado;
+                                document.getElementById("id_encontrado").value = objeto.Id_encontrado;
+                            };
+                            //    function (dat) {
+                            //    //document.getElementById("nombre").value = "123";
+                            //    console.log(response.datos[i].Nombre);
+                            //};
+
+
+
+                            opciones.appendChild(boton);
+
+                            body_tabla.appendChild(row);
+
+                        }
+
+
+                        //console.log(response.message);
+                        //document.getElementById("content").innerHTML = response.message;
+                        //$("#mod").modal({ backdrop: 'static' });
+                        //limpiar_spam();
+                    } else {
+                        //console.log(response);
+                        //limpiar_spam();
+                        //for (var prop in response.datos) {
+                        //    //console.log("propiedad " + prop + " valor " + response.datos[prop]);
+                        //    document.getElementById(prop).innerHTML = response.datos[prop]
+                        //}
+
+                        document.getElementById("sp_id_encontrado").innerHTML = "Error: No se Cargó el Bien";
+                    }
+                }
+            }
+
+            ajax.open("POST", url, true);
+
+            ajax.send();
+
+         });
+
+        /////////////////////////////////////////////////////////////////
+         document.getElementById("btn_buscar_personal").addEventListener("click", function () {
+
+            var tabla = document.getElementById("tabla_personal");
+            var body_tabla = tabla.getElementsByTagName("tbody")[0];
+            body_tabla.innerHTML = "";
+
+
+            ////////////////////////////////
+
+            var url = "@Url.Action("Consultar_Personal","Asignacion")";
+
+            var ajax = new XMLHttpRequest();
+
+            ajax.onreadystatechange = function () {
+                if (ajax.readyState == 4) {
+
+                    var response = JSON.parse(ajax.responseText);
+                    if (response.success) {
+                        console.log(response);
+                        $("#mod_personal").modal("show");
+                        array_bienes = "";
+                        array_bienes = response.datos;
+
+                        for (var i = 0; i < response.datos.length; i++) {
+                            //console.log(response.datos[i].Nombre);
+                            var row = body_tabla.insertRow(i);
+                            var nombre = row.insertCell(0);
+                            var area = row.insertCell(1);
+                            var n_documento = row.insertCell(2);
+                            var opciones = row.insertCell(3);
+
+                            var objeto = response.datos[i];
+
+
+                            nombre.innerHTML = objeto.Nombre;
+                            area.innerHTML = objeto.Area;
+                            n_documento.innerHTML = objeto.N_documento;
+
+                            var boton = document.createElement("button")
+
+                            boton.type = "button";
+                            boton.className = "btn btn-secondary";
+                            boton.innerHTML = "<i class=\"fa fa-plus\">";
+
+                            boton.onclick = function () {
+                                document.getElementById("id_personal").value = objeto.Id_personal;
+                                document.getElementById("nombre_per").value = objeto.Nombre;
+                                document.getElementById("t_documento").value = objeto.T_documento;
+                                document.getElementById("n_documento").value = objeto.N_documento;
+                                document.getElementById("cargo").value = objeto.Cargo;
+                                document.getElementById("celular").value = objeto.Celular;
+                                document.getElementById("direccion").value = objeto.Direccion;
+                            };
+                            //    function (dat) {
+                            //    //document.getElementById("nombre").value = "123";
+                            //    console.log(response.datos[i].Nombre);
+                            //};
+
+
+
+                            opciones.appendChild(boton);
+
+                            body_tabla.appendChild(row);
+
+                        }
+
+
+                        //console.log(response.message);
+                        //document.getElementById("content").innerHTML = response.message;
+                        //$("#mod").modal({ backdrop: 'static' });
+                        //limpiar_spam();
+                    } else {
+                        //console.log(response);
+                        //limpiar_spam();
+                        //for (var prop in response.datos) {
+                        //    //console.log("propiedad " + prop + " valor " + response.datos[prop]);
+                        //    document.getElementById(prop).innerHTML = response.datos[prop]
+                        //}
+
+                        document.getElementById("sp_id_personal").innerHTML = "Error: No se Cargó el Personal";
+                    }
+                }
+            }
+
+            ajax.open("POST", url, true);
+
+            ajax.send();
+
+        });
 
     })
 

@@ -21,18 +21,22 @@ namespace Web_Farmacia.Controllers
         public ActionResult Consultar_Bien()
         {
             Modelo_Categoria mc = new Modelo_Categoria();
+            Modelo_Inventario mi = new Modelo_Inventario();
             List<Categoria> cat;
             List<Bienes> bie;
+            List<Inventario> inv;
             Modelo_Bienes mb = new Modelo_Bienes();
 
             Info datos = new Info();
             bie = mb.listar();
             cat = mc.listar();
+            inv = mi.listar();
 
             ViewBag.eliminar = TempData["Eliminar"];
 
             datos.Bie = bie;
             datos.Cat = cat;
+            datos.Inv = inv;
 
             return View(datos);
 
@@ -217,7 +221,7 @@ namespace Web_Farmacia.Controllers
         }
 
         [HttpPost]
-        public ActionResult Registrar_Bien(int id_categoria, string nombre, string serie, string descripcion, string codigo, double precio, string estado, DateTime fecha_ing, string marca, string color, string modelo, int alto, int ancho, int profundidad)
+        public ActionResult Registrar_Bien(int id_categoria, string nombre, string serie, string descripcion, string codigo, double precio, string estado, DateTime ? fecha_ing, string marca, string color, string modelo, int alto, int ancho, int profundidad)
         {
             Bienes bie = new Bienes();
             Modelo_Bienes mb = new Modelo_Bienes();
@@ -292,7 +296,7 @@ namespace Web_Farmacia.Controllers
                 bie.Codigo = codigo == null ? "" : codigo;
                 bie.Precio = precio == 0 ? 0 : precio;
                 bie.Estado = estado == null ? "" : estado;
-                bie.Fecha_ing = fecha_ing == null ? DateTime.Now : fecha_ing;
+                bie.Fecha_ing = fecha_ing == null ? DateTime.Now : fecha_ing.Value;
                 bie.Marca = marca == null ? "" : marca;
                 bie.Color = color == null ? "" : color;
                 bie.Modelo = modelo == null ? "" : modelo;

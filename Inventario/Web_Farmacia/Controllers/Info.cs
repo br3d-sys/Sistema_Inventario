@@ -29,6 +29,8 @@ namespace Web_Farmacia.Controllers
         private Inventario obj_inv;
         private List<Encontrado> enc;
         private Encontrado obj_enc;
+        private List<Asignacion> asi;
+        private Asignacion obj_asi;
 
 
         public List<Usuario> Usu
@@ -220,6 +222,30 @@ namespace Web_Farmacia.Controllers
             set
             {
                 obj_enc = value;
+            }
+        }
+
+        public List<Asignacion> Asi
+        {
+            get
+            {
+                return asi;
+            }
+            set
+            {
+                asi = value;
+            }
+        }
+
+        public Asignacion Obj_asi
+        {
+            get
+            {
+                return obj_asi;
+            }
+            set
+            {
+                obj_asi = value;
             }
         }
     }

@@ -10,9 +10,18 @@ namespace Web_Farmacia.Clases
         private int id_asignacion;
         private int id_usuario;
         private int id_encontrado;
+        private int id_inventario;
+        private int id_bienes;
+        private string bien;
+        private string codigo;
+        private string inventario;
         private int id_personal;
+        private string personal;
         private int id_area;
-        private string fecha_asig;
+        private string area;
+        private int id_gerencia;
+        private string gerencia;
+        private DateTime fecha_asig;
         private int disponibilidad;
 
         public int Id_asignacion
@@ -54,6 +63,71 @@ namespace Web_Farmacia.Clases
             }
         }
 
+        public int Id_inventario
+        {
+            get
+            {
+                return id_inventario;
+            }
+
+            set
+            {
+                id_inventario = value;
+            }
+        }
+
+        public int Id_bienes
+        {
+            get
+            {
+                return id_bienes;
+            }
+
+            set
+            {
+                id_bienes = value;
+            }
+        }
+
+        public string Bien
+        {
+            get
+            {
+                return bien;
+            }
+
+            set
+            {
+                bien = value;
+            }
+        }
+
+        public string Codigo
+        {
+            get
+            {
+                return codigo;
+            }
+
+            set
+            {
+                codigo = value;
+            }
+        }
+
+        public string Inventario
+        {
+            get
+            {
+                return inventario;
+            }
+
+            set
+            {
+                inventario = value;
+            }
+        }
+
         public int Id_personal
         {
             get
@@ -64,6 +138,19 @@ namespace Web_Farmacia.Clases
             set
             {
                 id_personal = value;
+            }
+        }
+
+        public string Personal
+        {
+            get
+            {
+                return personal;
+            }
+
+            set
+            {
+                personal = value;
             }
         }
 
@@ -80,7 +167,46 @@ namespace Web_Farmacia.Clases
             }
         }
 
-        public string Fecha_asig
+        public string Area
+        {
+            get
+            {
+                return area;
+            }
+
+            set
+            {
+                area = value;
+            }
+        }
+
+        public int Id_gerencia
+        {
+            get
+            {
+                return id_gerencia;
+            }
+
+            set
+            {
+                id_gerencia = value;
+            }
+        }
+
+        public string Gerencia
+        {
+            get
+            {
+                return gerencia;
+            }
+
+            set
+            {
+                gerencia = value;
+            }
+        }
+
+        public DateTime Fecha_asig
         {
             get
             {

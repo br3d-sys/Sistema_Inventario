@@ -18,7 +18,12 @@ namespace Web_Farmacia.Clases
         private DateTime fecha;
         private string codigo;
         private string estado;
+        private string categoria;
         private byte[] imagen_byte;
+        private string detalle_estado;
+        private string t_documento;
+        private string n_documento;
+        private string archivo;
         private int disponibilidad;
          
         public int Id_encontrado
@@ -112,6 +117,19 @@ namespace Web_Farmacia.Clases
             }
         }
 
+        public string Categoria
+        {
+            get
+            {
+                return categoria;
+            }
+
+            set
+            {
+                categoria = value;
+            }
+        }
+
         public string Codigo
         {
             get
@@ -135,6 +153,58 @@ namespace Web_Farmacia.Clases
             set
             {
                 imagen_byte = value;
+            }
+        }
+
+        public string Detalle_estado
+        {
+            get
+            {
+                return detalle_estado;
+            }
+
+            set
+            {
+                detalle_estado = value;
+            }
+        }
+
+        public string T_documento
+        {
+            get
+            {
+                return t_documento;
+            }
+
+            set
+            {
+                t_documento = value;
+            }
+        }
+
+        public string N_documento
+        {
+            get
+            {
+                return n_documento;
+            }
+
+            set
+            {
+                n_documento = value;
+            }
+        }
+
+        public string Archivo
+        {
+            get
+            {
+                return archivo;
+            }
+
+            set
+            {
+                archivo = value;
             }
         }
 

@@ -20,6 +20,9 @@
         </div>
     </div><!-- /.container-fluid -->
 </section>
+
+@model Web_Farmacia.Controllers.Info
+
 <!-- Main content -->
 <section class="content">
     <!-- Default box -->
@@ -40,12 +43,12 @@
 
            
 
-            @*<div class="d-flex mb-4">
-                <a href="@Url.Action("Registrar_Bien", "Bien")" class="btn btn-secondary ml-auto"><i class="fa fa-plus"></i> Agregar</a>
-            </div>*@
+            <div class="d-flex mb-4">
+                <a href="@Url.Action("Registrar_Asignacion", "Asignacion")" class="btn btn-secondary ml-auto"><i class="fa fa-plus"></i> Agregar</a>
+            </div>
 
 
-            <form action="/Asigancion/Consultar_Asignacion" method="post" class="" id="buscar">
+            <form action="" method="post" class="" id="buscar">
 
                 <div class="form-row">
                     <div class="form-group col-sm-4">
@@ -53,20 +56,26 @@
                         <input class="form-control" type="text" name="personal" id="personal" placeholder="Ingrese Personal">
                     </div>
                     <div class="form-group col-sm-3">
-                        <label for="id_categoria">Categoria</label>
-                        <select class="form-control" name="id_categoria" id="id_categoria">
+                        <label for="id_gerencia">Gerencia</label>
+                        <select class="form-control" name="id_gerencia" id="id_gerencia">
 
-                            @*@foreach (var cat in Model.Cat)
+                            @foreach (var ger in Model.Ger)
                             {
-                                <option value="@cat.Id_categoria">@cat.Nombre</option>
-                            }*@
-
+                                <option value="@ger.Id_gerencia">@ger.Nombre</option>
+                            }
 
                         </select>
                     </div>
                     <div class="form-group col-sm-3">
-                        <label for="codigo">Codigo</label>
-                        <input class="form-control" type="text" name="codigo" id="codigo" placeholder="Ingrese el codigo">
+                        <label for="id_area">Area</label>
+                        <select class="form-control" name="id_area" id="id_area">
+
+                            @foreach (var are in Model.Are)
+                            {
+                                <option value="@are.Id_area">@are.Nombre</option>
+                            }
+
+                        </select>
                     </div>
                     <div class="col-sm-2 align-self-center align-self-end text-center">
                         <button type="submit" class="btn btn-primary pr-4 pl-4">Buscar</button>
@@ -76,12 +85,12 @@
 
             <!-- Table row -->
 
-            @*@if (ViewBag.eliminar != null)
+            @if (ViewBag.eliminar != null)
             {
                 <div class="alert alert-dark" role="alert">
                     @ViewBag.eliminar
                 </div>
-            }*@
+            }
 
             <div class="row">
                 <div class="col-12 table-responsive">
@@ -98,25 +107,23 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @*@{
-                                foreach (var bien in Model.Bie)
+                            @{
+                                foreach (var asig in Model.Asi)
                                 {
                                     <tr>
-                                        <td>@bien.Personal</td>
-                                        <td>@bien.Bien</td>
-                                        <td>@bien.Codigo Bien</td>
-                                        <td>@bien.Area</td>
-                                        <td>@bien.Inventario</td>
+                                        <td>@asig.Personal</td>
+                                        <td>@asig.Bien</td>
+                                        <td>@asig.Codigo</td>
+                                        <td>@asig.Area</td>
+                                        <td>@asig.Inventario</td>
                                       
                                         <td class="text-center">
-                                            <button onclick="generarqr('@bien.Codigo')" class="btn btn-dark" id="generar"><i class="fas fa-qrcode"></i></button>
-                                            <a href="/Bien/Modificar_Bien?id=@bien.Id_bienes" class="btn btn-primary" id="actualizar"><i class="fa fa-edit"></i></a>
-                                            <button onclick="eliminar('@bien.Id_bienes')" class="btn btn-danger" id="Eliminar"><i class="fa fa-trash"></i></button>
-
+                                            <a href="/Asignacion/Ver_Asignacion?id=@asig.Id_asignacion" class="btn btn-primary" id="visualizar"><i class="far fa-eye"></i></a>
+                                            <button onclick="eliminar('@asig.Id_asignacion')" class="btn btn-danger" id="Eliminar"><i class="fa fa-trash"></i></button>
                                         </td>
                                     </tr>
                                 }
-                            }*@
+                            }
 
                         </tbody>
                     </table>
@@ -142,7 +149,7 @@
                 <h4 class="modal-title">Información</h4>
             </div>
             <div class="modal-body">
-                <p id="content">Desea eliminar el Bien?</p>
+                <p id="content">Desea eliminar la Asignación?</p>
             </div>
             <div class="modal-footer">
                 <button class="btn btn-primary" id="mod-acept"> Eliminar</button><button class="btn btn-secondary" id="mod-can">Cancelar</button>
@@ -154,58 +161,30 @@
 
 </div>
 
-<div class="modal fade bd-example-modal-sm" id="codqr_mod" role="dialog">
-
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-body">
-                <div class="row d-flex justify-content-center p-4" id="codQR"></div>
-                <div class="row d-flex justify-content-between">
-                    <button id="btn_regresar" type="submit" class="btn btn-primary">Regresar</button>
-                    <button type="button" class="btn btn-secondary">Imprimir</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-
-</div>
-
 <script>
 
-
     var f_id;
-    var codqr;
-
-
 
     document.addEventListener("DOMContentLoaded", function (e) {
 
-        codqr = new QRCode(document.getElementById("codQR"), {
-            text: "Esto esta vacio",
-            width: 200,
-            height: 200
-        });
+        document.getElementById("buscar").addEventListener("submit", function () {
 
-        document.getElementById("buscar").addEventListener("submit", function (e) {
+                var url = "@Url.Action("Consultar_Asignacion", "Asignacion")";
 
-            var url = "@Url.Action("Consultar_Bien", "Bien")";
+                var personal = document.getElementById("personal").value;
+                var id_gerencia = document.getElementById("id_gerencia").value;
+                var id_area = document.getElementById("id_area").value;
 
-                var nombre = document.getElementById("nombre").value;
-                var codigo = document.getElementById("codigo").value;
-                var id_categoria = document.getElementById("id_categoria").value;
-
-            var param = "nombre=" + nombre + "&codigo=" + codigo + "&id_categoria=" + id_categoria;
+                var param = "personal=" + personal + "&id_gerencia=" + id_gerencia + "&id_area=" + id_area;
 
 
-              var ajax = new XMLHttpRequest();
+                  var ajax = new XMLHttpRequest();
 
-              ajax.onreadystatechange = function () {
-                  if (ajax.readyState == 4) {
+                  ajax.onreadystatechange = function () {
+                      if (ajax.readyState == 4) {
 
-
-                }
-              }
+                    }
+                  }
 
                 ajax.open("POST", url, true);
 
@@ -217,28 +196,22 @@
 
 
         document.getElementById("mod-acept").addEventListener("click", function () {
-            location.replace("/Bien/eliminar?id=" + f_id);
+            location.replace("/Asignacion/eliminar?id=" + f_id);
             $("#mod").modal("hide");
         });
+
         document.getElementById("mod-can").addEventListener("click", function () {
             $("#mod").modal("hide");
         });
 
-        document.getElementById("btn_regresar").addEventListener("click", function () {
-            $("#codqr_mod").modal("hide");
-        });
-    });
 
-    function generarqr(cod) {
-        codqr.makeCode(cod);
-        $("#codqr_mod").modal({ backdrop: 'static' });
-    }
+
+    })
 
     function eliminar(id) {
         $("#mod").modal({ backdrop: 'static' });
         f_id = id;
     }
-
 
 </script>
 

@@ -109,10 +109,11 @@
                                         <td>@bien.Color</td>
                                         <td>@bien.Modelo</td>
                                         <td class="text-center">
+                                            
                                             <button onclick="generarqr('@bien.Codigo')" class="btn btn-dark" id="generar"><i class="fas fa-qrcode"></i></button>
                                             <a href="/Bien/Modificar_Bien?id=@bien.Id_bienes" class="btn btn-primary" id="actualizar"><i class="fa fa-edit"></i></a>
-                                            <button onclick="eliminar('@bien.Id_bienes')" class="btn btn-danger" id="Eliminar"><i class="fa fa-trash"></i></button>
-
+                                            @*<button onclick="eliminar('@bien.Id_bienes')" class="btn btn-danger" id="Eliminar"><i class="fa fa-trash"></i></button>*@
+                                            <button onclick="baja_bien('@bien.Id_bienes','@bien.Nombre','@bien.Codigo')" class="btn btn-danger" id="Baja_bien"><i class="far fa-arrow-alt-circle-down"></i></button>
                                         </td>
                                     </tr>
                                 }
@@ -154,6 +155,24 @@
 
 </div>
 
+<div class="modal fade" id="mod_confirmacion" role="dialog">
+
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Información</h4>
+            </div>
+            <div class="modal-body">
+                <p id="content_confirm">
+                </p>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-primary" id="mod-acept-confirm"> Aceptar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 <div class="modal fade bd-example-modal-sm" id="codqr_mod" role="dialog">
 
     <div class="modal-dialog" role="document">
@@ -161,7 +180,7 @@
             <div class="modal-body">
                 <div class="row d-flex justify-content-center p-4" id="codQR"></div>
                 <div class="row d-flex justify-content-between">
-                    <button id="btn_regresar" type="submit" class="btn btn-primary">Regresar</button>
+                    <button id="btn_regresar" type="button" class="btn btn-primary">Regresar</button>
                     <button type="button" class="btn btn-secondary">Imprimir</button>
                 </div>
             </div>
@@ -169,6 +188,110 @@
     </div>
 
 
+</div>
+
+
+<div class="modal fade" id="mod_baja_bien" role="dialog">
+
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Dar de Baja</h4>
+            </div>
+            <div class="modal-body">
+
+                <form action="" method="post" class="" id="guardar_encontrado">
+
+                    <div class="form-row">
+                        <input type="hidden" name="id_bien" id="id_bien" />
+                        <div class="form-group col-sm-6">
+                            <label for="mod_nombre">Nombre de Bien</label>
+                            <input class="form-control" type="text" name="mod_nombre" id="mod_nombre" placeholder="Nombre" disabled>
+                            <span class="badge badge-warning sp" id="sp_id_bien"></span>
+                        </div>
+                        <div class="form-group col-sm-6">
+                            <label for="mod_codigo">Codigo</label>
+                            <input class="form-control" type="text" name="mod_codigo" id="mod_codigo" placeholder="Codigo" disabled>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        @*<input type="hidden" name="id_inventario" id="id_inventario" />*@
+                        <div class="form-group col-sm-4">
+                            <label for="id_inventario">Inventario</label>
+                            <select class="form-control" name="id_inventario" id="id_inventario">
+                                @foreach (var inv in Model.Inv)
+                                {
+                                    <option value="@inv.Id_inventario">@inv.Nombre</option>
+                                }
+                            </select>
+                            <span class="badge badge-warning sp" id="sp_id_inventario"></span>
+                        </div>
+                        <div class="form-group col-sm-4">
+                            <label for="mod_codigo">Fecha</label>
+                            <input class="form-control" type="date" name="mod_fecha" id="mod_fecha" placeholder="Fecha">
+                            <span class="badge badge-warning sp" id="sp_mod_fecha"></span>
+                        </div>
+                        <div class="form-group col-sm-4">
+                            <label for="mod_estado">Estado</label>
+                            <select class="form-control" name="mod_estado" id="mod_estado">
+                                <option value="Nuevo">Nuevo</option>
+                                <option value="Bueno">Bueno</option>
+                                <option value="Regular">Regular</option>
+                                <option value="Malo">Malo</option>
+                                <option value="Baja">Baja</option>
+                            </select>
+                            <span class="badge badge-warning sp" id="sp_mod_estado"></span>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-sm-12">
+                            <label for="mod_descripcion">Descripcion de Estado</label>
+                            <input class="form-control" type="text" name="mod_descripcion" id="mod_descripcion" placeholder="Descripción">
+                            <span class="badge badge-warning sp" id="sp_mod_descripcion"></span>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-sm-12">
+                            <label for="mod_imagen">imagen</label>
+                            <input class="form-control" type="file" name="mod_imagen" id="mod_imagen" placeholder="Imagen">
+                            <span class="badge badge-warning sp" id="sp_mod_imagen"></span>
+                        </div>
+                    </div>
+                    <hr />
+                    <div class="form-row">
+                        <div class="form-group col-sm-6">
+                            <label for="tipo_documento">Tipo de Documento</label>
+                            <select class="form-control" name="tipo_documento" id="tipo_documento">
+                                <option value="Informe">Informe</option>
+                                <option value="Gruia de Remision">Guia de Remision</option>
+                                <option value="Boleta">Boleta</option>
+                                <option value="Factura">Factura</option>
+                                <option value="Otros">Otros</option>
+                            </select>
+                            <span class="badge badge-warning sp" id="sp_tipo_documento"></span>
+                        </div>
+                        <div class="form-group col-sm-6">
+                            <label for="num_documento">Numero de Documento</label>
+                            <input class="form-control" type="text" name="num_documento" id="num_documento" placeholder="Número del Documento" >
+                            <span class="badge badge-warning sp" id="sp_num_documento"></span>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-sm-12">
+                            <label for="adj_doc">Adjuntar Documento</label>
+                            <input class="form-control" type="file" name="adj_doc" id="adj_doc" placeholder="Seleccione el documento" >
+                           
+                        </div>
+                    </div>
+
+                </form>
+
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-primary" id="btn_baja"> Aceptar</button>
+            </div>
+        </div>
+    </div>
 </div>
 
 <script>
@@ -202,7 +325,7 @@
 
               ajax.onreadystatechange = function () {
                   if (ajax.readyState == 4) {
-                      
+
 
                 }
               }
@@ -227,7 +350,50 @@
         document.getElementById("btn_regresar").addEventListener("click", function () {
             $("#codqr_mod").modal("hide");
         });
+
+        document.getElementById("btn_baja").addEventListener("click", function () {
+
+            var url = "@Url.Action("Registrar_Encontrado_Baja","Encontrado")";
+
+            param = new FormData(document.getElementById("guardar_encontrado"));
+
+            var ajax = new XMLHttpRequest();
+
+            ajax.onreadystatechange = function () {
+                if (ajax.readyState == 4) {
+
+                    var response = JSON.parse(ajax.responseText);
+                    if (response.success) {
+                        console.log(response.message);
+                        document.getElementById("content_confirm").innerHTML = response.message;
+                        $("#mod_baja_bien").modal("hide");
+                        $("#mod_confirmacion").modal("show");
+                        limpiar_spam();
+                    } else {
+                        console.log(response);
+                        limpiar_spam();
+                        for (var prop in response.datos) {
+                            //console.log("propiedad " + prop + " valor " + response.datos[prop]);
+                            document.getElementById(prop).innerHTML = response.datos[prop]
+                        }
+                    }
+                }
+            }
+
+            ajax.open("POST", url, true);
+            ajax.send(param);
+
+
+        });
+
     });
+
+    function limpiar_spam() {
+        var elementos = document.getElementsByClassName("sp");
+        for (i = 0; i < elementos.length; i++) {
+            elementos.item(i).innerHTML = "";
+        }
+    }
 
     function generarqr(cod) {
         codqr.makeCode(cod);
@@ -238,6 +404,19 @@
         $("#mod").modal({ backdrop: 'static' });
         f_id = id;
     }
+
+    function baja_bien(id,nombre,codigo) {
+
+        document.getElementById("id_bien").value = id;
+        document.getElementById("mod_nombre").value = nombre;
+        document.getElementById("mod_codigo").value = codigo;
+        limpiar_spam();
+        $("#mod_baja_bien").modal("show");
+
+    }
+
+
+
 
 
 </script>

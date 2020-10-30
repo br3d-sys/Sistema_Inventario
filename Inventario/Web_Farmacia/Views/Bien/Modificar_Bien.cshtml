@@ -98,7 +98,7 @@
                     <div class="form-group col-sm-3">
                         <label for="estado">Estado</label>
                         <select class="form-control" name="estado" id="estado" value="@Model.Obj_bie.Estado">
-                            @{string[] estados = { "Nuevo", "Usado", "Otros" };}
+                            @{string[] estados = { "Nuevo", "Bueno", "Regular", "Malo" };}
                             @foreach (var est in estados)
                             {
                                 if (est == @Model.Obj_bie.Estado)

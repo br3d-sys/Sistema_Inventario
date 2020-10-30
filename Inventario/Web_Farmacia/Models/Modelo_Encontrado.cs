@@ -37,6 +37,10 @@ namespace Web_Farmacia.Models
                     cmd.Parameters.AddWithValue("_fecha", enc.Fecha);
                     cmd.Parameters.AddWithValue("_estado", enc.Estado);
                     cmd.Parameters.AddWithValue("_imagen", enc.Imagen_byte);
+                    cmd.Parameters.AddWithValue("_detalle_estado", enc.Detalle_estado);
+                    cmd.Parameters.AddWithValue("_t_documento", enc.T_documento);
+                    cmd.Parameters.AddWithValue("_n_documento", enc.N_documento);
+                    cmd.Parameters.AddWithValue("_archivo", enc.Archivo);
 
                     //using(MemoryStream ms = new MemoryStream())
                     //{
@@ -92,7 +96,12 @@ namespace Web_Farmacia.Models
                             Estado = rd.GetString("estado"),
                             Bien = rd.GetString("bien"),
                             Inventario = rd.GetString("inventario"),
-                            Codigo = rd.GetString("codigo")
+                            Categoria = rd.GetString("categoria"),
+                            Codigo = rd.GetString("codigo"),
+                            Detalle_estado = rd.IsDBNull(11)?"":rd.GetString("detalle_estado"),
+                            T_documento = rd.IsDBNull(12) ? "" : rd.GetString("t_documento"),
+                            N_documento = rd.IsDBNull(13) ? "" : rd.GetString("n_documento"),
+                            Archivo = rd.IsDBNull(14) ? null : rd.GetString("archivo")
 
                         });
                     }
@@ -129,7 +138,10 @@ namespace Web_Farmacia.Models
                     cmd.Parameters.AddWithValue("_fecha", enc.Fecha);
                     cmd.Parameters.AddWithValue("_estado", enc.Estado);
                     cmd.Parameters.AddWithValue("_imagen", enc.Imagen_byte);
-
+                    cmd.Parameters.AddWithValue("_detalle_estado", enc.Detalle_estado);
+                    cmd.Parameters.AddWithValue("_t_documento", enc.T_documento);
+                    cmd.Parameters.AddWithValue("_n_documento", enc.N_documento);
+                    cmd.Parameters.AddWithValue("_archivo", enc.Archivo);
                     //using (MemoryStream ms = new MemoryStream())
                     //{
                     //    enc.Imagen.Save(ms, ImageFormat.Jpeg);
@@ -222,9 +234,12 @@ namespace Web_Farmacia.Models
                         enc.Estado = rd.GetString("estado");
                         enc.Bien = rd.GetString("bien");
                         enc.Inventario = rd.GetString("inventario");
+                        enc.Categoria = rd.GetString("categoria");
                         enc.Codigo = rd.GetString("codigo");
-
-
+                        enc.Detalle_estado = rd.IsDBNull(11) ? "" : rd.GetString("detalle_estado");
+                        enc.T_documento = rd.IsDBNull(12) ? "" : rd.GetString("t_documento");
+                        enc.N_documento = rd.IsDBNull(13) ? "" : rd.GetString("n_documento");
+                        enc.Archivo = rd.IsDBNull(14) ? null : rd.GetString("archivo");
                     }
 
                     rd.Close();
