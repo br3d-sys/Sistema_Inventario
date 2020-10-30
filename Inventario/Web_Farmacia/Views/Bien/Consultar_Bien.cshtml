@@ -92,8 +92,8 @@
                                 <th>Codigo</th>
                                 <th>Categoria</th>
                                 <th>Marca</th>
-                                <th>Color</th>
                                 <th>Modelo</th>
+                                <th>Estado</th>
                                 <th>Opciones</th>
                             </tr>
                         </thead>
@@ -106,8 +106,8 @@
                                         <td>@bien.Codigo</td>
                                         <td>@bien.Categoria</td>
                                         <td>@bien.Marca</td>
-                                        <td>@bien.Color</td>
                                         <td>@bien.Modelo</td>
+                                        <td>@bien.Estado</td>
                                         <td class="text-center">
                                             
                                             <button onclick="generarqr('@bien.Codigo')" class="btn btn-dark" id="generar"><i class="fas fa-qrcode"></i></button>
@@ -228,18 +228,12 @@
                         </div>
                         <div class="form-group col-sm-4">
                             <label for="mod_codigo">Fecha</label>
-                            <input class="form-control" type="date" name="mod_fecha" id="mod_fecha" placeholder="Fecha">
+                            <input class="form-control" type="date" name="mod_fecha" id="mod_fecha" placeholder="Fecha" value="@DateTime.Now.Year-@DateTime.Now.Month-@DateTime.Now.Day" disabled>
                             <span class="badge badge-warning sp" id="sp_mod_fecha"></span>
                         </div>
                         <div class="form-group col-sm-4">
                             <label for="mod_estado">Estado</label>
-                            <select class="form-control" name="mod_estado" id="mod_estado">
-                                <option value="Nuevo">Nuevo</option>
-                                <option value="Bueno">Bueno</option>
-                                <option value="Regular">Regular</option>
-                                <option value="Malo">Malo</option>
-                                <option value="Baja">Baja</option>
-                            </select>
+                            <input class="form-control" type="text" name="mod_estado" id="mod_estado" value="Baja" disabled/>
                             <span class="badge badge-warning sp" id="sp_mod_estado"></span>
                         </div>
                     </div>
@@ -263,9 +257,8 @@
                             <label for="tipo_documento">Tipo de Documento</label>
                             <select class="form-control" name="tipo_documento" id="tipo_documento">
                                 <option value="Informe">Informe</option>
-                                <option value="Gruia de Remision">Guia de Remision</option>
-                                <option value="Boleta">Boleta</option>
-                                <option value="Factura">Factura</option>
+                                <option value="Solicitud">Solicitud</option>
+                                <option value="Carta">Carta</option>
                                 <option value="Otros">Otros</option>
                             </select>
                             <span class="badge badge-warning sp" id="sp_tipo_documento"></span>

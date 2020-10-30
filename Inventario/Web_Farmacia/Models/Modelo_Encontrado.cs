@@ -224,7 +224,7 @@ namespace Web_Farmacia.Models
                     while (rd.Read())
                     {
 
-                        byte[] arr_byte =(byte[]) rd.GetValue(8);
+                        byte[] arr_byte =(byte[]) rd.GetValue(10);
                         enc.Imagen_byte = arr_byte;
 
                         enc.Id_encontrado = rd.GetInt32("id_encontrado");
