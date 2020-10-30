@@ -115,7 +115,7 @@
                     </div>
                     <div class="form-group col-sm-3">
                         <label for="fecha">Fecha</label>
-                        <input class="form-control" type="date" name="fecha" id="fecha" placeholder="Ingrese la Fecha">
+                        <input class="form-control" type="date" name="fecha" id="fecha" placeholder="Ingrese la Fecha" value="@DateTime.Now.Year-@DateTime.Now.Month-@DateTime.Now.Day">
                         <span class="badge badge-warning sp" id="sp_fecha"></span>
                     </div>
                     <div class="form-group col-sm-3">
@@ -143,9 +143,8 @@
                         <label for="tipo_documento">Tipo de Documento</label>
                         <select class="form-control" name="tipo_documento" id="tipo_documento" disabled>
                             <option value="Informe">Informe</option>
-                            <option value="Gruia de Remision">Guia de Remision</option>
-                            <option value="Boleta">Boleta</option>
-                            <option value="Factura">Factura</option>
+                            <option value="Solicitud">Solicitud</option>
+                            <option value="Carta">Carta</option>
                             <option value="Otros">Otros</option>
                         </select>
                         <span class="badge badge-warning sp" id="sp_tipo_documento"></span>
@@ -240,13 +239,6 @@
                     </div>
                     <!-- /.col -->
                 </div>
-
-
-
-
-            </div>
-            <div class="modal-footer">
-                <button class="btn btn-primary" id="mod-acept"> Aceptar</button>
             </div>
         </div>
     </div>
