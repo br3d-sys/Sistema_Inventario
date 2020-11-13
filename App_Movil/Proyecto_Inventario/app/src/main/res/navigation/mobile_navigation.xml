@@ -13,6 +13,9 @@
         <action
             android:id="@+id/action_lista_consulta"
             app:destination="@id/nav_lista_consulta" />
+        <action
+            android:id="@+id/action_consultar_descripcion"
+            app:destination="@id/nav_descripcion_bien" />
     </fragment>
     <fragment
         android:id="@+id/nav_lista_consulta"

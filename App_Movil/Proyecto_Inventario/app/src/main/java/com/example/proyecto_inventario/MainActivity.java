@@ -35,17 +35,17 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                usuario = "usuario="+txt_usuario.getText()+"&contrasena="+txt_contrasena.getText();
+                usuario = "correo="+txt_usuario.getText()+"&contrasena="+txt_contrasena.getText();
+                //Toast.makeText(MainActivity.this, "texto " + txt_usuario.getText(), Toast.LENGTH_SHORT).show();
 
-
-                new Thread(
+               new Thread(
                         new Runnable() {
                     @Override
                     public void run() {
                         //cr="hola";
                         try {
 
-                            URL url_conexion = new URL("http://10.0.2.2/api-rest/Acceso_Rest/Usuario.php");
+                            URL url_conexion = new URL("http://edinson2020-001-site1.btempurl.com/api/UsuarioRest");
                             HttpURLConnection myconnection = (HttpURLConnection) url_conexion.openConnection();
                             myconnection.setRequestMethod("POST");
                             myconnection.setDoOutput(true);
@@ -61,11 +61,11 @@ public class MainActivity extends AppCompatActivity {
                                 while(jr.hasNext()){
 
                                     String key = jr.nextName();
-                                    if(key.equals("respuesta")){
-                                        String value = jr.nextString();
+                                    if(key.equals("success")){
+                                        Boolean value = jr.nextBoolean();
                                         //Log.d("entrada",value);
                                         //cr=value;
-                                        if(value!=null){
+                                        if(value==true){
                                             cambiar();
                                         }
 
@@ -78,11 +78,12 @@ public class MainActivity extends AppCompatActivity {
                                 jr.close();
                                 myconnection.disconnect();
                             }else{
-
+                                Toast.makeText(MainActivity.this, "No se pudo conectar al servidor", Toast.LENGTH_SHORT).show();
                             }
 
                         } catch (IOException e) {
                             e.printStackTrace();
+                            Log.i("error",e.getMessage());
                         }
                     }
                 }).start();

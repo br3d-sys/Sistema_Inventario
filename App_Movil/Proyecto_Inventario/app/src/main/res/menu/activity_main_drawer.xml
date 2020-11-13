@@ -8,6 +8,10 @@
             android:id="@+id/nav_consultar_asignacion"
             android:icon="@drawable/ic_baseline_person_24"
             android:title="@string/menu_consultar_asignacion" />
+        <item
+            android:id="@+id/consultar_qr"
+            android:icon="@drawable/ic_baseline_crop_square_24"
+            android:title="@string/menu_consultar_qr" />
        // --------------------------------------------------
         //--------------------------------------------------
     </group>

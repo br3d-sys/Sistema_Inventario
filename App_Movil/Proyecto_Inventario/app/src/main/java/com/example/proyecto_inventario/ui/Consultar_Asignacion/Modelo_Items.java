@@ -1,13 +1,15 @@
 package com.example.proyecto_inventario.ui.Consultar_Asignacion;
 
+import android.graphics.Bitmap;
+
 public class Modelo_Items {
 
     private String m_codigo;
     private String m_nombre;
     private String m_color;
-    private int m_idImagen;
+    private Bitmap m_idImagen;
 
-    public Modelo_Items(int m_idImagen, String m_codigo, String m_nombre, String m_color) {
+    public Modelo_Items(Bitmap m_idImagen, String m_codigo, String m_nombre, String m_color) {
         this.m_idImagen = m_idImagen;
         this.m_codigo = m_codigo;
         this.m_nombre = m_nombre;
@@ -16,11 +18,11 @@ public class Modelo_Items {
 
 
 
-    public int getM_idImagen() {
+    public Bitmap getM_idImagen() {
         return m_idImagen;
     }
 
-    public void setM_idImagen(int m_idImagen) {
+    public void setM_idImagen(Bitmap m_idImagen) {
         this.m_idImagen = m_idImagen;
     }
 

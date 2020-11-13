@@ -12,6 +12,7 @@
     <string name="menu_gallery">Gallery</string>
     <string name="menu_slideshow">Slideshow</string>
     <string name="menu_consultar_asignacion">Consultar</string>
+    <string name="menu_consultar_qr">Consultar QR</string>
     <string name="menu_lista_consulta">Bienes Encontrados</string>
     <string name="menu_descripcion_bien">Descripción</string>
     <string name="menu_actualizar_estado">Actualizar Estado</string>

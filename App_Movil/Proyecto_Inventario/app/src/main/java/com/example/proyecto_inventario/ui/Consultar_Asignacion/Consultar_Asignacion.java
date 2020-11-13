@@ -28,6 +28,7 @@ import com.example.proyecto_inventario.R;
 import com.example.proyecto_inventario.ui.Consultar_Asignacion.Clases.Area;
 import com.example.proyecto_inventario.ui.Consultar_Asignacion.Clases.Gerencia;
 import com.example.proyecto_inventario.ui.Consultar_Asignacion.Clases.Personal;
+import com.google.android.material.textfield.TextInputEditText;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -40,7 +41,7 @@ import java.util.ArrayList;
 public class Consultar_Asignacion extends Fragment {
     Button btnbuscar;
     AutoCompleteTextView gerencias,areas,personal;
-
+    TextInputEditText codigo;
     public ArrayList<Gerencia> lista_ger ;
     public ArrayList<Area> lista_ar;
     public ArrayList<Personal> lista_per;
@@ -71,8 +72,9 @@ public class Consultar_Asignacion extends Fragment {
         gerencias = view.findViewById(R.id.lista_gerencia);
         areas = view.findViewById(R.id.lista_area);
         personal = view.findViewById(R.id.lista_personal);
+        codigo = view.findViewById(R.id.txt_codigo_asignacion);
 
-                new Thread(new Runnable() {
+               new Thread(new Runnable() {
                     @Override
                     public void run() {
 
@@ -93,9 +95,6 @@ public class Consultar_Asignacion extends Fragment {
                                 gerencias.setAdapter(arr);
                             }
                         });
-
-
-
                     }
                 }).start();
 
@@ -116,7 +115,7 @@ public class Consultar_Asignacion extends Fragment {
                             public void run() {
 
                                 final ArrayList<Area> lista_area = extraer_area(id_ger);
-                                Log.d("array",lista_area.get(0).getNombre());
+                                //Log.d("array",lista_area.get(0).getNombre());
 
                                 lista_ar = lista_area;
 
@@ -215,6 +214,7 @@ public class Consultar_Asignacion extends Fragment {
                 enviar_datos.putInt("id_gerencia", idg);
                 enviar_datos.putInt("id_area", ida);
                 enviar_datos.putInt("id_personal", idp);
+                enviar_datos.putString("codigo", codigo.getText().toString());
 
                 Navigation.findNavController(view).navigate(R.id.action_lista_consulta,enviar_datos);
 
@@ -231,10 +231,12 @@ public class Consultar_Asignacion extends Fragment {
     private ArrayList<Gerencia> extraer_gerencia() {
 
         Gerencia ger;
-        ArrayList<Gerencia> arr = new ArrayList<Gerencia>();
+        ArrayList<Gerencia> arr_ger = new ArrayList<Gerencia>();
+        Area are;
+        ArrayList<Area> arr_are = new ArrayList<Area>();
 
                 try {
-                    URL url = new URL("http://10.0.2.2/api-rest/Acceso_Rest/Gerencia.php");
+                    URL url = new URL("http://edinson2020-001-site1.btempurl.com/api/OficinasRest");
                     HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
 
                     if(urlConnection.getResponseCode() == 200){
@@ -243,30 +245,56 @@ public class Consultar_Asignacion extends Fragment {
 
                         JsonReader jsonReader = new JsonReader(reader);
                         //Log.d("problem" , jsonReader.toString());
-                        jsonReader.beginArray();
+                        jsonReader.beginObject();
                         while(jsonReader.hasNext()){
-                            jsonReader.beginObject();
-                                ger = new Gerencia();
+                            String val = jsonReader.nextName();
+                            if(val.equals("gerencia")) {
+                                jsonReader.beginArray();
                                 while (jsonReader.hasNext()){
-                                    //Log.d("arr",jsonReader.toString());
-                                    String val = jsonReader.nextName();
-                                    if(val.equals("id_gerencia")) {
-                                        ger.setId_gerencia(jsonReader.nextInt());
-                                        //Log.d("valor",jsonReader.nextString());
-                                        //arr.add(jsonReader.nextString());
-                                    }else if(val.equals("nombre")){
-                                        ger.setNombre(jsonReader.nextString());
-                                    }else {
-                                        jsonReader.skipValue();
+                                    jsonReader.beginObject();
+                                    ger = new Gerencia();
+                                    while (jsonReader.hasNext()){
+                                        String val2 = jsonReader.nextName();
+                                        if(val2.equals("Id_gerencia")) {
+                                            ger.setId_gerencia(jsonReader.nextInt());
+                                            //Log.d("valoraqui123456789",jsonReader.nextString());
+                                            //arr.add(jsonReader.nextString());
+                                        }else if(val2.equals("Nombre")){
+                                            ger.setNombre(jsonReader.nextString());
+                                        }else {
+                                            jsonReader.skipValue();
+                                        }
                                     }
+                                    arr_ger.add(ger);
+                                    jsonReader.endObject();
                                 }
-                                arr.add(ger);
-                                jsonReader.endObject();
-                            //arr = Optener_Elementos(jsonReader);
+                                jsonReader.endArray();
+                            }else if(val.equals("area")){
+                                jsonReader.beginArray();
+                                while (jsonReader.hasNext()){
+                                    jsonReader.beginObject();
+                                    are = new Area();
+                                    while (jsonReader.hasNext()){
+                                        String val2 = jsonReader.nextName();
+                                        if(val2.equals("Id_area")) {
+                                            are.setId_area(jsonReader.nextInt());
+                                            //Log.d("valor",jsonReader.nextString());
+                                            //arr.add(jsonReader.nextString());
+                                        }else if(val2.equals("Nombre")){
+                                            are.setNombre(jsonReader.nextString());
+                                        }else {
+                                            jsonReader.skipValue();
+                                        }
+                                    }
+                                    arr_are.add(are);
+                                    jsonReader.endObject();
+                                }
+                                jsonReader.endArray();
+                            }
 
 
                         }
-                        jsonReader.endArray();
+                        jsonReader.endObject();
                         jsonReader.close();
                         urlConnection.disconnect();
                     }
@@ -278,7 +306,7 @@ public class Consultar_Asignacion extends Fragment {
                 }
 
 
-        return arr;
+        return arr_ger;
     }
 
     private ArrayList<Area> extraer_area(int id_gerencia){
@@ -287,7 +315,7 @@ public class Consultar_Asignacion extends Fragment {
         ArrayList<Area> arr = new ArrayList<Area>();
 
         try {
-            URL url = new URL("http://10.0.2.2/api-rest/Acceso_Rest/Area.php?id_g="+id_gerencia);
+            URL url = new URL("http://edinson2020-001-site1.btempurl.com/api/AreaRest?id="+id_gerencia);
             HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
 
             if(urlConnection.getResponseCode() == 200){
@@ -296,30 +324,35 @@ public class Consultar_Asignacion extends Fragment {
 
                 JsonReader jsonReader = new JsonReader(reader);
                 //Log.d("problem" , jsonReader.toString());
-                jsonReader.beginArray();
+                jsonReader.beginObject();
                 while(jsonReader.hasNext()){
-                    jsonReader.beginObject();
-                    area = new Area();
-                    while (jsonReader.hasNext()){
-                        //Log.d("arr",jsonReader.toString());
-                        String val = jsonReader.nextName();
-                        if(val.equals("id_area")) {
-                            area.setId_area(jsonReader.nextInt());
-                            //Log.d("valor",jsonReader.nextString());
-                            //arr.add(jsonReader.nextString());
-                        }else if(val.equals("nombre")){
-                            area.setNombre(jsonReader.nextString());
-                        }else {
-                            jsonReader.skipValue();
+                    String val = jsonReader.nextName();
+                    if(val.equals("area")){
+                        jsonReader.beginArray();
+                        while (jsonReader.hasNext()){
+                            jsonReader.beginObject();
+                            area = new Area();
+                            while (jsonReader.hasNext()){
+                                String val2 = jsonReader.nextName();
+                                if(val2.equals("Id_area")) {
+                                    area.setId_area(jsonReader.nextInt());
+                                    //Log.d("valor",jsonReader.nextString());
+                                    //arr.add(jsonReader.nextString());
+                                }else if(val2.equals("Nombre")){
+                                    area.setNombre(jsonReader.nextString());
+                                }else {
+                                    jsonReader.skipValue();
+                                }
+                            }
+                            arr.add(area);
+                            jsonReader.endObject();
                         }
+                        jsonReader.endArray();
                     }
-                    arr.add(area);
-                    jsonReader.endObject();
-                    //arr = Optener_Elementos(jsonReader);
 
 
                 }
-                jsonReader.endArray();
+                jsonReader.endObject();
                 jsonReader.close();
                 urlConnection.disconnect();
             }
@@ -339,7 +372,7 @@ public class Consultar_Asignacion extends Fragment {
         ArrayList<Personal> arr = new ArrayList<Personal>();
 
         try {
-            URL url = new URL("http://10.0.2.2/api-rest/Acceso_Rest/Personal.php?id_a="+id_area);
+            URL url = new URL("http://edinson2020-001-site1.btempurl.com/api/EmpleadoRest?id_area="+id_area);
             HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
 
             if(urlConnection.getResponseCode() == 200){
@@ -348,30 +381,35 @@ public class Consultar_Asignacion extends Fragment {
 
                 JsonReader jsonReader = new JsonReader(reader);
                 //Log.d("problem" , jsonReader.toString());
-                jsonReader.beginArray();
+                jsonReader.beginObject();
                 while(jsonReader.hasNext()){
-                    jsonReader.beginObject();
-                    personal = new Personal();
-                    while (jsonReader.hasNext()){
-                        //Log.d("arr",jsonReader.toString());
-                        String val = jsonReader.nextName();
-                        if(val.equals("id_personal")) {
-                            personal.setId_personal(jsonReader.nextInt());
-                            //Log.d("valor",jsonReader.nextString());
-                            //arr.add(jsonReader.nextString());
-                        }else if(val.equals("nombre")){
-                            personal.setNombre(jsonReader.nextString());
-                        }else {
-                            jsonReader.skipValue();
+                    String val = jsonReader.nextName();
+                    if(val.equals("personal")){
+                        jsonReader.beginArray();
+                        while (jsonReader.hasNext()){
+                            jsonReader.beginObject();
+                            personal = new Personal();
+                            while (jsonReader.hasNext()){
+                                String val2 = jsonReader.nextName();
+                                if(val2.equals("Id_area")) {
+                                    personal.setId_personal(jsonReader.nextInt());
+                                    //Log.d("valor",jsonReader.nextString());
+                                    //arr.add(jsonReader.nextString());
+                                }else if(val2.equals("Nombre")){
+                                    personal.setNombre(jsonReader.nextString());
+                                }else {
+                                    jsonReader.skipValue();
+                                }
+                            }
+                            arr.add(personal);
+                            jsonReader.endObject();
                         }
+                        jsonReader.endArray();
                     }
-                    arr.add(personal);
-                    jsonReader.endObject();
-                    //arr = Optener_Elementos(jsonReader);
 
 
                 }
-                jsonReader.endArray();
+                jsonReader.endObject();
                 jsonReader.close();
                 urlConnection.disconnect();
             }
