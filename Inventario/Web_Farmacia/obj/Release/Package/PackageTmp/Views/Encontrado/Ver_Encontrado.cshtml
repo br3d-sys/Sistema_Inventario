@@ -1,0 +1,213 @@
+﻿
+@{
+    ViewBag.Title = "Ver_Encontrado";
+    Layout = "~/Views/Main.cshtml";
+}
+
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>Estado de Bien</h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="#">Home</a></li>
+                    <li class="breadcrumb-item active">Estado de Bien</li>
+                </ol>
+            </div>
+        </div>
+    </div><!-- /.container-fluid -->
+</section>
+<!-- Main content -->
+<section class="content">
+    <!-- Default box -->
+    <div class="card">
+        <div class="card-header">
+            <h3 class="card-title">Verificar Detalle</h3>
+            <div class="card-tools">
+                <button type="button" class="btn btn-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse">
+                    <i class="fa fa-minus"></i>
+                </button>
+                <button type="button" class="btn btn-tool" data-widget="remove" data-toggle="tooltip" title="Remove">
+                    <i class="fa fa-times"></i>
+                </button>
+            </div>
+        </div>
+        <div class="card-body">
+
+            @model Web_Farmacia.Controllers.Info
+
+            <form method="post" enctype="multipart/form-data" id="modificar">
+
+                <div class="d-flex">
+                    <a href="@Url.Action("Consultar_Encontrado", "Encontrado")" class="btn btn-secondary ml-auto"><i class="fa fa-caret-left"></i> Regresar</a>
+                </div>
+
+                <div class="form-row">
+
+                    <input class="form-control" type="hidden" name="id" id="id" value="@Model.Obj_enc.Id_encontrado">
+
+                        <div class="form-group col-sm-5">
+                            <label for="nombre">Nombre</label>
+                            <input class="form-control" type="text" name="nombre" id="nombre" placeholder="Nombre" disabled value="@Model.Obj_bie.Nombre">
+                            <span class="badge badge-warning sp" id="sp_nombre"></span>
+                        </div>
+                        <div class="form-group col-sm-3">
+                            <label for="id_categoria">Categoria</label>
+                            <input class="form-control" type="text" name="categoria" id="categoria" placeholder="Categoria" disabled value="@Model.Obj_bie.Categoria">
+                            <span class="badge badge-warning sp" id="sp_categoria"></span>
+                        </div>
+                        <div class="form-group col-sm-4">
+                            <label for="serie">Serie</label>
+                            <input class="form-control" type="text" name="serie" id="serie" placeholder="Serie" disabled value="@Model.Obj_bie.Serie">
+                            <span class="badge badge-warning sp" id="sp_serie"></span>
+                        </div>
+
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-sm-3">
+                            <label for="codigo">Codigo</label>
+                            <input class="form-control" type="text" name="codigo" id="codigo" placeholder="Ingrese el Codigo" disabled value="@Model.Obj_bie.Codigo"/>
+                            <span class="badge badge-warning sp" id="sp_codigo"></span>
+                        </div>
+                        <div class="form-group col-sm-3">
+                            <label for="estado">Estado</label>
+                            <input class="form-control" type="text" name="estado" id="estado" placeholder="Estado" disabled value="@Model.Obj_bie.Estado">
+                            <span class="badge badge-warning sp" id="sp_estado"></span>
+                        </div>
+                        <div class="form-group col-sm-3">
+                            <label for="marca">Marca</label>
+                            <input class="form-control" type="text" name="marca" id="marca" placeholder="Ingrese la Marca" disabled value="@Model.Obj_bie.Marca">
+                            <span class="badge badge-warning sp" id="sp_marca"></span>
+                        </div>
+                        <div class="form-group col-sm-3">
+                            <label for="modelo">Modelo</label>
+                            <input class="form-control" type="text" name="modelo" id="modelo" placeholder="Ingrese el Modelo" disabled value="@Model.Obj_bie.Modelo">
+                            <span class="badge badge-warning sp" id="sp_modelo"></span>
+                        </div>
+                    </div>
+                    <hr />
+                    <div class="form-row">
+                        <div class="form-group col-sm-3">
+                            <label for="estado">Detalle de Ubicación</label>
+                            <input class="form-control" type="text" name="estado" id="estado" placeholder="Ingrese el Detalle" disabled value="@Model.Obj_enc.Estado">
+                            <span class="badge badge-warning sp" id="sp_detalle"></span>
+                        </div>
+                        <div class="form-group col-sm-3">
+                            <label for="inventario">Inventario</label>
+                            <input class="form-control" type="text" name="inventario" id="inventario" placeholder="Ingrese el Inventario" disabled value="@Model.Obj_enc.Inventario">
+                            <span class="badge badge-warning sp" id="sp_inventario"></span>
+                        </div>
+                        <div class="form-group col-sm-3">
+                            <label for="fecha">Fecha</label>
+                            <input class="form-control" type="date" name="fecha" id="fecha" placeholder="Ingrese la Fecha" disabled value="@Model.Obj_enc.Fecha">
+                            <span class="badge badge-warning sp" id="sp_fecha"></span>
+                        </div>
+                        <div class="form-group col-sm-3">
+                            <label for="imagen">Adjuntar Imagen</label>
+                            <input class="form-control" type="file" name="imagen" id="imagen" placeholder="Seleccione la imagen" disabled>
+                            <span class="badge badge-warning sp" id="sp_imagen"></span>
+                        </div>
+                    </div>
+                    <img src="@Url.Action("ver_imagen","Encontrado", new {id = Model.Obj_enc.Id_encontrado})" alt="Alternate Text" />
+
+
+                    <div class="form-row d-flex justify-content-between">
+                        <div class="form-group col-auto">
+                            <button type="submit" class="btn btn-primary">Guardar</button>
+                        </div>
+                    </div>
+                </form>
+        </div>
+
+    </div>
+    <!-- /.card -->
+</section>
+<!-- /.content -->
+<div class="modal fade" id="mod" role="dialog">
+
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Información</h4>
+            </div>
+            <div class="modal-body">
+                <p id="content"></p>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-primary" id="mod-acept"><i class="fa fa-caret-left"></i> Regresar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+
+    document.addEventListener("DOMContentLoaded", function () {
+
+                                        document.getElementById("modificar").addEventListener("submit", function (e) {
+
+                                            var url = "@Url.Action("Modificar_Usuario", "Usuario")"
+
+            var id = document.getElementById("id").value;
+                                            var nombre = document.getElementById("nombre").value;
+                                            var documento = document.getElementById("documento").value;
+                                            var n_documento = document.getElementById("n_documento").value;
+                                            var direccion = document.getElementById("direccion").value;
+                                            var celular = document.getElementById("celular").value;
+                                            var correo = document.getElementById("correo").value;
+                                            var cargo = document.getElementById("cargo").value;
+                                            var password = document.getElementById("password").value;
+
+                                            var param = "nombre=" + nombre + "&documento=" + documento + "&n_documento=" + n_documento +
+                                                "&direccion=" + direccion + "&celular=" + celular + "&correo=" + correo +
+                                                "&cargo=" + cargo + "&password=" + password + "&id=" + id;
+
+                                            var ajax = new XMLHttpRequest();
+
+                                            ajax.onreadystatechange = function () {
+                                                if (ajax.readyState == 4) {
+
+                                                    var response = JSON.parse(ajax.responseText);
+                                                    if (response.success) {
+                                                        console.log(response.message);
+
+                                                        document.getElementById("content").innerHTML = response.message;
+                        $("#mod").modal({ backdrop: 'static' });
+                                                        limpiar_spam();
+                                                    } else {
+                                                        console.log(response);
+                                                        limpiar_spam();
+                        for (var prop in response.datos) {
+                                                            document.getElementById(prop).innerHTML = response.datos[prop]
+                        }
+                                                    }
+                                                }
+                                            }
+
+                                            ajax.open("POST", url, true);
+                                            ajax.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+                                            ajax.send(param);
+
+                                            e.preventDefault();
+                                        })
+
+        document.getElementById("mod-acept").addEventListener("click", function () {
+            $("#mod").modal("hide");
+
+                                            location.replace("@Url.Action("Consultar_Usuario", "Usuario")");
+                                        })
+
+        function limpiar_spam() {
+                                            var elementos = document.getElementsByClassName("sp");
+                                            for (i = 0; i < elementos.length ; i++) {
+                                                elementos.item(i).innerHTML = "";
+                                            }
+                                        }
+
+                                    })
+
+</script>
+

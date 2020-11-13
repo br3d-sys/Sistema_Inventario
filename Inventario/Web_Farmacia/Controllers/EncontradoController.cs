@@ -154,7 +154,7 @@ namespace Web_Farmacia.Controllers
                     {
 
                         img.Save(ms, ImageFormat.Jpeg);
-                        byte[] arr = ms.ToArray();
+                        byte[] arr = Convert.FromBase64String(ms.ToArray().ToString());
 
                     enc.Id_encontrado = id;
                     enc.Id_bienes = id_bienes == 0 ? 0 : id_bienes;
@@ -201,7 +201,8 @@ namespace Web_Farmacia.Controllers
         }
 
         [HttpPost]
-        public ActionResult Registrar_Encontrado(int id_bienes, int id_inventario, DateTime fecha, string estado, HttpPostedFileBase imagen)
+        public ActionResult Registrar_Encontrado(int id_bienes, int id_inventario, DateTime? fecha, string estado, string detalle_estado,
+            HttpPostedFileBase imagen, string tipo_documento, string num_documento, HttpPostedFileBase adj_doc)
         {
             Encontrado enc = new Encontrado();
             Modelo_Encontrado me = new Modelo_Encontrado();
@@ -230,6 +231,18 @@ namespace Web_Farmacia.Controllers
             {
                 error.Add("sp_imagen", "Seleccione la Imagen del Bien");
             }
+            if (String.IsNullOrEmpty(detalle_estado))
+            {
+                error.Add("sp_mod_descripcion", "Describa el estado de bien");
+            }
+            if (String.IsNullOrEmpty(tipo_documento))
+            {
+                error.Add("sp_tipo_documento", "Seleccione el Tipo de documento");
+            }
+            if (String.IsNullOrEmpty(num_documento))
+            {
+                error.Add("sp_num_documento", "Ingrese el numero del documento");
+            }
 
             if (error.Count == 0)
             {
@@ -240,12 +253,17 @@ namespace Web_Farmacia.Controllers
                 {
                     img.Save(ms, ImageFormat.Jpeg);
                     byte[] img_byte = ms.ToArray();
+                    string im = Convert.ToBase64String(img_byte);
 
-                enc.Id_bienes = id_bienes == 0 ? 0 : id_bienes;
-                enc.Id_inventario = id_inventario == 0 ? 0 : id_inventario;
-                enc.Fecha = fecha == null ? DateTime.Now : fecha;
-                enc.Estado = estado == null ? "" : estado;
-                enc.Imagen_byte = img_byte == null ? null : img_byte;
+                    enc.Id_bienes = id_bienes == 0 ? 0 : id_bienes;
+                    enc.Id_inventario = id_inventario == 0 ? 0 : id_inventario;
+                    enc.Fecha = fecha == null ? DateTime.Now : fecha.Value;
+                    enc.Estado = estado == null ? "" : estado;
+                    enc.Detalle_estado = detalle_estado == null ? "" : detalle_estado;
+                    enc.T_documento = tipo_documento == null ? "" : tipo_documento;
+                    enc.N_documento = im;
+                    enc.Archivo = adj_doc == null ? "" : adj_doc.FileName;
+                    enc.Imagen_byte = img_byte == null ? null : img_byte;
 
                 }
 
@@ -321,6 +339,7 @@ namespace Web_Farmacia.Controllers
                 {
                     img.Save(ms, ImageFormat.Jpeg);
                     byte[] img_byte = ms.ToArray();
+                    string im = Convert.ToBase64String(img_byte);
 
                     enc.Id_bienes = id_bien == 0 ? 0 : id_bien;
                     enc.Id_inventario = id_inventario == 0 ? 0 : id_inventario;

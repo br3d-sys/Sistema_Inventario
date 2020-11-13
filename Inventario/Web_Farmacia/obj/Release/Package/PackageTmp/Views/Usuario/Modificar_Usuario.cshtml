@@ -56,16 +56,28 @@
                         </div>
                         <div class="form-group col-sm-3">
                             <label for="documento">Tipo de Documento</label>
-                            <select class="form-control" name="documento" id="documento" value="@Model.Obj_usu.Documento">
-                                <option value="DNI">DNI</option>
-                                <option value="RUC">RUC</option>
-                                <option value="LE">LE</option>
+                            <select class="form-control" name="documento" id="documento">
+                                @{string[] documentos = { "DNI", "RUC", "LE" };}
+                                @foreach (var doc in documentos)
+                                {
+                                    if (doc == @Model.Obj_usu.Documento)
+                                    {
+                                        <option value="@doc" selected="selected">@doc</option>
+                                    }
+                                    else
+                                    {
+                                        <option value="@doc">@doc</option>
+                                    }
+
+                                }
+
+
                             </select>
                             <span class="badge badge-warning sp" id="sp_documento"></span>
                         </div>
                         <div class="form-group col-sm-3">
                             <label for="n_documento">Numero de Documento</label>
-                            <input class="form-control" type="text" name="n_documento" id="n_documento" placeholder="Ingrese el N°" value="@Model.Obj_usu.N_documento">
+                            <input class="form-control" type="number" name="n_documento" id="n_documento" placeholder="Ingrese el N°" minlength="8" maxlength="10" value="@Model.Obj_usu.N_documento">
                             <span class="badge badge-warning sp" id="sp_n_documento"></span>
                         </div>
                     </div>
@@ -77,35 +89,41 @@
                         </div>
                         <div class="form-group col-sm-4">
                             <label for="celular">Celular</label>
-                            <input class="form-control" type="text" name="celular" id="celular" placeholder="Ingrese su Celular" value="@Model.Obj_usu.Celular">
+                            <input class="form-control" type="number" name="celular" id="celular" placeholder="Ingrese su Celular" minlength="9" value="@Model.Obj_usu.Celular">
                             <span class="badge badge-warning sp" id="sp_celular"></span>
                         </div>
-                        <div class="form-group col-sm-4">
-                            <label for="correo">Correo</label>
-                            <input class="form-control" type="text" name="correo" id="correo" placeholder="Ingrese su Correo" value="@Model.Obj_usu.Correo">
-                            <span class="badge badge-warning sp" id="sp_correo"></span>
-                        </div>
+                        >
                     </div>
                     <div class="form-row">
                         <div class="form-group col-sm-4">
-                            <label for="usuario">Usuario</label>
-                            <input class="form-control" type="text" name="usuario" id="usuario" placeholder="Ingrese el Usuario" value="@Model.Obj_usu.Nom_usuario">
-                            <span class="badge badge-warning sp" id="sp_usuario"></span>
+                            <label for="correo">Correo</label>
+                            <input class="form-control" type="email" name="correo" id="correo" placeholder="Ingrese su Correo" value="@Model.Obj_usu.Correo">
+                            <span class="badge badge-warning sp" id="sp_correo"></span>
                         </div>
                         <div class="form-group col-sm-4">
                             <label for="password">Contraseña</label>
-                            <input class="form-control" type="password" name="password" id="password" placeholder="Ingrese la Contraseña" value="@Model.Obj_usu.Password">
+                            <input class="form-control" type="password" name="password" id="password" placeholder="Ingrese la Contraseña" value="@Model.Obj_usu.Contrasena">
                             <span class="badge badge-warning sp" id="sp_password"></span>
                         </div>
                         <div class="form-group col-sm-4">
-                            <label for="id_cargo">Cargo</label>
-                            <select class="form-control" name="id_cargo" id="id_cargo">
-                                @foreach (var item in Model.Car)
+                            <label for="cargo">Cargo</label>
+                            <select class="form-control" name="cargo" id="cargo">
+                                @{string[] cargos = { "Administrador", "Asistente", "Inventariador" };}
+                                @foreach (var car in cargos)
                                 {
-                                    <option value="@item.Id_cargo">@item.Nombre</option>
+                                    if (car == @Model.Obj_usu.Cargo)
+                                    {
+                                        <option value="@car" selected="selected">@car</option>
+                                    }
+                                    else
+                                    {
+                                        <option value="@car">@car</option>
+                                    }
+
                                 }
+
                             </select>
-                            <span class="badge badge-warning sp" id="sp_id_cargo"></span>
+                            <span class="badge badge-warning sp" id="sp_cargo"></span>
                         </div>
 
                     </div>
@@ -114,17 +132,9 @@
                             <button type="submit" class="btn btn-primary">Guardar</button>
                         </div>
                     </div>
-
             </form>
-
-
-
         </div>
-        <!-- /.card-body -->
-        <div class="card-footer">
-            Paginación
-        </div>
-        <!-- /.card-footer-->
+        
     </div>
     <!-- /.card -->
 </section>
@@ -150,85 +160,67 @@
 
     document.addEventListener("DOMContentLoaded", function () {
 
-        document.getElementById("modificar").addEventListener("submit", function (e) {
+                                        document.getElementById("modificar").addEventListener("submit", function (e) {
 
-            var url = "@Url.Action("Modificar_Usuario", "Usuario")"/*"/Producto/Registrar_Producto"*/;
-
-            //var form = document.getElementById("registrar");
-
+                                            var url = "@Url.Action("Modificar_Usuario", "Usuario")"
+                                
             var id = document.getElementById("id").value;
-            var nombre = document.getElementById("nombre").value;
-            var documento = document.getElementById("documento").value;
-            var n_documento = document.getElementById("n_documento").value;
-            var direccion = document.getElementById("direccion").value;
-            var celular = document.getElementById("celular").value;
-            var correo = document.getElementById("correo").value;
-            var id_cargo = document.getElementById("id_cargo").value;
-            var usuario = document.getElementById("usuario").value;
-            var password = document.getElementById("password").value;
+                                            var nombre = document.getElementById("nombre").value;
+                                            var documento = document.getElementById("documento").value;
+                                            var n_documento = document.getElementById("n_documento").value;
+                                            var direccion = document.getElementById("direccion").value;
+                                            var celular = document.getElementById("celular").value;
+                                            var correo = document.getElementById("correo").value;
+                                            var cargo = document.getElementById("cargo").value;
+                                            var password = document.getElementById("password").value;
 
-            var formdata = new FormData();
+                                            var param = "nombre=" + nombre + "&documento=" + documento + "&n_documento=" + n_documento +
+                                                "&direccion=" + direccion + "&celular=" + celular + "&correo=" + correo +
+                                                "&cargo=" + cargo + "&password=" + password + "&id=" + id;
 
-            //var param = "id=" + id + "&nombre=" + nombre + "&descripcion=" + descripcion;
+                                            var ajax = new XMLHttpRequest();
 
-            formdata.append("id", id);
-            formdata.append("nombre", nombre);
-            formdata.append("documento", documento);
-            formdata.append("n_documento", n_documento);
-            formdata.append("direccion", direccion);
-            formdata.append("celular", celular);
-            formdata.append("correo", correo);
-            formdata.append("id_cargo", id_cargo);
-            formdata.append("usuario", usuario);
-            formdata.append("password", password);
+                                            ajax.onreadystatechange = function () {
+                                                if (ajax.readyState == 4) {
 
-            var ajax = new XMLHttpRequest();
+                                                    var response = JSON.parse(ajax.responseText);
+                                                    if (response.success) {
+                                                        console.log(response.message);
 
-            ajax.onreadystatechange = function () {
-                if (ajax.readyState == 4) {
-
-                    //console.log(JSON.parse(ajax.responseText));
-
-                    var response = JSON.parse(ajax.responseText);
-                    if (response.success) {
-                        console.log(response.message);
-
-                        document.getElementById("content").innerHTML = response.message;
-                        $("#mod").modal({ backdrop: true });
-                        limpiar_spam();
-                    } else {
-                        console.log(response);
-                        limpiar_spam();
+                                                        document.getElementById("content").innerHTML = response.message;
+                        $("#mod").modal({ backdrop: 'static' });
+                                                        limpiar_spam();
+                                                    } else {
+                                                        console.log(response);
+                                                        limpiar_spam();
                         for (var prop in response.datos) {
-                            //console.log("propiedad " + prop + " valor " + response.datos[prop]);
-                            document.getElementById(prop).innerHTML = response.datos[prop]
+                                                            document.getElementById(prop).innerHTML = response.datos[prop]
                         }
-                    }
-                }
-            }
+                                                    }
+                                                }
+                                            }
 
-            ajax.open("POST", url, true);
-            //ajax.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-            //console.log(formdata.toString);
-            ajax.send(formdata);
+                                            ajax.open("POST", url, true);
+                                            ajax.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+                                            ajax.send(param);
 
-            e.preventDefault();
-        })
+                                            e.preventDefault();
+                                        })
 
         document.getElementById("mod-acept").addEventListener("click", function () {
             $("#mod").modal("hide");
 
-            location.replace("@Url.Action("Consultar_Usuario", "Usuario")");
-        })
+                                            location.replace("@Url.Action("Consultar_Usuario", "Usuario")");
+                                        })
 
         function limpiar_spam() {
-            var elementos = document.getElementsByClassName("sp");
-            for (i = 0; i < elementos.length ; i++) {
-                elementos.item(i).innerHTML = "";
-            }
-        }
+                                            var elementos = document.getElementsByClassName("sp");
+                                            for (i = 0; i < elementos.length ; i++) {
+                                                elementos.item(i).innerHTML = "";
+                                            }
+                                        }
 
-    })
+                                    })
 
 </script>
 

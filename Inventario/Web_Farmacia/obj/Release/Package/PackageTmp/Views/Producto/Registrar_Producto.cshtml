@@ -37,19 +37,19 @@
         </div>
         <div class="card-body">
 
-            @if (ViewBag.message != null)
+            @*@if (ViewBag.message != null)
             {
                 <div class="alert alert-dark" role="alert">
                     @ViewBag.message
                 </div>
-            }
+            }*@
 
-            @model List<Web_Farmacia.Clases.Categoria>
+            @*@model List<Web_Farmacia.Clases.Categoria>*@
 
             <form method="post" @*action="/Producto/Registrar_Producto"*@ enctype="multipart/form-data" id="registrar">
 
                 <div class="d-flex mb-4">
-                    <a href="@Url.Action("Consultar_Producto", "Producto")" class="btn btn-secondary ml-auto"><i class="fa fa-caret-left"></i> Lista de Productos</a>
+                    <a href="" class="btn btn-secondary ml-auto"><i class="fa fa-caret-left"></i> Lista de Productos</a>
                 </div>
 
                 <div class="form-row">
@@ -61,10 +61,10 @@
                     <div class="form-group col-sm-6">
                         <label for="categoria">Categoria</label>
                         <select class="form-control" name="categoria" id="categoria">
-                            @foreach (var categoria in Model)
+                            @*@foreach (var categoria in Model)
                             {
                                 <option value="@categoria.Id_categoria">@categoria.Nombre</option>
-                            }
+                            }*@
                         </select>
                         <span class="badge badge-warning sp" id="sp_categoria"></span>
                     </div>
@@ -147,7 +147,7 @@
 
            document.getElementById("registrar").addEventListener("submit", function (e) {
 
-            var url = "@Url.Action("Registrar_Producto", "Producto")";
+            var url = "@*@Url.Action("Registrar_Producto", "Producto")*@";
 
             //var form = document.getElementById("registrar");
                var nombre = document.getElementById("nombre").value;

@@ -14,7 +14,7 @@
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
                     <li class="breadcrumb-item"><a href="#">Home</a></li>
-                    <li class="breadcrumb-item active">Lista de Categorias</li>
+                    <li class="breadcrumb-item active">Listar Categorias</li>
                 </ol>
             </div>
         </div>
@@ -25,7 +25,7 @@
     <!-- Default box -->
     <div class="card">
         <div class="card-header">
-            <h3 class="card-title">Categorias </h3>
+            <h3 class="card-title">Categorias</h3>
             <div class="card-tools">
                 <button type="button" class="btn btn-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse">
                     <i class="fa fa-minus"></i>
@@ -37,7 +37,26 @@
         </div>
         <div class="card-body">
 
-            @model List<Web_Farmacia.Clases.Categoria>
+
+            @model Web_Farmacia.Controllers.Info
+
+            <div class="d-flex mb-4">
+                <a href="@Url.Action("Registrar_Categoria", "Categoria")" class="btn btn-secondary ml-auto"><i class="fa fa-plus"></i> Agregar</a>
+            </div>
+
+
+            <form action="/Categoria/Consultar_Categoria" method="post" class="" id="buscar">
+
+                <div class="form-row">
+                    <div class="form-group col-sm-6">
+                        <label for="nombre">Nombre</label>
+                        <input class="form-control" type="text" name="nombre" id="nombre" placeholder="Ingrese su Nombre">
+                    </div>
+                    <div class="col-sm-2 align-self-center align-self-end text-center">
+                        <button type="submit" class="btn btn-primary pr-4 pl-4">Buscar</button>
+                    </div>
+                </div>
+            </form>
 
             <!-- Table row -->
 
@@ -48,30 +67,19 @@
                 </div>
             }
 
-            @if (ViewBag.modificar != null)
-            {
-                <div class="alert alert-dark" role="alert">
-                    @ViewBag.modificar
-                </div>
-            }
-
-            <div class="d-flex mb-4">
-                <a href="@Url.Action("Registrar_Categoria", "Categoria")" class="btn btn-secondary ml-auto" @*id="return"*@><i class="fa fa-plus"></i> Agregar</a>
-            </div>
-
             <div class="row">
                 <div class="col-12 table-responsive">
                     <table class="table table-striped">
                         <thead>
                             <tr>
                                 <th>Nombre</th>
-                                <th>Descripción</th>
+                                <th>Descripcion</th>
                                 <th>Opciones</th>
                             </tr>
                         </thead>
                         <tbody>
                             @{
-                                foreach (var categoria in Model)
+                                foreach (var categoria in Model.Cat)
                                 {
                                     <tr>
                                         <td>@categoria.Nombre</td>
@@ -90,16 +98,8 @@
                 </div>
                 <!-- /.col -->
             </div>
-
-
-
-
         </div>
-        <!-- /.card-body -->
-        <div class="card-footer">
-            Paginación
-        </div>
-        <!-- /.card-footer-->
+
     </div>
     <!-- /.card -->
 </section>
@@ -129,29 +129,51 @@
     var f_id;
 
     document.addEventListener("DOMContentLoaded", function (e) {
-        
-        
+
+        document.getElementById("buscar").addEventListener("submit", function () {
+
+                var url = "@Url.Action("Consultar_Categoria", "Categoria")";
+
+                var nombre = document.getElementById("nombre").value;
+
+                var param = "nombre=" + nombre;
+
+
+                  var ajax = new XMLHttpRequest();
+
+                  ajax.onreadystatechange = function () {
+                      if (ajax.readyState == 4) {
+
+                    }
+                  }
+
+                ajax.open("POST", url, true);
+
+                ajax.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+
+                ajax.send(param);
+
+        });
+
 
         document.getElementById("mod-acept").addEventListener("click", function () {
             location.replace("/Categoria/eliminar?id=" + f_id);
             $("#mod").modal("hide");
-        })
+        });
+
         document.getElementById("mod-can").addEventListener("click", function () {
             $("#mod").modal("hide");
-        })
+        });
 
-        function limpiar_spam() {
-            var elementos = document.getElementsByClassName("sp");
-            for (i = 0; i < elementos.length ; i++) {
-                elementos.item(i).innerHTML = "";
-            }
-        }
+
+
     })
 
     function eliminar(id) {
-        $("#mod").modal({ backdrop: true });
+        $("#mod").modal({ backdrop: 'static' });
         f_id = id;
     }
 
-
 </script>
+
+

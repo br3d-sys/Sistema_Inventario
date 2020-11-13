@@ -20,6 +20,9 @@
         </div>
     </div><!-- /.container-fluid -->
 </section>
+
+@model Web_Farmacia.Controllers.Info
+
 <!-- Main content -->
 <section class="content">
     <!-- Default box -->
@@ -37,12 +40,10 @@
         </div>
         <div class="card-body">
 
-@model List<Web_Farmacia.Clases.Cargo>
-
             <form method="post" enctype="multipart/form-data" id="registrar">
 
                 <div class="d-flex mb-4">
-                    <a href="@Url.Action("Consultar_Usuario", "Usuario")" class="btn btn-secondary ml-auto"><i class="fa fa-caret-left"></i> Lista de Productos</a>
+                    <a href="/Usuario/Consultar_Usuario" class="btn btn-secondary ml-auto"><i class="fa fa-caret-left"></i> Lista de Usuarios</a>
                 </div>
 
                 <div class="form-row">
@@ -62,7 +63,7 @@
                     </div>
                     <div class="form-group col-sm-3">
                         <label for="n_documento">Numero de Documento</label>
-                        <input class="form-control" type="text" name="n_documento" id="n_documento" placeholder="Ingrese el N°">
+                        <input class="form-control" type="number" name="n_documento" id="n_documento" placeholder="Ingrese el N°" minlength="8" maxlength="10">
                         <span class="badge badge-warning sp" id="sp_n_documento"></span>
                     </div>
                 </div>
@@ -74,20 +75,16 @@
                     </div>
                     <div class="form-group col-sm-4">
                         <label for="celular">Celular</label>
-                        <input class="form-control" type="text" name="celular" id="celular" placeholder="Ingrese su Celular">
+                        <input class="form-control" type="number" name="celular" id="celular" placeholder="Ingrese su Celular" minlength="8">
                         <span class="badge badge-warning sp" id="sp_celular"></span>
                     </div>
-                    <div class="form-group col-sm-4">
-                        <label for="correo">Correo</label>
-                        <input class="form-control" type="text" name="correo" id="correo" placeholder="Ingrese su Correo">
-                        <span class="badge badge-warning sp" id="sp_correo"></span>
-                    </div>
+                    
                 </div>
                 <div class="form-row">
                     <div class="form-group col-sm-4">
-                        <label for="usuario">Usuario</label>
-                        <input class="form-control" type="text" name="usuario" id="usuario" placeholder="Ingrese el Usuario">
-                        <span class="badge badge-warning sp" id="sp_usuario"></span>
+                        <label for="correo">Correo</label>
+                        <input class="form-control" type="email" name="correo" id="correo" placeholder="Ingrese su Correo">
+                        <span class="badge badge-warning sp" id="sp_correo"></span>
                     </div>
                     <div class="form-group col-sm-4">
                         <label for="password">Contraseña</label>
@@ -96,13 +93,12 @@
                     </div>
                     <div class="form-group col-sm-4">
                         <label for="id_cargo">Cargo</label>
-                        <select class="form-control" name="id_cargo" id="id_cargo">
-                            @foreach (var item in Model)
-                            {
-                                <option value="@item.Id_cargo">@item.Nombre</option>
-                            }
+                        <select class="form-control" name="cargo" id="cargo">
+                           <option value="Administrador">Administrador</option>
+                           <option value="Asistente">Asistente</option>
+                           <option value="Inventariador">Inventariador</option>
                         </select>
-                        <span class="badge badge-warning sp" id="sp_id_cargo"></span>
+                        <span class="badge badge-warning sp" id="sp_cargo"></span>
                     </div>
 
                 </div>
@@ -113,15 +109,7 @@
                 </div>
 
             </form>
-
-
-
         </div>
-        <!-- /.card-body -->
-        <div class="card-footer">
-            Paginación
-        </div>
-        <!-- /.card-footer-->
     </div>
     <!-- /.card -->
 </section>
@@ -146,34 +134,36 @@
 
 <script>
 
-    //document.addEventListener("DOMContentLoaded",function(){
+    valores = [];
+
+    @foreach(var valor in Model.Usu)
+    {
+        @:agregarVal("@valor.Correo");
+    }
+
+    function agregarVal(correo) {
+        valores.push(correo);
+    }
+
+    document.addEventListener("DOMContentLoaded",function(){
 
            document.getElementById("registrar").addEventListener("submit", function (e) {
 
-            var url = "@Url.Action("Registrar_Usuario", "Usuario")";
+               var url ="@Url.Action("Registrar_Usuario","Usuario")";
 
-            //var form = document.getElementById("registrar");
+
                var nombre = document.getElementById("nombre").value;
                var documento = document.getElementById("documento").value;
                var n_documento = document.getElementById("n_documento").value;
                var direccion = document.getElementById("direccion").value;
                var celular = document.getElementById("celular").value;
                var correo = document.getElementById("correo").value;
-               var id_cargo = document.getElementById("id_cargo").value;
-               var usuario = document.getElementById("usuario").value;
+               var cargo = document.getElementById("cargo").value;
                var password = document.getElementById("password").value;
 
-               var formdata = new FormData();
-
-               formdata.append("nombre", nombre);
-               formdata.append("documento", documento);
-               formdata.append("n_documento", n_documento);
-               formdata.append("direccion", direccion);
-               formdata.append("celular", celular);
-               formdata.append("correo", correo);
-               formdata.append("id_cargo", id_cargo);
-               formdata.append("usuario", usuario);
-               formdata.append("password", password);
+               var param = "nombre=" + nombre + "&documento=" + documento + "&n_documento=" + n_documento +
+                   "&direccion=" + direccion + "&celular=" + celular + "&correo=" + correo +
+                   "&cargo=" + cargo + "&password=" + password;
 
                 var ajax = new XMLHttpRequest();
 
@@ -183,9 +173,8 @@
                         var response = JSON.parse(ajax.responseText);
                         if (response.success) {
                             console.log(response.message);
-
                             document.getElementById("content").innerHTML = response.message;
-                            $("#mod").modal({ backdrop: true });
+                            $("#mod").modal({ backdrop: 'static' });
                             limpiar_spam();
                         } else {
                             console.log(response);
@@ -199,8 +188,8 @@
                 }
 
                 ajax.open("POST", url, true);
-                //ajax.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-                ajax.send(formdata);
+                ajax.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+                ajax.send(param);
 
                 e.preventDefault();
         })
@@ -214,8 +203,7 @@
             document.getElementById("direccion").value = "";
             document.getElementById("celular").value = "";
             document.getElementById("correo").value = "";
-            document.getElementById("id_cargo").value = "";
-            document.getElementById("usuario").value = "";
+            document.getElementById("cargo").value = "";
             document.getElementById("password").value = "";
 
         })
@@ -227,7 +215,19 @@
             }
         }
 
-    //})
+        document.getElementById("correo").addEventListener("input", function () {
+            var resultado = valores.find(function (element) {
+                return element == document.getElementById("correo").value
+            });
+
+            if (resultado != undefined) {
+                document.getElementById("sp_correo").innerHTML = "Correo existente"
+            } else {
+                document.getElementById("sp_correo").innerHTML = ""
+            }
+        });
+
+    })
 
 </script>
 

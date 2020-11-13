@@ -1,0 +1,217 @@
+﻿
+
+@{
+    ViewBag.Title = "Consultar_Asignacion";
+    Layout = "~/Views/Main.cshtml";
+}
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>Lista de Asignaciones</h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="#">Asignaciones</a></li>
+                    <li class="breadcrumb-item active">Lista de Asignaciones</li>
+                </ol>
+            </div>
+        </div>
+    </div><!-- /.container-fluid -->
+</section>
+
+@model Web_Farmacia.Controllers.Info
+
+<!-- Main content -->
+<section class="content">
+    <!-- Default box -->
+    <div class="card">
+        <div class="card-header">
+            <h3 class="card-title">Asignaciones</h3>
+            <div class="card-tools">
+                <button type="button" class="btn btn-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse">
+                    <i class="fa fa-minus"></i>
+                </button>
+                <button type="button" class="btn btn-tool" data-widget="remove" data-toggle="tooltip" title="Remove">
+                    <i class="fa fa-times"></i>
+                </button>
+            </div>
+        </div>
+        <div class="card-body">
+
+
+           
+
+            <div class="d-flex mb-4">
+                <a href="@Url.Action("Registrar_Asignacion", "Asignacion")" class="btn btn-secondary ml-auto"><i class="fa fa-plus"></i> Agregar</a>
+            </div>
+
+
+            <form action="" method="post" class="" id="buscar">
+
+                <div class="form-row">
+                    <div class="form-group col-sm-4">
+                        <label for="personal">Personal</label>
+                        <input class="form-control" type="text" name="personal" id="personal" placeholder="Ingrese Personal">
+                    </div>
+                    <div class="form-group col-sm-3">
+                        <label for="id_gerencia">Gerencia</label>
+                        <select class="form-control" name="id_gerencia" id="id_gerencia">
+
+                            @foreach (var ger in Model.Ger)
+                            {
+                                <option value="@ger.Id_gerencia">@ger.Nombre</option>
+                            }
+
+                        </select>
+                    </div>
+                    <div class="form-group col-sm-3">
+                        <label for="id_area">Area</label>
+                        <select class="form-control" name="id_area" id="id_area">
+
+                            @foreach (var are in Model.Are)
+                            {
+                                <option value="@are.Id_area">@are.Nombre</option>
+                            }
+
+                        </select>
+                    </div>
+                    <div class="col-sm-2 align-self-center align-self-end text-center">
+                        <button type="submit" class="btn btn-primary pr-4 pl-4">Buscar</button>
+                    </div>
+                </div>
+            </form>
+
+            <!-- Table row -->
+
+            @if (ViewBag.eliminar != null)
+            {
+                <div class="alert alert-dark" role="alert">
+                    @ViewBag.eliminar
+                </div>
+            }
+
+            <div class="row">
+                <div class="col-12 table-responsive">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>Personal</th>
+                                <th>Bien</th>
+                                <th>Codigo Bien</th>
+                                <th>Area</th>
+                                <th>Inventario</th>
+     
+                                <th>Opciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @{
+                                foreach (var asig in Model.Asi)
+                                {
+                                    <tr>
+                                        <td>@asig.Personal</td>
+                                        <td>@asig.Bien</td>
+                                        <td>@asig.Codigo</td>
+                                        <td>@asig.Area</td>
+                                        <td>@asig.Inventario</td>
+                                      
+                                        <td class="text-center">
+                                            <a href="/Asignacion/Ver_Asignacion?id=@asig.Id_asignacion" class="btn btn-primary" id="visualizar"><i class="far fa-eye"></i></a>
+                                            <button onclick="eliminar('@asig.Id_asignacion')" class="btn btn-danger" id="Eliminar"><i class="fa fa-trash"></i></button>
+                                        </td>
+                                    </tr>
+                                }
+                            }
+
+                        </tbody>
+                    </table>
+                </div>
+                <!-- /.col -->
+            </div>
+
+            <div class="row">
+                <div id="qrcode"></div>
+
+            </div>
+        </div>
+
+    </div>
+    <!-- /.card -->
+</section>
+<!-- /.content -->
+<div class="modal fade" id="mod" role="dialog">
+
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Información</h4>
+            </div>
+            <div class="modal-body">
+                <p id="content">Desea eliminar la Asignación?</p>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-primary" id="mod-acept"> Eliminar</button><button class="btn btn-secondary" id="mod-can">Cancelar</button>
+            </div>
+        </div>
+
+    </div>
+
+
+</div>
+
+<script>
+
+    var f_id;
+
+    document.addEventListener("DOMContentLoaded", function (e) {
+
+        document.getElementById("buscar").addEventListener("submit", function () {
+
+                var url = "@Url.Action("Consultar_Asignacion", "Asignacion")";
+
+                var personal = document.getElementById("personal").value;
+                var id_gerencia = document.getElementById("id_gerencia").value;
+                var id_area = document.getElementById("id_area").value;
+
+                var param = "personal=" + personal + "&id_gerencia=" + id_gerencia + "&id_area=" + id_area;
+
+
+                  var ajax = new XMLHttpRequest();
+
+                  ajax.onreadystatechange = function () {
+                      if (ajax.readyState == 4) {
+
+                    }
+                  }
+
+                ajax.open("POST", url, true);
+
+                ajax.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+
+                ajax.send(param);
+
+        });
+
+
+        document.getElementById("mod-acept").addEventListener("click", function () {
+            location.replace("/Asignacion/eliminar?id=" + f_id);
+            $("#mod").modal("hide");
+        });
+
+        document.getElementById("mod-can").addEventListener("click", function () {
+            $("#mod").modal("hide");
+        });
+
+
+
+    })
+
+    function eliminar(id) {
+        $("#mod").modal({ backdrop: 'static' });
+        f_id = id;
+    }
+
+</script>
+

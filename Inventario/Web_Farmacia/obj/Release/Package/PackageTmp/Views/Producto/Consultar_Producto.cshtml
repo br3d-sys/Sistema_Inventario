@@ -58,10 +58,7 @@
 
                             <option value="%" selected="selected">[Todos]</option>
 
-                            @foreach (var categoria in Model.Cat)
-                            {
-                                <option value="@categoria.Id_categoria">@categoria.Nombre</option>
-                            }
+                       
                         </select>
 
                     </div>
@@ -109,7 +106,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @{
+                            @*@{
                                 foreach (var producto in Model.Prod)
                                 {
                                     <tr>
@@ -125,7 +122,7 @@
                                         </td>
                                     </tr>
                                 }
-                            }
+                            }*@
 
                         </tbody>
                     </table>

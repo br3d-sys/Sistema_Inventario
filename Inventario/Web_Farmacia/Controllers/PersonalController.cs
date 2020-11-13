@@ -42,7 +42,7 @@ namespace Web_Farmacia.Controllers
 
         }
         [HttpPost]
-        public ActionResult Consultar_Personal(string nombre, int id_gerencia, int id_area)
+        public ActionResult Consultar_Personal(string nombre, string id_gerencia, int id_area)
         {
             List<Personal> per;
             List<Area> are;

@@ -314,5 +314,68 @@ namespace Web_Farmacia.Models
         //    //}
         //}
 
+
+        public List<Encontrado> buscar_rest(string id_gerencia, string id_area, string id_personal, string codigo)
+        {
+            //try
+            //{
+            MySqlDataReader rd;
+            List<Encontrado> lista = new List<Encontrado>();
+
+            using (con = Conexion.conectar())
+            {
+                using (cmd = new MySqlCommand())
+                {
+                    cmd.CommandText = "SP_R_Consultar_Encontrado";
+                    cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                    cmd.Connection = con;
+
+                    cmd.Parameters.AddWithValue("_id_gerencia", id_gerencia);
+                    cmd.Parameters.AddWithValue("_id_area", id_area);
+                    cmd.Parameters.AddWithValue("_id_personal", id_personal);
+                    cmd.Parameters.AddWithValue("_codigo", codigo);
+
+                    rd = cmd.ExecuteReader();
+
+                    while (rd.Read())
+                    {
+                        lista.Add(new Encontrado
+                        {
+                            
+                            Id_encontrado = rd.GetInt32("id_encontrado"),
+                            Id_bienes = rd.GetInt32("id_bienes"),
+                            Id_inventario = rd.GetInt32("id_inventario"),
+                            Fecha = rd.GetDateTime("fecha"),
+                            Estado = rd.GetString("estado"),
+                            Bien = rd.GetString("bien"),
+                            Inventario = rd.GetString("inventario"),
+                            Categoria = rd.GetString("categoria"),
+                            Codigo = rd.GetString("codigo"),
+                            Imagen_byte = (byte[]) rd.GetValue(10),
+                            Detalle_estado = rd.IsDBNull(11) ? "" : rd.GetString("detalle_estado"),
+                            Id_personal = rd.GetInt32("id_personal"),
+                            Personal = rd.GetString("personal"),
+                            Id_gerencia = rd.GetInt32("id_gerencia"),
+                            Gerencia = rd.GetString("gerencia"),
+                            Id_area = rd.GetInt32("id_area"),
+                            Area = rd.GetString("area"),
+                            N_documento = rd.GetString("n_documento")
+
+                        });
+                    }
+
+                    rd.Close();
+
+                }
+            }
+
+            return lista;
+            //}
+            //catch (Exception)
+            //{
+            //    return null;
+            //}
+        }
+
     }
 }

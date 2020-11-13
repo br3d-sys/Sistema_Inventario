@@ -1,0 +1,199 @@
+﻿
+@{
+    ViewBag.Title = "Consultar_Encontrado";
+    Layout = "~/Views/Main.cshtml";
+}
+
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>Historial de Bien</h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="#">Home</a></li>
+                    <li class="breadcrumb-item active">Lista de Bienes</li>
+                </ol>
+            </div>
+        </div>
+    </div><!-- /.container-fluid -->
+</section>
+<!-- Main content -->
+<section class="content">
+    <!-- Default box -->
+    <div class="card">
+        <div class="card-header">
+            <h3 class="card-title">Historial</h3>
+            <div class="card-tools">
+                <button type="button" class="btn btn-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse">
+                    <i class="fa fa-minus"></i>
+                </button>
+                <button type="button" class="btn btn-tool" data-widget="remove" data-toggle="tooltip" title="Remove">
+                    <i class="fa fa-times"></i>
+                </button>
+            </div>
+        </div>
+        <div class="card-body">
+
+
+            @model Web_Farmacia.Controllers.Info
+
+            <div class="d-flex mb-4">
+                <a href="@Url.Action("Registrar_Encontrado", "Encontrado")" class="btn btn-secondary ml-auto"><i class="fa fa-plus"></i> Agregar</a>
+            </div>
+
+
+            <form action="/Usuario/Consultar_Usuario" method="post" class="" id="buscar">
+
+                <div class="form-row">
+                    <div class="form-group col-sm-4">
+                        <label for="nombre">Nombre de Bien</label>
+                        <input class="form-control" type="text" name="nombre" id="nombre" placeholder="Ingrese su Nombre">
+                    </div>
+                    <div class="form-group col-sm-2">
+                        <label for="codigo">Codigo</label>
+                        <input class="form-control" type="text" name="codigo" id="codigo" placeholder="Codigo">
+                    </div>
+                    <div class="form-group col-sm-2">
+                        <label for="inventario">Inventario</label>
+                        <input class="form-control" type="text" name="inventario" id="inventario" placeholder="Inventario">
+                    </div>
+                    <div class="form-group col-sm-2">
+                        <label for="fecha">Fecha</label>
+                        <input class="form-control" type="date" name="fecha" id="fecha" placeholder="Fecha">
+                    </div>
+                    <div class="col-sm-2 align-self-center align-self-end text-center">
+                        <button type="submit" class="btn btn-primary pr-4 pl-4">Buscar</button>
+                    </div>
+                </div>
+            </form>
+
+            <!-- Table row -->
+
+            @if (ViewBag.eliminar != null)
+            {
+                <div class="alert alert-dark" role="alert">
+                    @ViewBag.eliminar
+                </div>
+            }
+
+            <div class="row">
+                <div class="col-12 table-responsive">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>Nombre</th>
+                                <th>Codigo</th>
+                                <th>Inventario</th>
+                                <th>Fecha</th>
+                                <th>Opciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @{
+                                foreach (var encontrado in Model.Enc)
+                                {
+                                    <tr>
+                                        <td>@encontrado.Bien</td>
+                                        <td>@encontrado.Codigo</td>
+                                        <td>@encontrado.Inventario</td>
+                                        <td>@encontrado.Fecha</td>
+                                        <td class="text-center">
+                                            <a href="/Encontrado/Ver_Encontrado?id=@encontrado.Id_encontrado" class="btn btn-primary" id="actualizar"><i class="far fa-eye"></i></a>
+                                            <button data-backdrop="static" onclick="eliminar('@encontrado.Id_encontrado')" class="btn btn-danger" id="Eliminar"><i class="fa fa-trash"></i></button>
+
+                                        </td>
+                                    </tr>
+                                }
+                            }
+
+                        </tbody>
+                    </table>
+                </div>
+                <!-- /.col -->
+            </div>
+
+            @*<img src="" alt="" />*@
+
+        </div>
+
+    </div>
+    <!-- /.card -->
+</section>
+<!-- /.content -->
+<div class="modal fade" id="mod" role="dialog">
+
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Información</h4>
+            </div>
+            <div class="modal-body">
+                <p id="content">Desea eliminar el Bien Encontrado?</p>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-primary" id="mod-acept"> Eliminar</button><button class="btn btn-secondary" id="mod-can">Cancelar</button>
+            </div>
+        </div>
+
+    </div>
+
+
+</div>
+
+<script>
+
+    var f_id;
+
+    document.addEventListener("DOMContentLoaded", function (e) {
+
+        document.getElementById("buscar").addEventListener("submit", function () {
+
+             var url = "@Url.Action("Consultar_Encontrado", "Encontrado")";
+
+            var nombre = document.getElementById("nombre").value;
+            var codigo = document.getElementById("codigo").value;
+            var inventario = document.getElementById("inventario").value;
+            var fecha = document.getElementById("fecha").value;
+
+            var param = "nombre=" + nombre + "&codigo=" + codigo + "&inventario=" + inventario + "&fecha=" + fecha;
+
+
+              var ajax = new XMLHttpRequest();
+
+              ajax.onreadystatechange = function () {
+                  if (ajax.readyState == 4) {
+
+                }
+              }
+
+                ajax.open("POST", url, true);
+
+                ajax.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+
+            ajax.send(param);
+
+        });
+
+
+        document.getElementById("mod-acept").addEventListener("click", function () {
+            location.replace("/Encontrado/eliminar?id=" + f_id);
+            $("#mod").modal("hide");
+        })
+        document.getElementById("mod-can").addEventListener("click", function () {
+            $("#mod").modal("hide");
+        })
+
+
+
+    })
+
+    function eliminar(id) {
+        $("#mod").modal({ backdrop: 'static' });
+        f_id = id;
+    }
+
+</script>
+

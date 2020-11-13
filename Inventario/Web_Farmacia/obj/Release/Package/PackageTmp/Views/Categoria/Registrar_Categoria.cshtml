@@ -3,7 +3,6 @@
     ViewBag.Title = "Registrar_Categoria";
     Layout = "~/Views/Main.cshtml";
 }
-
 <!-- Content Header (Page header) -->
 <section class="content-header">
     <div class="container-fluid">
@@ -25,7 +24,7 @@
     <!-- Default box -->
     <div class="card">
         <div class="card-header">
-            <h3 class="card-title">Registrar</h3>
+            <h3 class="card-title">Categoria</h3>
             <div class="card-tools">
                 <button type="button" class="btn btn-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse">
                     <i class="fa fa-minus"></i>
@@ -37,19 +36,11 @@
         </div>
         <div class="card-body">
 
-            @if (ViewBag.message != null)
-            {
-                <div class="alert alert-dark" role="alert">
-                    @ViewBag.message
-                </div>
-            }
 
+            <form method="post" enctype="multipart/form-data" id="registrar">
 
-
-            <form name="registrar" method="post" @*action="/Categoria/Registrar_Categoria"*@ enctype="multipart/form-data" id="registrar">
-
-                <div class="d-flex">
-                    <a href="@Url.Action("Consultar_Categoria", "Categoria")" class="btn btn-secondary ml-auto" @*id="return"*@><i class="fa fa-caret-left"></i> Lista de Categorias</a>
+                <div class="d-flex mb-4">
+                    <a href="/Categoria/Consultar_Categoria" class="btn btn-secondary ml-auto"><i class="fa fa-caret-left"></i> Lista de Categoria</a>
                 </div>
 
                 <div class="form-row">
@@ -60,29 +51,32 @@
                     </div>
                     <div class="form-group col-sm-6">
                         <label for="descripcion">Descripcion</label>
-                        <input class="form-control" type="text" name="descripcion" id="descripcion" placeholder="Ingrese su Descripción">
+                        <input class="form-control" type="text" name="descripcion" id="descripcion" placeholder="Ingrese la Descripcion">
                         <span class="badge badge-warning sp" id="sp_descripcion"></span>
                     </div>
                 </div>
-                
+
+        
+                <div class="form-row d-flex justify-content-lg-end">
                     <div class="form-group col-auto">
                         <button type="submit" class="btn btn-primary">Guardar</button>
                     </div>
-                  
-            </form>
+                    <div class="form-group col-auto">
+                        <button type="button" class="btn btn-secondary">Limpiar</button>
+                    </div>
+                </div>
+
+
+        </form>
 
 
 
-        </div>
-        <!-- /.card-body -->
-        <div class="card-footer">
-            Paginación
-        </div>
-        <!-- /.card-footer-->
+    </div>
     </div>
     <!-- /.card -->
 </section>
 <!-- /.content -->
+
 <div class="modal fade" id="mod" role="dialog">
 
     <div class="modal-dialog" role="document">
@@ -101,63 +95,65 @@
 </div>
 
 <script>
-    document.addEventListener("DOMContentLoaded", function (e) {
 
-        document.getElementById("registrar").addEventListener("submit", function (e) {
+    document.addEventListener("DOMContentLoaded",function(){
 
-            var url = "@Url.Action("Registrar_Categoria", "Categoria")"/*"/Producto/Registrar_Producto"*/;
+           document.getElementById("registrar").addEventListener("submit", function (e) {
 
-            //var form = document.getElementById("registrar");
-            var nombre = document.getElementById("nombre").value;
-            var descripcion = document.getElementById("descripcion").value;
+            var url = "@Url.Action("Registrar_Categoria", "Categoria")";
+               var nombre = document.getElementById("nombre").value;
+               var descripcion = document.getElementById("descripcion").value;
 
-            var formdata = new FormData();
+               var param = "&nombre=" + nombre + "&descripcion=" + descripcion;
 
-            formdata.append("nombre", nombre);
-            formdata.append("descripcion", descripcion);
+               //var formdata = new FormData();
 
-            //var param = "nombre=" + nombre + "&descripcion=" + descripcion;
-            var ajax = new XMLHttpRequest();
+               //formdata.append("nombre", nombre);
+               //formdata.append("documento", documento);
+               //formdata.append("n_documento", n_documento);
+               //formdata.append("direccion", direccion);
+               //formdata.append("celular", celular);
+               //formdata.append("correo", correo);
+               //formdata.append("id_cargo", id_cargo);
+               //formdata.append("usuario", usuario);
+               //formdata.append("password", password);
 
-            ajax.onreadystatechange = function () {
-                if (ajax.readyState == 4) {
+                var ajax = new XMLHttpRequest();
 
-                    //console.log(JSON.parse(ajax.responseText));
+                ajax.onreadystatechange = function () {
+                    if (ajax.readyState == 4) {
 
-                    var response = JSON.parse(ajax.responseText);
-                    if (response.success) {
-                        console.log(response.message);
-                        
-                        document.getElementById("content").innerHTML = response.message;
-                        $("#mod").modal({ backdrop: true });
-                        limpiar_spam();
-                    } else {
-                        console.log(response);
-                        limpiar_spam();
-                        for (var prop in response.datos) {
-                            //console.log("propiedad " + prop + " valor " + response.datos[prop]);
-                            document.getElementById(prop).innerHTML = response.datos[prop]
+                        var response = JSON.parse(ajax.responseText);
+                        if (response.success) {
+                            console.log(response.message);
+
+                            document.getElementById("content").innerHTML = response.message;
+                            $("#mod").modal({ backdrop: 'static' });
+                            limpiar_spam();
+                        } else {
+                            console.log(response);
+                            limpiar_spam();
+                            for (var prop in response.datos) {
+                                //console.log("propiedad " + prop + " valor " + response.datos[prop]);
+                                document.getElementById(prop).innerHTML = response.datos[prop]
+                            }
                         }
                     }
                 }
-            }
 
-            ajax.open("POST", url, true);
-            //ajax.setRequestHeader("Content-Type", "multipart/byteranges");
-            //console.log(formdata.toString);
-            ajax.send(formdata/*param*/);
+                ajax.open("POST", url, true);
+                ajax.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+                ajax.send(param);
 
-            e.preventDefault();
+                e.preventDefault();
         })
-
-        //--------------------------------------------
 
         document.getElementById("mod-acept").addEventListener("click", function () {
             $("#mod").modal("hide");
 
-            document.getElementById("nombre").value = "";
-            document.getElementById("descripcion").value = "";
-            
+            document.getElementById("nombre").value="";
+            document.getElementById("descripcion").value="";
+
         })
 
         function limpiar_spam() {
@@ -166,10 +162,11 @@
                 elementos.item(i).innerHTML = "";
             }
         }
+
     })
 
-
-
-
 </script>
+
+
+
 

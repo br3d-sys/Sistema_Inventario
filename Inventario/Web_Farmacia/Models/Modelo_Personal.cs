@@ -242,7 +242,7 @@ namespace Web_Farmacia.Models
 
         }
 
-        public List<Personal> buscar(string nombre, int id_gerencia, int id_area)
+        public List<Personal> buscar(string nombre, string id_gerencia, int id_area)
         {
             //try
             //{

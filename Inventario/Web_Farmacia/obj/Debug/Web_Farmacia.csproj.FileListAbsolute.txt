@@ -329,3 +329,12 @@ E:\SISTEMA_INVENTARIO\Sistema_Inventario\Inventario\Web_Farmacia\obj\Debug\Web_F
 E:\SISTEMA_INVENTARIO\Sistema_Inventario\Inventario\Web_Farmacia\obj\Debug\Web_Farmacia.csproj.CopyComplete
 E:\SISTEMA_INVENTARIO\Sistema_Inventario\Inventario\Web_Farmacia\obj\Debug\Web_Farmacia.dll
 E:\SISTEMA_INVENTARIO\Sistema_Inventario\Inventario\Web_Farmacia\obj\Debug\Web_Farmacia.pdb
+D:\git_copy\Sistema_Inventario\Inventario\Web_Farmacia\bin\Newtonsoft.Json.dll
+D:\git_copy\Sistema_Inventario\Inventario\Web_Farmacia\bin\System.Net.Http.Formatting.dll
+D:\git_copy\Sistema_Inventario\Inventario\Web_Farmacia\bin\System.Web.dll
+D:\git_copy\Sistema_Inventario\Inventario\Web_Farmacia\bin\System.Web.Http.dll
+D:\git_copy\Sistema_Inventario\Inventario\Web_Farmacia\bin\System.Web.Http.WebHost.dll
+D:\git_copy\Sistema_Inventario\Inventario\Web_Farmacia\bin\Newtonsoft.Json.xml
+D:\git_copy\Sistema_Inventario\Inventario\Web_Farmacia\bin\System.Net.Http.Formatting.xml
+D:\git_copy\Sistema_Inventario\Inventario\Web_Farmacia\bin\System.Web.Http.xml
+D:\git_copy\Sistema_Inventario\Inventario\Web_Farmacia\bin\System.Web.Http.WebHost.xml

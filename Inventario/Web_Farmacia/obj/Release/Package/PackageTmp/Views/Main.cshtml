@@ -4,27 +4,27 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>AdminLTE 3 | Dashboard 3</title>
+    <title>Sistema de Inventario</title>
     <!-- Font Awesome Icons -->
-    <link rel="stylesheet" href="~/Content/plugins/font-awesome/css/font-awesome.min.css">
+    @*<link rel="stylesheet" href="~/Content/plugins/font-awesome/css/font-awesome.min.css">*@
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
     <!-- IonIcons -->
     <link rel="stylesheet" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+
+    <link rel="stylesheet" href="~/Content/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
 
     <!-- Theme style -->
     <link rel="stylesheet" href="~/Content/dist/css/adminlte.min.css">
     <!-- Google Font: Source Sans Pro -->
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+
+    <link rel="stylesheet" href="~/Content/plugins/fontawesome-free/css/all.min.css">
+
+    <script src="~/Content/plugins/jquery/jquery.min.js"></script>
+    
+
 </head>
-<!--
-BODY TAG OPTIONS:
-=================
-Apply one or more of the following classes to to the body tag
-to get the desired effect
-|---------------------------------------------------------|
-|LAYOUT OPTIONS | sidebar-collapse                        |
-|               | sidebar-mini                            |
-|---------------------------------------------------------|
--->
+
 <body class="hold-transition sidebar-mini">
     <div class="wrapper">
         <!-- Navbar -->
@@ -34,20 +34,19 @@ to get the desired effect
                 <li class="nav-item">
                     <a class="nav-link" data-widget="pushmenu" href="#"><i class="fa fa-bars"></i></a>
                 </li>
-                
+
             </ul>
             <!-- SEARCH FORM -->
-            
             <!-- Right navbar links -->
         </nav>
         <!-- /.navbar -->
         <!-- Main Sidebar Container -->
         <aside class="main-sidebar sidebar-dark-primary elevation-4">
             <!-- Brand Logo -->
-            <a href="index3.html" class="brand-link">
+            <a href="/Usuario/Menu_Principal" class="brand-link">
                 <img src="~/Content/dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
                      style="opacity: .8">
-                <span class="brand-text font-weight-light">Farmacia el Angel</span>
+                <span class="brand-text font-weight-light">Sistema de Inventario</span>
             </a>
             <!-- Sidebar -->
             <div class="sidebar">
@@ -64,27 +63,27 @@ to get the desired effect
                 <nav class="mt-2">
                     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                         <!-- Add icons to the links using the .nav-icon class
-                             with font-awesome or any other icon font library -->
+    with font-awesome or any other icon font library -->
 
                         <li class="nav-item has-treeview">
                             <a href="#" class="nav-link">
                                 <i class="nav-icon fa fa-pie-chart"></i>
                                 <p>
-                                    Producto
+                                    Bien
                                     <i class="right fa fa-angle-left"></i>
                                 </p>
                             </a>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="/Producto/Consultar_Producto" class="nav-link">
+                                    <a href="/Bien/Consultar_Bien" class="nav-link">
                                         <i class="fa fa-circle-o nav-icon"></i>
-                                        <p>Listar Productos</p>
+                                        <p>Listar Bien</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="/Producto/Registrar_Producto" class="nav-link">
+                                    <a href="/Bien/Registrar_Bien" class="nav-link">
                                         <i class="fa fa-circle-o nav-icon"></i>
-                                        <p>Registrar Productos</p>
+                                        <p>Registrar Bien</p>
                                     </a>
                                 </li>
                             </ul>
@@ -110,62 +109,149 @@ to get the desired effect
                                         <p>Registrar Categorias</p>
                                     </a>
                                 </li>
-                                
+
                             </ul>
                         </li>
                         <li class="nav-item has-treeview">
                             <a href="#" class="nav-link">
-                                <i class="nav-icon fa fa-edit"></i>
+                                <i class="nav-icon fas fa-hands-helping"></i>
                                 <p>
-                                    Ventas
+                                    Asignacion
                                     <i class="fa fa-angle-left right"></i>
                                 </p>
                             </a>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="/Venta/Consultar_Venta" class="nav-link">
+                                    <a href="/Asignacion/Consultar_Asignacion" class="nav-link">
                                         <i class="fa fa-circle-o nav-icon"></i>
-                                        <p>Lista de Ventas</p>
+                                        <p>Lista de Asignaciones</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="/Venta/Registrar_Venta" class="nav-link">
+                                    <a href="/Asignacion/Registrar_Asignacion" class="nav-link">
                                         <i class="fa fa-circle-o nav-icon"></i>
-                                        <p>Registrar Venta</p>
+                                        <p>Registrar Asignación</p>
                                     </a>
                                 </li>
                             </ul>
                         </li>
                         <li class="nav-item has-treeview">
-                            <a href="/Comprobante/Consultar_Comprobante" class="nav-link">
-                                <i class="nav-icon fa fa-table"></i>
+                            <a href="#" class="nav-link">
+                                <i class="nav-icon fas fa-search-location"></i>
                                 <p>
-                                    Comprobante
+                                    Historial de Bien
                                     <i class="fa fa-angle-left right"></i>
                                 </p>
                             </a>
-                            
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="/Encontrado/Consultar_Encontrado" class="nav-link">
+                                        <i class="fa fa-circle-o nav-icon"></i>
+                                        <p>Lista de Historial</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="/Encontrado/Registrar_Encontrado" class="nav-link">
+                                        <i class="fa fa-circle-o nav-icon"></i>
+                                        <p>Registrar Estado</p>
+                                    </a>
+                                </li>
+                            </ul>
                         </li>
+                        @* ---------------------------------------------------------------- *@
+                        <li class="nav-item has-treeview">
+                            <a href="#" class="nav-link">
+                                <i class="nav-icon fas fa-university"></i>
+                                <p>
+                                    Gerencia
+                                    <i class="fa fa-angle-left right"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="/Gerencia/Consultar_Gerencia" class="nav-link">
+                                        <i class="fa fa-circle-o nav-icon"></i>
+                                        <p>Lista de Gerencias</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="/Gerencia/Registrar_Gerencia" class="nav-link">
+                                        <i class="fa fa-circle-o nav-icon"></i>
+                                        <p>Registrar Gerencia</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="nav-item has-treeview">
+                            <a href="#" class="nav-link">
+                                <i class="nav-icon fas fa-archway"></i>
+                                <p>
+                                    Area
+                                    <i class="fa fa-angle-left right"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="/Area/Consultar_Area" class="nav-link">
+                                        <i class="fa fa-circle-o nav-icon"></i>
+                                        <p>Lista de Areas</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="/Area/Registrar_Area" class="nav-link">
+                                        <i class="fa fa-circle-o nav-icon"></i>
+                                        <p>Registrar Area</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="nav-item has-treeview">
+                            <a href="#" class="nav-link">
+                                <i class="nav-icon fas fa-clipboard-list"></i>
+                                <p>
+                                    Inventario
+                                    <i class="fa fa-angle-left right"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="/Inventario/Consultar_Inventario" class="nav-link">
+                                        <i class="fa fa-circle-o nav-icon"></i>
+                                        <p>Lista de Inventarios</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="/Inventario/Registrar_Inventario" class="nav-link">
+                                        <i class="fa fa-circle-o nav-icon"></i>
+                                        <p>Registrar Inventario</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+
+
                         @* ------------------------------------------------ *@
+
+
                         <li class="nav-item has-treeview">
                             <a href="#" class="nav-link">
                                 <i class="nav-icon fa fa-star"></i>
                                 <p>
-                                    Clientes
+                                    Personal
                                     <i class="fa fa-angle-left right"></i>
                                 </p>
                             </a>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="/Cliente/Consultar_Cliente" class="nav-link">
+                                    <a href="/Personal/Consultar_Personal" class="nav-link">
                                         <i class="fa fa-circle-o nav-icon"></i>
-                                        <p>Lista de Clientes</p>
+                                        <p>Lista de Personal</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="/Cliente/Registrar_Cliente" class="nav-link">
+                                    <a href="/Personal/Registrar_Personal" class="nav-link">
                                         <i class="fa fa-circle-o nav-icon"></i>
-                                        <p>Registrar Cliente</p>
+                                        <p>Registrar Personal</p>
                                     </a>
                                 </li>
 
@@ -192,16 +278,10 @@ to get the desired effect
                                         <p>Registrar Usuario</p>
                                     </a>
                                 </li>
-                                <li class="nav-item">
-                                    <a href="/Cargo/Consultar_Cargo" class="nav-link">
-                                        <i class="fa fa-circle-o nav-icon"></i>
-                                        <p>Registro de Cargos</p>
-                                    </a>
-                                </li>
 
                             </ul>
                         </li>
-                       
+
                     </ul>
                 </nav>
                 <!-- /.sidebar-menu -->
@@ -235,12 +315,15 @@ to get the desired effect
     <!-- ./wrapper -->
     <!-- REQUIRED SCRIPTS -->
     <!-- jQuery -->
-    <script src="~/Content/plugins/jquery/jquery.min.js"></script>
-    <!-- Bootstrap -->
+    @*<script src="~/Content/plugins/jquery/jquery.min.js"></script>*@
+
+    @*Bootstrap*@
     <script src="~/Content/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <!-- AdminLTE -->
+    @*AdminLTE*@
     <script src="~/Content/dist/js/adminlte.js"></script>
-    <!-- OPTIONAL SCRIPTS -->
+    @*OPTIONAL SCRIPTS*@
+    <script src="~/Content/plugins/qrcode/qrcode.js"</script>
+    @*<script src="~/Content/plugins/qrcode/qrcode.min.js"</script>*@
     <script src="~/Content/plugins/chart.js/Chart.min.js"></script>
     <script src="~/Content/dist/js/demo.js"></script>
     <script src="~/Content/dist/js/pages/dashboard3.js"></script>
