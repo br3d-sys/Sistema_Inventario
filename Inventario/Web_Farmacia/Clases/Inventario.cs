@@ -8,10 +8,10 @@ namespace Web_Farmacia.Clases
     public class Inventario
     {
         private int id_inventario;
-        private string nombre;
+        private string anio_periodo;
+        private int periodo;
         private DateTime fecha_ini;
         private DateTime fecha_fin;
-        private int disponibilidad;
 
         public int Id_inventario
         {
@@ -26,16 +26,29 @@ namespace Web_Farmacia.Clases
             }
         }
 
-        public string Nombre
+        public string Anio_periodo
         {
             get
             {
-                return nombre;
+                return anio_periodo;
             }
 
             set
             {
-                nombre = value;
+                anio_periodo = value;
+            }
+        }
+
+        public int Periodo
+        {
+            get
+            {
+                return periodo;
+            }
+
+            set
+            {
+                periodo = value;
             }
         }
 
@@ -65,17 +78,5 @@ namespace Web_Farmacia.Clases
             }
         }
 
-        public int Disponibilidad
-        {
-            get
-            {
-                return disponibilidad;
-            }
-
-            set
-            {
-                disponibilidad = value;
-            }
-        }
     }
 }

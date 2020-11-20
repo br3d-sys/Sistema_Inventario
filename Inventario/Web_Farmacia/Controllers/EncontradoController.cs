@@ -235,25 +235,30 @@ namespace Web_Farmacia.Controllers
             {
                 error.Add("sp_mod_descripcion", "Describa el estado de bien");
             }
-            if (String.IsNullOrEmpty(tipo_documento))
-            {
-                error.Add("sp_tipo_documento", "Seleccione el Tipo de documento");
-            }
-            if (String.IsNullOrEmpty(num_documento))
-            {
-                error.Add("sp_num_documento", "Ingrese el numero del documento");
-            }
+            //if (String.IsNullOrEmpty(tipo_documento))
+            //{
+            //    error.Add("sp_tipo_documento", "Seleccione el Tipo de documento");
+            //}
+            //if (String.IsNullOrEmpty(num_documento))
+            //{
+            //    error.Add("sp_num_documento", "Ingrese el numero del documento");
+            //}
 
             if (error.Count == 0)
             {
 
                 Image img = cambiar_tamaño(imagen);
+                //Image img2 = cambiar_tamaño(adj_doc);
 
                 using (MemoryStream ms = new MemoryStream())
                 {
                     img.Save(ms, ImageFormat.Jpeg);
                     byte[] img_byte = ms.ToArray();
-                    string im = Convert.ToBase64String(img_byte);
+                    //string im = Convert.ToBase64String(img_byte);
+                    /*img2.Save(ms,ImageFormat.Jpeg);
+                    byte[] img2_byte = ms.ToArray();
+                    string im2 = Convert.ToBase64String(img2_byte);*/
+
 
                     enc.Id_bienes = id_bienes == 0 ? 0 : id_bienes;
                     enc.Id_inventario = id_inventario == 0 ? 0 : id_inventario;
@@ -261,8 +266,17 @@ namespace Web_Farmacia.Controllers
                     enc.Estado = estado == null ? "" : estado;
                     enc.Detalle_estado = detalle_estado == null ? "" : detalle_estado;
                     enc.T_documento = tipo_documento == null ? "" : tipo_documento;
-                    enc.N_documento = im;
-                    enc.Archivo = adj_doc == null ? "" : adj_doc.FileName;
+                    enc.N_documento = num_documento == null ? "" : num_documento;
+                    if (adj_doc == null)
+                    {
+                        enc.Archivo = "";
+                    }
+                    else
+                    {
+                        enc.Archivo =adj_doc.FileName;
+                        guardar_archivo(adj_doc);
+                    }
+                    
                     enc.Imagen_byte = img_byte == null ? null : img_byte;
 
                 }

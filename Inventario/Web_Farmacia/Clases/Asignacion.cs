@@ -9,20 +9,18 @@ namespace Web_Farmacia.Clases
     {
         private int id_asignacion;
         private int id_usuario;
-        private int id_encontrado;
-        private int id_inventario;
-        private int id_bienes;
-        private string bien;
-        private string codigo;
-        private string inventario;
         private int id_personal;
         private string personal;
         private int id_area;
         private string area;
         private int id_gerencia;
         private string gerencia;
+        private int id_bienes;
+        private string bien;
+        private string codigo;
+        private int id_inventario;
+        private string inventario;
         private DateTime fecha_asig;
-        private int disponibilidad;
 
         public int Id_asignacion
         {
@@ -47,19 +45,6 @@ namespace Web_Farmacia.Clases
             set
             {
                 id_usuario = value;
-            }
-        }
-
-        public int Id_encontrado
-        {
-            get
-            {
-                return id_encontrado;
-            }
-
-            set
-            {
-                id_encontrado = value;
             }
         }
 
@@ -216,19 +201,6 @@ namespace Web_Farmacia.Clases
             set
             {
                 fecha_asig = value;
-            }
-        }
-
-        public int Disponibilidad
-        {
-            get
-            {
-                return disponibilidad;
-            }
-
-            set
-            {
-                disponibilidad = value;
             }
         }
     }

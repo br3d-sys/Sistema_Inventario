@@ -90,14 +90,15 @@ namespace Web_Farmacia.Models
                         {
 
                             Id_encontrado = rd.GetInt32("id_encontrado"),
-                            Id_bienes = rd.GetInt32("id_bienes"),
                             Id_inventario = rd.GetInt32("id_inventario"),
+                            Inventario = rd.GetString("inventario"),
+                            Id_bienes = rd.GetInt32("id_bienes"),
+                            Bien = rd.GetString("bien"),
+                            Codigo = rd.GetString("codigo"),
+                            Id_categoria = rd.GetInt32("id_categoria"),
+                            Categoria = rd.GetString("categoria"),
                             Fecha = rd.GetDateTime("fecha"),
                             Estado = rd.GetString("estado"),
-                            Bien = rd.GetString("bien"),
-                            Inventario = rd.GetString("inventario"),
-                            Categoria = rd.GetString("categoria"),
-                            Codigo = rd.GetString("codigo"),
                             Detalle_estado = rd.IsDBNull(11)?"":rd.GetString("detalle_estado"),
                             T_documento = rd.IsDBNull(12) ? "" : rd.GetString("t_documento"),
                             N_documento = rd.IsDBNull(13) ? "" : rd.GetString("n_documento"),
@@ -228,18 +229,23 @@ namespace Web_Farmacia.Models
                         enc.Imagen_byte = arr_byte;
 
                         enc.Id_encontrado = rd.GetInt32("id_encontrado");
-                        enc.Id_bienes = rd.GetInt32("id_bienes");
                         enc.Id_inventario = rd.GetInt32("id_inventario");
+                        enc.Inventario = rd.GetString("inventario");
+                        enc.Id_bienes = rd.GetInt32("id_bienes");
+                        enc.Bien = rd.GetString("bien");
+                        enc.Codigo = rd.GetString("codigo");
+                        enc.Id_categoria = rd.GetInt32("id_categoria");
+                        enc.Categoria = rd.GetString("categoria");
                         enc.Fecha = rd.GetDateTime("fecha");
                         enc.Estado = rd.GetString("estado");
-                        enc.Bien = rd.GetString("bien");
-                        enc.Inventario = rd.GetString("inventario");
-                        enc.Categoria = rd.GetString("categoria");
-                        enc.Codigo = rd.GetString("codigo");
                         enc.Detalle_estado = rd.IsDBNull(11) ? "" : rd.GetString("detalle_estado");
                         enc.T_documento = rd.IsDBNull(12) ? "" : rd.GetString("t_documento");
                         enc.N_documento = rd.IsDBNull(13) ? "" : rd.GetString("n_documento");
                         enc.Archivo = rd.IsDBNull(14) ? null : rd.GetString("archivo");
+                        enc.Marca = rd.GetString("marca");
+                        enc.Modelo = rd.GetString("modelo");
+                        enc.Color = rd.GetString("color");
+                        enc.Serie = rd.GetString("serie");
                     }
 
                     rd.Close();
@@ -359,7 +365,10 @@ namespace Web_Farmacia.Models
                             Gerencia = rd.GetString("gerencia"),
                             Id_area = rd.GetInt32("id_area"),
                             Area = rd.GetString("area"),
-                            N_documento = rd.GetString("n_documento")
+                            Marca = rd.GetString("marca"),
+                            Modelo = rd.GetString("modelo"),
+                            Color = rd.GetString("color"),
+                            Serie = rd.GetString("serie")
 
                         });
                     }

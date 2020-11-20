@@ -338,3 +338,9 @@ D:\git_copy\Sistema_Inventario\Inventario\Web_Farmacia\bin\Newtonsoft.Json.xml
 D:\git_copy\Sistema_Inventario\Inventario\Web_Farmacia\bin\System.Net.Http.Formatting.xml
 D:\git_copy\Sistema_Inventario\Inventario\Web_Farmacia\bin\System.Web.Http.xml
 D:\git_copy\Sistema_Inventario\Inventario\Web_Farmacia\bin\System.Web.Http.WebHost.xml
+D:\git_copy\Sistema_Inventario\Inventario\Web_Farmacia\bin\es\System.Web.Razor.resources.dll
+D:\git_copy\Sistema_Inventario\Inventario\Web_Farmacia\bin\es\System.Web.Webpages.resources.dll
+D:\git_copy\Sistema_Inventario\Inventario\Web_Farmacia\bin\es\System.Web.Webpages.Deployment.resources.dll
+D:\git_copy\Sistema_Inventario\Inventario\Web_Farmacia\bin\es\System.Web.Webpages.Razor.resources.dll
+D:\git_copy\Sistema_Inventario\Inventario\Web_Farmacia\bin\es\System.Web.Helpers.resources.dll
+D:\git_copy\Sistema_Inventario\Inventario\Web_Farmacia\bin\es\System.Web.Mvc.resources.dll

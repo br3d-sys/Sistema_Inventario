@@ -11,27 +11,24 @@ namespace Web_Farmacia.Clases
     public class Encontrado
     {
         private int id_encontrado;
-        private int id_bienes;
-        private string bien;
         private int id_inventario;
         private string inventario;
-        private DateTime fecha;
+        private int id_bienes;
+        private string bien;
         private string codigo;
-        private string estado;
+        private int id_categoria;
         private string categoria;
+        private DateTime fecha;
+        private string estado;
         private byte[] imagen_byte;
         private string detalle_estado;
-        private int id_personal;
-        private string personal;
-        private int id_area;
-        private string area;
-        private int id_gerencia;
-        private string gerencia;
-
         private string t_documento;
         private string n_documento;
         private string archivo;
-        private int disponibilidad;
+        private string marca;
+        private string modelo;
+        private string color;
+        private string serie;
          
         public int Id_encontrado
         {
@@ -43,6 +40,30 @@ namespace Web_Farmacia.Clases
             set
             {
                 id_encontrado = value;
+            }
+        }
+        public int Id_inventario
+        {
+            get
+            {
+                return id_inventario;
+            }
+
+            set
+            {
+                id_inventario = value;
+            }
+        }
+        public string Inventario
+        {
+            get
+            {
+                return inventario;
+            }
+
+            set
+            {
+                inventario = value;
             }
         }
 
@@ -71,33 +92,42 @@ namespace Web_Farmacia.Clases
                 bien = value;
             }
         }
-
-        public int Id_inventario
+        public string Codigo
         {
             get
             {
-                return id_inventario;
+                return codigo;
             }
 
             set
             {
-                id_inventario = value;
+                codigo = value;
             }
         }
-
-        public string Inventario
+        public int Id_categoria
         {
             get
             {
-                return inventario;
+                return id_categoria;
             }
 
             set
             {
-                inventario = value;
+                id_categoria = value;
             }
         }
+        public string Categoria
+        {
+            get
+            {
+                return categoria;
+            }
 
+            set
+            {
+                categoria = value;
+            }
+        }
         public DateTime Fecha
         {
             get
@@ -121,32 +151,6 @@ namespace Web_Farmacia.Clases
             set
             {
                 estado = value;
-            }
-        }
-
-        public string Categoria
-        {
-            get
-            {
-                return categoria;
-            }
-
-            set
-            {
-                categoria = value;
-            }
-        }
-
-        public string Codigo
-        {
-            get
-            {
-                return codigo;
-            }
-
-            set
-            {
-                codigo = value;
             }
         }
 
@@ -176,84 +180,6 @@ namespace Web_Farmacia.Clases
             }
         }
 
-        public int Id_personal
-        {
-            get
-            {
-                return id_personal;
-            }
-
-            set
-            {
-                id_personal = value;
-            }
-        }
-
-        public string Personal
-        {
-            get
-            {
-                return personal;
-            }
-
-            set
-            {
-                personal = value;
-            }
-        }
-
-        public int Id_area
-        {
-            get
-            {
-                return id_area;
-            }
-
-            set
-            {
-                id_area = value;
-            }
-        }
-
-        public string Area
-        {
-            get
-            {
-                return area;
-            }
-
-            set
-            {
-                area = value;
-            }
-        }
-
-        public int Id_gerencia
-        {
-            get
-            {
-                return id_gerencia;
-            }
-
-            set
-            {
-                id_gerencia = value;
-            }
-        }
-
-        public string Gerencia
-        {
-            get
-            {
-                return gerencia;
-            }
-
-            set
-            {
-                gerencia = value;
-            }
-        }
-
         public string T_documento
         {
             get
@@ -279,7 +205,6 @@ namespace Web_Farmacia.Clases
                 n_documento = value;
             }
         }
-
         public string Archivo
         {
             get
@@ -293,16 +218,55 @@ namespace Web_Farmacia.Clases
             }
         }
 
-        public int Disponibilidad
+        public string Marca
         {
             get
             {
-                return disponibilidad;
+                return marca;
             }
 
             set
             {
-                disponibilidad = value;
+                marca = value;
+            }
+        }
+
+        public string Modelo
+        {
+            get
+            {
+                return modelo;
+            }
+
+            set
+            {
+                modelo = value;
+            }
+        }
+
+        public string Color
+        {
+            get
+            {
+                return color;
+            }
+
+            set
+            {
+                color = value;
+            }
+        }
+
+        public string Serie
+        {
+            get
+            {
+                return serie;
+            }
+
+            set
+            {
+                serie = value;
             }
         }
     }
